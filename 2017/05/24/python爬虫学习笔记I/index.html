@@ -6,17 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | JamesBy博客</title>
+  <title>python爬虫学习笔记I | JamesBy博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="个人博客，hexo+github">
-<meta property="og:type" content="website">
-<meta property="og:title" content="JamesBy博客">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="I.相对路径python 可以使用urlparse模块来创建绝对路径，代码示例： 1link = urlparse.urljoin(seed_url,link) II.使用request和urllib2获取网页的不同操作使用request获取网页需要加上.text即可返回网页源代码 使用urlllib2使用urllib2.Request抓取然后使用urllib2.urlopen()把网页返回">
+<meta name="keywords" content="python,爬虫">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python爬虫学习笔记I">
+<meta property="og:url" content="http://yoursite.com/2017/05/24/python爬虫学习笔记I/index.html">
 <meta property="og:site_name" content="JamesBy博客">
-<meta property="og:description" content="个人博客，hexo+github">
+<meta property="og:description" content="I.相对路径python 可以使用urlparse模块来创建绝对路径，代码示例： 1link = urlparse.urljoin(seed_url,link) II.使用request和urllib2获取网页的不同操作使用request获取网页需要加上.text即可返回网页源代码 使用urlllib2使用urllib2.Request抓取然后使用urllib2.urlopen()把网页返回">
+<meta property="og:updated_time" content="2017-05-24T04:38:18.124Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JamesBy博客">
-<meta name="twitter:description" content="个人博客，hexo+github">
+<meta name="twitter:title" content="python爬虫学习笔记I">
+<meta name="twitter:description" content="I.相对路径python 可以使用urlparse模块来创建绝对路径，代码示例： 1link = urlparse.urljoin(seed_url,link) II.使用request和urllib2获取网页的不同操作使用request获取网页需要加上.text即可返回网页源代码 使用urlllib2使用urllib2.Request抓取然后使用urllib2.urlopen()把网页返回">
   
     <link rel="alternative" href="/atom.xml" title="JamesBy博客" type="application/atom+xml">
   
@@ -138,36 +140,78 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-python爬虫学习笔记I" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/24/python爬虫学习笔记I/" class="archive-article-date">
-  	<time datetime="2017-05-24T04:25:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-24</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/24/python爬虫学习笔记I/">python爬虫学习笔记I</a>
+    <h1 class="article-title" itemprop="name">
+      python爬虫学习笔记I
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/05/24/python爬虫学习笔记I/" class="archive-article-date">
+  	<time datetime="2017-05-24T04:25:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="I-相对路径"><a href="#I-相对路径" class="headerlink" title="I.相对路径"></a>I.相对路径</h3><p>python 可以使用urlparse模块来创建绝对路径，代码示例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">link = urlparse.urljoin(seed_url,link)</div></pre></td></tr></table></figure>
+<h3 id="II-使用request和urllib2获取网页的不同操作"><a href="#II-使用request和urllib2获取网页的不同操作" class="headerlink" title="II.使用request和urllib2获取网页的不同操作"></a>II.使用request和urllib2获取网页的不同操作</h3><p>使用request获取网页需要加上.text即可返回网页源代码</p>
+<p>使用urlllib2使用urllib2.Request抓取然后使用urllib2.urlopen()把网页返回</p>
+<a id="more"></a>
+<h3 id="III-BeautifulSoup学习使用"><a href="#III-BeautifulSoup学习使用" class="headerlink" title="III.BeautifulSoup学习使用"></a>III.BeautifulSoup学习使用</h3><p>1.使用之前先将目标网站使用网站格式化</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">soup =BeautifulSoup(html,<span class="string">'html.parser'</span>)</div></pre></td></tr></table></figure>
+<p>2.使用CSS选择器查找元素</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">#CSS选择器，通过标签名查找</div><div class="line">print soup.select(&apos;title&apos;)</div><div class="line">#通过类名查找</div><div class="line">print soup.select(&apos;.sister&apos;)</div><div class="line">#通过ID查找</div><div class="line">print soup.select(&apos;#link1&apos;)</div><div class="line">#组合查找:查找P标签中ID为link1的</div><div class="line">print soup.select(&apos;p #link1&apos;)</div><div class="line">#直接子标签查找</div><div class="line">print soup.select(&apos;head &gt; title&apos;)</div><div class="line">#属性查找</div><div class="line">print soup.select(&apos;a[class=&quot;sister&quot;]&apos;)</div><div class="line">print soup.select(&apos;a[href=&quot;http://example.com/elsie&quot;]&apos;)</div></pre></td></tr></table></figure>
+<p>3.BeautifulSoup四大对象种类</p>
+<ul>
+<li><code>Tag</code></li>
+<li><code>NavigableString</code></li>
+<li><code>BeautifulSoup</code></li>
+<li><code>Comment</code></li>
+</ul>
+<p>可以使用节点的方式查找元素</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#使用正则表达式查找</span></div><div class="line"><span class="comment"># import re</span></div><div class="line"><span class="comment"># for tag in soup.find_all(re.compile('^b')):</span></div><div class="line">    <span class="comment"># print tag.name</span></div><div class="line"><span class="comment">#传递列表，查找列表中的元素</span></div><div class="line"><span class="comment"># print soup.find_all(['a','b'])</span></div><div class="line"><span class="comment">#查找所有的元素节点</span></div><div class="line"><span class="comment"># for tag in soup.find_all(True):</span></div><div class="line">    <span class="comment"># print tag.name</span></div><div class="line"><span class="comment">#keyword参数</span></div><div class="line"><span class="comment"># print soup.find_all(id='link2')</span></div></pre></td></tr></table></figure>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>^^谢谢你请我吃糖哦^^<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/blogimg/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -183,95 +227,89 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/05/24/python爬虫学习笔记I/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/23/hello-world/" class="archive-article-date">
-  	<time datetime="2017-05-23T10:20:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-23</time>
-</a>
-        </div>
-    	 
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/23/hello-world/">Hexo基本使用</a>
-    </h1>
+  
+    <a href="/2017/05/23/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Hexo基本使用</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+  
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/23/python高级特性/" class="archive-article-date">
-  	<time datetime="2017-05-23T10:19:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/23/python高级特性/">python高级特性</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -294,8 +332,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
