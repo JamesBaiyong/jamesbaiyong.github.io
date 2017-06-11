@@ -6,17 +6,26 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2017 | JamesBy博客</title>
+  <title>python系统监控--psutil | JamesBy博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="个人博客，hexo+github">
-<meta property="og:type" content="website">
-<meta property="og:title" content="JamesBy博客">
-<meta property="og:url" content="http://yoursite.com/archives/2017/index.html">
+  <meta name="description" content="I.前言​    这两日学习中，发现我养成了一个小小的强迫证，那就是当电脑运行过多的程序时，总会时不时打开任务管理器看看到底哪些程序比较吃内存和CPU。于是我google了一下如何写一个脚本来完成这项操作，然后发现了python的一个名为psutil的库文件,这个库文件可以直接打印出我所需要的CPU和内存信息。稍微了解了一下下，写到博客做备忘。 ​    由于个人学习情况不同，我这里仅仅简单介绍和">
+<meta name="keywords" content="python,脚本">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python系统监控--psutil">
+<meta property="og:url" content="http://yoursite.com/2017/06/11/python系统监控-psutil/index.html">
 <meta property="og:site_name" content="JamesBy博客">
-<meta property="og:description" content="个人博客，hexo+github">
+<meta property="og:description" content="I.前言​    这两日学习中，发现我养成了一个小小的强迫证，那就是当电脑运行过多的程序时，总会时不时打开任务管理器看看到底哪些程序比较吃内存和CPU。于是我google了一下如何写一个脚本来完成这项操作，然后发现了python的一个名为psutil的库文件,这个库文件可以直接打印出我所需要的CPU和内存信息。稍微了解了一下下，写到博客做备忘。 ​    由于个人学习情况不同，我这里仅仅简单介绍和">
+<meta property="og:image" content="http://yoursite.com/writeimg/blog/17061101.jpg">
+<meta property="og:image" content="http://yoursite.com/writeimg/blog/17061102.jpg">
+<meta property="og:image" content="http://yoursite.com/writeimg/blog/17061103.jpg">
+<meta property="og:image" content="http://yoursite.com/writeimg/blog/17061104.jpg">
+<meta property="og:image" content="http://yoursite.com/writeimg/blog/17061105.jpg">
+<meta property="og:image" content="http://yoursite.com/writeimg/blog/17061106.jpg">
+<meta property="og:updated_time" content="2017-06-11T09:54:16.516Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JamesBy博客">
-<meta name="twitter:description" content="个人博客，hexo+github">
+<meta name="twitter:title" content="python系统监控--psutil">
+<meta name="twitter:description" content="I.前言​    这两日学习中，发现我养成了一个小小的强迫证，那就是当电脑运行过多的程序时，总会时不时打开任务管理器看看到底哪些程序比较吃内存和CPU。于是我google了一下如何写一个脚本来完成这项操作，然后发现了python的一个名为psutil的库文件,这个库文件可以直接打印出我所需要的CPU和内存信息。稍微了解了一下下，写到博客做备忘。 ​    由于个人学习情况不同，我这里仅仅简单介绍和">
+<meta name="twitter:image" content="http://yoursite.com/writeimg/blog/17061101.jpg">
   
     <link rel="alternative" href="/atom.xml" title="JamesBy博客" type="application/atom+xml">
   
@@ -138,36 +147,74 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-python系统监控-psutil" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/06/11/python系统监控-psutil/" class="archive-article-date">
-  	<time datetime="2017-06-11T09:53:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-11</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/11/python系统监控-psutil/">python系统监控--psutil</a>
+    <h1 class="article-title" itemprop="name">
+      python系统监控--psutil
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/06/11/python系统监控-psutil/" class="archive-article-date">
+  	<time datetime="2017-06-11T09:53:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="I-前言"><a href="#I-前言" class="headerlink" title="I.前言"></a>I.前言</h3><p>​    这两日学习中，发现我养成了一个小小的强迫证，那就是当电脑运行过多的程序时，总会时不时打开任务管理器看看到底哪些程序比较吃内存和CPU。于是我google了一下如何写一个脚本来完成这项操作，然后发现了python的一个名为psutil的库文件,这个库文件可以直接打印出我所需要的CPU和内存信息。稍微了解了一下下，写到博客做备忘。</p>
+<p>​    由于个人学习情况不同，我这里仅仅简单介绍和记录一些常用的操作，详细介绍和操作可以到<a href="https://pypi.python.org/pypi/psutil" target="_blank" rel="external">官网</a>和<a href="http://www.jianshu.com/p/64e265f663f6" target="_blank" rel="external">简书</a>查看学习。</p>
+<p><img src="\writeimg\blog\17061101.jpg" alt="配图"></p>
+<a id="more"></a>
+<h3 id="II-pustil介绍"><a href="#II-pustil介绍" class="headerlink" title="II.pustil介绍"></a>II.pustil介绍</h3><p>​    pustil是一个跨平台的进程管理和系统利用工具，可以处理CPU，内存，硬盘，网络，进程等信息。主要用于系统的监控，分析和限制进程资源。实现了许多我们熟知的命令行工具，比如：ps,top,ifconfig,netstat,free等，目前支持linux，windows，OSX，sun,Solaris, FreeBSD, OpenBSD and NetBSD操作系统。最新版本只支持python2.6到python3.6。</p>
+<h3 id="III-pustil简单操作"><a href="#III-pustil简单操作" class="headerlink" title="III.pustil简单操作"></a>III.pustil简单操作</h3><p>​    CPU模块：比较关心的就是CPU使用率，pustil提供了函数psutil.cpu_percent()来读取。该函数有两个参数，分别是interval和percpu分别代表时间（秒），CPU核数当值为True会返回每一个CPU的利用率。</p>
+<p><img src="\writeimg\blog\17061102.jpg" alt="CPU"></p>
+<p>​    内存模块：这个模块首先关心的是占用情况和占用率，pustil在内存模块提供了一个函数就可以解决这些我们想要知道的信息，函数psutil.virtual_memory()将返回一个内存信息元祖，大小为字节，其中包含内存的总大小，可以分配的内存大小（不同的系统计算方式不同，linux下的计算方式是free+buffers+cached），使用率，已经用掉的内存大小，空闲未用的大小在linux中不包含buffers和cached。</p>
+<p><img src="\writeimg\blog\17061103.jpg" alt="内存"></p>
+<p>​    进程模块：这个模块提供了 psutil.pids()函数，该函数会返回系统正在运行的进程号，使用函数psutil.Process(进程号).name()可以读取到是哪个程序运行了该进程。 而函数psutil.test()可以打印出当前系统正在运行的进程比较详细的信息。</p>
+<p><img src="\writeimg\blog\17061104.jpg" alt="pids"></p>
+<p><img src="\writeimg\blog\17061105.jpg" alt="test"></p>
+<p>​    这里仅列出该库文件的简单操作，更加详细的信息请移步文章开头的链接。最后附上我写的小脚本，仅打印出了简单的CPU和内存信息。</p>
+<p><img src="\writeimg\blog\17061106.jpg" alt="脚本运行结果"></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>^^谢谢你请我吃糖哦^^<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/blogimg/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -183,217 +230,100 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/06/11/python系统监控-psutil/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/06/02/网易云跟帖部署二三事/" class="archive-article-date">
-  	<time datetime="2017-06-02T01:57:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-02</time>
-</a>
-        </div>
-    	 
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/02/网易云跟帖部署二三事/">网易云跟帖部署二三事</a>
-    </h1>
+  
+    <a href="/2017/06/02/网易云跟帖部署二三事/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">网易云跟帖部署二三事</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+  
+  
+  
+  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<script>
+  var cloudTieConfig = {
+    url: "",
+    sourceId: "python系统监控-psutil",
+    productKey: "fdc017c0ec4e4e2b90dedbd46e8d5b8f",
+    target: "cloud-tie-wrapper"
+  };
+</script>
+<script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">折腾记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/24/写一个脚本来更新博客/" class="archive-article-date">
-  	<time datetime="2017-05-24T10:08:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-24</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/24/写一个脚本来更新博客/">写一个脚本来更新博客</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">杂谈</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/24/python爬虫学习笔记I/" class="archive-article-date">
-  	<time datetime="2017-05-24T04:25:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-24</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/24/python爬虫学习笔记I/">python爬虫学习笔记I</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">爬虫</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/23/hello-world/" class="archive-article-date">
-  	<time datetime="2017-05-23T10:20:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/23/hello-world/">Hexo基本使用</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/23/python高级特性/" class="archive-article-date">
-  	<time datetime="2017-05-23T10:19:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/23/python高级特性/">python高级特性</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -416,8 +346,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
