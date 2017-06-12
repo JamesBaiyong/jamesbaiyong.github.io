@@ -6,17 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>JamesBy博客</title>
+  <title>获取instagram图片--用爬虫的方式 | JamesBy博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="个人博客，hexo+github">
-<meta property="og:type" content="website">
-<meta property="og:title" content="JamesBy博客">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="I前言​    在手机上玩instagram时，看见好看的图片总希望能够保存下来，但是instagram app并没有提供保存图片的功能。要怎样保存呢？网上有很多方法，其中还要专门的微信公众号。今天我就用爬虫来获取我想要的instagram的图片，虽然用爬虫来爬取，有一点麻烦，可既然学习了python爬虫，那就学以致用，就用爬虫来试试如何下载instagram图片。下图是我爬取到的图片。">
+<meta name="keywords" content="python,爬虫,javascript动态页面">
+<meta property="og:type" content="article">
+<meta property="og:title" content="获取instagram图片--用爬虫的方式">
+<meta property="og:url" content="http://yoursite.com/2017/06/12/获取instagram图片-用爬虫的方式/index.html">
 <meta property="og:site_name" content="JamesBy博客">
-<meta property="og:description" content="个人博客，hexo+github">
+<meta property="og:description" content="I前言​    在手机上玩instagram时，看见好看的图片总希望能够保存下来，但是instagram app并没有提供保存图片的功能。要怎样保存呢？网上有很多方法，其中还要专门的微信公众号。今天我就用爬虫来获取我想要的instagram的图片，虽然用爬虫来爬取，有一点麻烦，可既然学习了python爬虫，那就学以致用，就用爬虫来试试如何下载instagram图片。下图是我爬取到的图片。">
+<meta property="og:image" content="http://yoursite.com/writeimg/blog/17061201.jpg">
+<meta property="og:image" content="http://yoursite.com/writeimg/blog/17061202.jpg">
+<meta property="og:image" content="http://yoursite.com/writeimg/blog/17061203.jpg">
+<meta property="og:image" content="http://yoursite.com/writeimg/blog/17061204.jpg">
+<meta property="og:updated_time" content="2017-06-12T12:11:43.875Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JamesBy博客">
-<meta name="twitter:description" content="个人博客，hexo+github">
+<meta name="twitter:title" content="获取instagram图片--用爬虫的方式">
+<meta name="twitter:description" content="I前言​    在手机上玩instagram时，看见好看的图片总希望能够保存下来，但是instagram app并没有提供保存图片的功能。要怎样保存呢？网上有很多方法，其中还要专门的微信公众号。今天我就用爬虫来获取我想要的instagram的图片，虽然用爬虫来爬取，有一点麻烦，可既然学习了python爬虫，那就学以致用，就用爬虫来试试如何下载instagram图片。下图是我爬取到的图片。">
+<meta name="twitter:image" content="http://yoursite.com/writeimg/blog/17061201.jpg">
   
     <link rel="alternative" href="/atom.xml" title="JamesBy博客" type="application/atom+xml">
   
@@ -138,16 +145,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-获取instagram图片-用爬虫的方式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-获取instagram图片-用爬虫的方式" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/12/获取instagram图片-用爬虫的方式/">获取instagram图片--用爬虫的方式</a>
+    <h1 class="article-title" itemprop="name">
+      获取instagram图片--用爬虫的方式
     </h1>
   
 
@@ -162,11 +167,49 @@
       
         <h3 id="I前言"><a href="#I前言" class="headerlink" title="I前言"></a>I前言</h3><p>​    在手机上玩instagram时，看见好看的图片总希望能够保存下来，但是instagram app并没有提供保存图片的功能。要怎样保存呢？网上有很多方法，其中还要专门的微信公众号。今天我就用爬虫来获取我想要的instagram的图片，虽然用爬虫来爬取，有一点麻烦，可既然学习了python爬虫，那就学以致用，就用爬虫来试试如何下载instagram图片。下图是我爬取到的图片。</p>
 <p><img src="\writeimg\blog\17061201.jpg" alt="配图"></p>
-        
-          <a class="article-more-a" href="/2017/06/12/获取instagram图片-用爬虫的方式/#more">展开全文 >></a>
-        
+<a id="more"></a>
+<h3 id="II所需工具和整个爬虫结构"><a href="#II所需工具和整个爬虫结构" class="headerlink" title="II所需工具和整个爬虫结构"></a>II所需工具和整个爬虫结构</h3><p>​    在写这个爬虫会用到的工具有requests,xpath,selenium，这里为什么会用到selenium留到后面再说。    爬虫分为两个部分，第一个部分获取到图片链接，第二个部分将图片保存到本地。相对很简单的爬虫，但这里会接触到javascript动态页面的技术。</p>
+<h3 id="III爬虫第一部分编写"><a href="#III爬虫第一部分编写" class="headerlink" title="III爬虫第一部分编写"></a>III爬虫第一部分编写</h3><h4 id="1-获取到图片的链接"><a href="#1-获取到图片的链接" class="headerlink" title="1.获取到图片的链接"></a>1.获取到图片的链接</h4><p>​    在这个部分，我们的目的很明确，那就是得到图片的绝对地址。首先我们如何得到app上图片的相对地址呢？很简单，打开手机app点击图片右上方的三个小点，把网址复制下来，如下图所示，用pc端打开。</p>
+<p>​                        <img src="\writeimg\blog\17061202.jpg" alt="图片网址"></p>
+<p>​    这样，我们就可以在浏览器中就可以找到我们要的图片在哪里了，使用审查元素的方式，找到图片的绝对地址。</p>
+<p><img src="\writeimg\blog\17061203.jpg" alt="图片绝对地址"></p>
+<h4 id="2-代码编写与踩坑"><a href="#2-代码编写与踩坑" class="headerlink" title="2.代码编写与踩坑"></a>2.代码编写与踩坑</h4><p>​    到这里我们很容易想到用获取网址源码的方式得到这个URL，然后在请求URL的二进制形式，最后写入到本地文件即可。这样的思路没有问题，但instagram这个网址采用了javascript动态加载页面的方式来渲染网页。采用这种技术的网址本身会具备一定的反爬技术，所以如果一上来就reques.get网站源码。我们会得到一个这样子的网页源码。</p>
+<p><img src="\writeimg\blog\17061204.jpg" alt="源码"></p>
+<p>​    在得到这样的源码后是不能用xpath找到图片绝对地址的，所以我们需要用到selenium这个工具。使用它来模拟浏览器打开网页，等待JS代码的执行，然后获取网页源码，这样就可以得到一个可以用xpath能处理的网页源码了。分析到这里，已经有了编写这一部分爬虫的思路了。使用selenium模拟浏览器打开网页，返回图片的绝对地址。下面直接上代码。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">getImgUrl</span><span class="params">(starturl)</span>:</span></div><div class="line">	<span class="string">'''</span></div><div class="line">	获取图片连接</div><div class="line">	'''</div><div class="line">	browser = webdriver.Chrome()</div><div class="line">	browser.get(starturl)</div><div class="line">	htmlSoure=browser.page_source</div><div class="line">	htmlXml=html.fromstring(htmlSoure)</div><div class="line">	imgurl = htmlXml.xpath(<span class="string">'//div[@class="_jjzlb"]/img/@src'</span>)</div><div class="line">	<span class="keyword">global</span> imgname</div><div class="line">	imgname= time.strftime(<span class="string">'%Y-%m-%d-%H-%M-%S'</span>,time.localtime(time.time()))</div><div class="line">	<span class="keyword">return</span> imgurl</div></pre></td></tr></table></figure>
+<p>​    在代码里，我加了一个全局变量，用来当作图片名字，是用当前的时间来命名的。</p>
+<h3 id="IV爬虫第二部分编写"><a href="#IV爬虫第二部分编写" class="headerlink" title="IV爬虫第二部分编写"></a>IV爬虫第二部分编写</h3><p>​    到这里就很简单了，需要注意的是函数getImgUrl返回的地址是list，也就是说需要用下标的方式获取我们所要的URL，然后使用requests以字节的方式访问图片URL就写入到本地了。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">getImg</span><span class="params">(starturl)</span>:</span></div><div class="line">	<span class="string">'''</span></div><div class="line">	保存图片</div><div class="line">	'''</div><div class="line">	url=getImgUrl(starturl)</div><div class="line">	ins_pic=requests.get(url[<span class="number">0</span>],headers=headers).content</div><div class="line">	dirname=<span class="string">"insimg"</span></div><div class="line"></div><div class="line">	filename = <span class="string">'%s/%s.jpg'</span> % (dirname, imgname) </div><div class="line">	<span class="keyword">with</span> open(filename,<span class="string">'wb'</span>) <span class="keyword">as</span> f:</div><div class="line">		f.write(ins_pic)</div></pre></td></tr></table></figure>
+<h3 id="V总结"><a href="#V总结" class="headerlink" title="V总结"></a>V总结</h3><p>​    到这里核心代码已经编写完毕，只有两部分，比较简单。但这个爬虫存在很多问题，首先是慢，这个主要是需要使用到selenium来模拟浏览器等待网页完全渲染完毕。还有一个问题就是运行爬虫程序时，会打开一个浏览器窗口。这个爬虫写的不是很好，仅仅简单实现了我保存图片的需求而已。等日后有了更精的技术再来完善吧，如果有有缘人能看到，还请多多提意见。最后附上<a href="https://github.com/JamesBaiyong/python_pracatice/blob/master/getInstagramImages.py" target="_blank" rel="external">爬虫程序github地址</a>。</p>
+
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>^^谢谢你请我吃糖哦^^<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/blogimg/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -194,444 +237,96 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/12/获取instagram图片-用爬虫的方式/">查看本文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/06/12/获取instagram图片-用爬虫的方式/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
 
-
-
-
-
   
-    <article id="post-python系统监控-psutil" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/11/python系统监控-psutil/">python系统监控--psutil</a>
-    </h1>
   
-
-        
-        <a href="/2017/06/11/python系统监控-psutil/" class="archive-article-date">
-  	<time datetime="2017-06-11T09:53:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="I-前言"><a href="#I-前言" class="headerlink" title="I.前言"></a>I.前言</h3><p>​    这两日学习中，发现我养成了一个小小的强迫证，那就是当电脑运行过多的程序时，总会时不时打开任务管理器看看到底哪些程序比较吃内存和CPU。于是我google了一下如何写一个脚本来完成这项操作，然后发现了python的一个名为psutil的库文件,这个库文件可以直接打印出我所需要的CPU和内存信息。稍微了解了一下下，写到博客做备忘。</p>
-<p>​    由于个人学习情况不同，我这里仅仅简单介绍和记录一些常用的操作，详细介绍和操作可以到<a href="https://pypi.python.org/pypi/psutil" target="_blank" rel="external">官网</a>和<a href="http://www.jianshu.com/p/64e265f663f6" target="_blank" rel="external">简书</a>查看学习。</p>
-<p><img src="\writeimg\blog\17061101.jpg" alt="配图"></p>
-        
-          <a class="article-more-a" href="/2017/06/11/python系统监控-psutil/#more">展开全文 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">脚本</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/11/python系统监控-psutil/">查看本文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
+    <a href="/2017/06/11/python系统监控-psutil/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">python系统监控--psutil</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
 
 
 
 
   
-    <article id="post-网易云跟帖部署二三事" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/02/网易云跟帖部署二三事/">网易云跟帖部署二三事</a>
-    </h1>
   
-
-        
-        <a href="/2017/06/02/网易云跟帖部署二三事/" class="archive-article-date">
-  	<time datetime="2017-06-02T01:57:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-02</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="I前言"><a href="#I前言" class="headerlink" title="I前言"></a>I前言</h3><p>​    博客初步部署完后，在部署网易云跟帖时遇到了一个坑。那就是，在保证跟帖站点信息无误，KEY值无误的情况下，跟帖无法显示的问题。瞎折腾小半天儿后有了一点感悟，这里写下，如能帮助到有缘人，不甚荣幸。</p>
-<p><img src="\writeimg\blog\wentu08.jpg" alt="配图"></p>
-        
-          <a class="article-more-a" href="/2017/06/02/网易云跟帖部署二三事/#more">展开全文 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">折腾记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/02/网易云跟帖部署二三事/">查看本文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-写一个脚本来更新博客" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/24/写一个脚本来更新博客/">写一个脚本来更新博客</a>
-    </h1>
+  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<script>
+  var cloudTieConfig = {
+    url: "",
+    sourceId: "获取instagram图片-用爬虫的方式",
+    productKey: "fdc017c0ec4e4e2b90dedbd46e8d5b8f",
+    target: "cloud-tie-wrapper"
+  };
+</script>
+<script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
   
 
-        
-        <a href="/2017/05/24/写一个脚本来更新博客/" class="archive-article-date">
-  	<time datetime="2017-05-24T10:08:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>​    <img src="\writeimg\01.jpg" alt="01"></p>
-<p>​    昨天勉强把博客部署了，今天起来发现，我要是更新一篇博客需要做那么多重复的命令行操作，实在过于繁琐和复杂了。于是有了思考。要是写一个脚本来代替我做这些重复的操作，岂不美滋滋。
-        
-          <a class="article-more-a" href="/2017/05/24/写一个脚本来更新博客/#more">展开全文 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">杂谈</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/24/写一个脚本来更新博客/">查看本文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-python爬虫学习笔记I" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/24/python爬虫学习笔记I/">python爬虫学习笔记I</a>
-    </h1>
   
 
-        
-        <a href="/2017/05/24/python爬虫学习笔记I/" class="archive-article-date">
-  	<time datetime="2017-05-24T04:25:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="I-相对路径"><a href="#I-相对路径" class="headerlink" title="I.相对路径"></a>I.相对路径</h3><p>python 可以使用urlparse模块来创建绝对路径，代码示例：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">link = urlparse.urljoin(seed_url,link)</div></pre></td></tr></table></figure>
-<h3 id="II-使用request和urllib2获取网页的不同操作"><a href="#II-使用request和urllib2获取网页的不同操作" class="headerlink" title="II.使用request和urllib2获取网页的不同操作"></a>II.使用request和urllib2获取网页的不同操作</h3><p>使用request获取网页需要加上.text即可返回网页源代码</p>
-<p>使用urlllib2使用urllib2.Request抓取然后使用urllib2.urlopen()把网页返回</p>
-        
-          <a class="article-more-a" href="/2017/05/24/python爬虫学习笔记I/#more">展开全文 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">爬虫</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/24/python爬虫学习笔记I/">查看本文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/23/hello-world/">Hexo基本使用</a>
-    </h1>
-  
-
-        
-        <a href="/2017/05/23/hello-world/" class="archive-article-date">
-  	<time datetime="2017-05-23T10:20:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>这里简单记录一下自己使用Hexo的一些小坑和心得。</p>
-<h2 id="1-快速开始"><a href="#1-快速开始" class="headerlink" title="1.快速开始"></a>1.快速开始</h2><p>I.新建文章<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new Hexo基本使用</div></pre></td></tr></table></figure></p>
-<p>添加tags时前面有个空格。否则会有语法错误，不能创建静态文件。<br>官方链接：<a href="More info: [Writing](https://hexo.io/zh-cn/docs/writing.html">写作</a></p>
-<p>II.创建静态文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo g</div></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2017/05/23/hello-world/#more">展开全文 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/23/hello-world/">查看本文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-python高级特性" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/23/python高级特性/">python高级特性</a>
-    </h1>
-  
-
-        
-        <a href="/2017/05/23/python高级特性/" class="archive-article-date">
-  	<time datetime="2017-05-23T10:19:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="python高级特性"><a href="#python高级特性" class="headerlink" title="python高级特性"></a>python高级特性</h3><h3 id="I-切片"><a href="#I-切片" class="headerlink" title="I.切片"></a>I.切片</h3><p>用于对list和tuple取值</p>
-<table>
-<thead>
-<tr>
-<th>切片符号</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>[:]</td>
-<td>表示整个list或者tuple</td>
-</tr>
-<tr>
-<td>[0:n] [:n]</td>
-<td>表示取前n个值</td>
-</tr>
-<tr>
-<td>[-2:-1]</td>
-<td>表示末尾的第二个值</td>
-</tr>
-<tr>
-<td>[-10:]</td>
-<td>表示后10个</td>
-</tr>
-<tr>
-<td>[::5]</td>
-<td>表示所有数，没隔5个取一个</td>
-</tr>
-</tbody>
-</table>
-<h3 id="迭代"><a href="#迭代" class="headerlink" title="迭代"></a>迭代</h3><p>python迭代是通过for …. in来完成的，大部分迭代都是通过下标迭代的，而python可以迭代所有可迭代对象，包括没用下标的对象。</p>
-<p>可以通过collections模块的Iterable类型来判断对象是否可以迭代</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">from collections import Iterable</div><div class="line">isinstance(&apos;abv&apos;,Iterable)#结果为True，表示str可以迭代</div><div class="line">isinstance(&#123;&apos;a&apos;:1,&apos;b&apos;:2,&apos;c&apos;:3&#125;)#结果为True，表示dict也是可以迭代的</div><div class="line">isinstance(123,Iterable)#结果为False,表示整数不可以迭代</div></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2017/05/23/python高级特性/#more">展开全文 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/23/python高级特性/">查看本文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
   
 
 
@@ -654,8 +349,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: true,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
