@@ -168,15 +168,9 @@
 <h3 id="1-3问题表现3"><a href="#1-3问题表现3" class="headerlink" title="1.3问题表现3"></a>1.3问题表现3</h3><p>无法切换分支</p>
 <p><img src="\writeimg\blog\17071203.jpg" alt="无法切换分支"></p>
 <h3 id="2-笨办法解决问题："><a href="#2-笨办法解决问题：" class="headerlink" title="2.笨办法解决问题："></a>2.笨办法解决问题：</h3><h4 id="Step1"><a href="#Step1" class="headerlink" title="Step1"></a>Step1</h4><p>首先使用命令find .git/objects/ -type f -empty | xargs rm 找到空的object文件</p>
-<h4 id="Step2"><a href="#Step2" class="headerlink" title="Step2"></a>Step2</h4><p>然后删除，再来使用git fetch -p 和 git fsck –full修复一下,这个时候报错</p>
-<p><img src="\writeimg\blog\17071204.jpg" alt="报错"></p>
-<h3 id="Step3"><a href="#Step3" class="headerlink" title="Step3"></a>Step3</h3><p>将分支合并到master上</p>
-<p><img src="\writeimg\blog\17071205.jpg" alt="删除空文件"></p>
-<p>这个时候发现可以切换分支以及提交到库了。</p>
-<h4 id="Step4"><a href="#Step4" class="headerlink" title="Step4"></a>Step4</h4><p>现在最后一步将目前master的版本保存到一个文件目录下，将git切回到本来的4b在基础上进行修改，将本来是4c版本的代码现在拷贝过来就行了，剩下的就是提交了。</p>
-<h3 id="3-总结"><a href="#3-总结" class="headerlink" title="3.总结"></a>3.总结</h3><p>这个方法是自己做练习用的，对git的一些高端操作不熟悉，所以有了这个笨方法。如果不想将版本合并到master如何解决呢？这个还没尝试，但是可以想到一个方向，那就是使用git的版本回退，或者对文件修改的撤销来解决。日后再有这样的问题还是好好的按照繁琐一点的方式解决。</p>
-<p>参考连接：<a href="https://stackoverflow.com/questions/11706215/how-to-fix-git-error-object-file-is-empty" target="_blank" rel="external">大神解决方案</a></p>
-
+        
+          <a class="article-more-a" href="/2017/07/12/笨办法修复git受损/#more">展开全文 >></a>
+        
       
 
       
