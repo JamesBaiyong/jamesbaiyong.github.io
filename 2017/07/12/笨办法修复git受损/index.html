@@ -6,17 +6,25 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: 折腾记 | JamesBy博客</title>
+  <title>笨办法修复git受损 | JamesBy博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="个人博客，hexo+github">
-<meta property="og:type" content="website">
-<meta property="og:title" content="JamesBy博客">
-<meta property="og:url" content="http://yoursite.com/tags/折腾记/index.html">
+  <meta name="description" content="1.问题描述：使用git有一段时间了，第一次碰见仓库受损了。情况如下，不能提交，不能切换分支，但是当前文件下是最后一次修改的代码，现在就是不能将代码提交到git仓库。随即google了一下，貌似git仓库受损还是一个比较常见的问题了。其中stackoverflow已经有大神给出了完美的解决方案，但是有点繁琐，我只想简单解决问题，继续码代码而已，所以有了一下这个笨方法，不推广，只做个人记录和借鉴使用">
+<meta name="keywords" content="git,折腾记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="笨办法修复git受损">
+<meta property="og:url" content="http://yoursite.com/2017/07/12/笨办法修复git受损/index.html">
 <meta property="og:site_name" content="JamesBy博客">
-<meta property="og:description" content="个人博客，hexo+github">
+<meta property="og:description" content="1.问题描述：使用git有一段时间了，第一次碰见仓库受损了。情况如下，不能提交，不能切换分支，但是当前文件下是最后一次修改的代码，现在就是不能将代码提交到git仓库。随即google了一下，貌似git仓库受损还是一个比较常见的问题了。其中stackoverflow已经有大神给出了完美的解决方案，但是有点繁琐，我只想简单解决问题，继续码代码而已，所以有了一下这个笨方法，不推广，只做个人记录和借鉴使用">
+<meta property="og:image" content="http://yoursite.com/writeimg/blog/17071201.jpg">
+<meta property="og:image" content="http://yoursite.com/writeimg/blog/17071202.jpg">
+<meta property="og:image" content="http://yoursite.com/writeimg/blog/17071203.jpg">
+<meta property="og:image" content="http://yoursite.com/writeimg/blog/17071204.jpg">
+<meta property="og:image" content="http://yoursite.com/writeimg/blog/17071205.jpg">
+<meta property="og:updated_time" content="2017-07-12T14:16:22.108Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JamesBy博客">
-<meta name="twitter:description" content="个人博客，hexo+github">
+<meta name="twitter:title" content="笨办法修复git受损">
+<meta name="twitter:description" content="1.问题描述：使用git有一段时间了，第一次碰见仓库受损了。情况如下，不能提交，不能切换分支，但是当前文件下是最后一次修改的代码，现在就是不能将代码提交到git仓库。随即google了一下，貌似git仓库受损还是一个比较常见的问题了。其中stackoverflow已经有大神给出了完美的解决方案，但是有点繁琐，我只想简单解决问题，继续码代码而已，所以有了一下这个笨方法，不推广，只做个人记录和借鉴使用">
+<meta name="twitter:image" content="http://yoursite.com/writeimg/blog/17071201.jpg">
   
     <link rel="alternative" href="/atom.xml" title="JamesBy博客" type="application/atom+xml">
   
@@ -138,36 +146,76 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-笨办法修复git受损" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/07/12/笨办法修复git受损/" class="archive-article-date">
-  	<time datetime="2017-07-12T14:13:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-12</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/12/笨办法修复git受损/">笨办法修复git受损</a>
+    <h1 class="article-title" itemprop="name">
+      笨办法修复git受损
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/07/12/笨办法修复git受损/" class="archive-article-date">
+  	<time datetime="2017-07-12T14:13:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-问题描述："><a href="#1-问题描述：" class="headerlink" title="1.问题描述："></a>1.问题描述：</h3><p>使用git有一段时间了，第一次碰见仓库受损了。情况如下，不能提交，不能切换分支，但是当前文件下是最后一次修改的代码，现在就是不能将代码提交到git仓库。随即google了一下，貌似git仓库受损还是一个比较常见的问题了。其中<a href="https://stackoverflow.com/questions/11706215/how-to-fix-git-error-object-file-is-empty" target="_blank" rel="external">stackoverflow</a>已经有大神给出了完美的解决方案，但是有点繁琐，我只想简单解决问题，继续码代码而已，所以有了一下这个笨方法，不推广，只做个人记录和借鉴使用。</p>
+<h3 id="1-1问题表现1"><a href="#1-1问题表现1" class="headerlink" title="1.1问题表现1"></a>1.1问题表现1</h3><p>本来已经提交了4c,但是查看tag却没有。</p>
+<p><img src="\writeimg\blog\17071201.jpg" alt="缺少4c"></p>
+<h3 id="1-2问题表现2"><a href="#1-2问题表现2" class="headerlink" title="1.2问题表现2"></a>1.2问题表现2</h3><p>提交报错 object file …is empty</p>
+<p><img src="\writeimg\blog\17071202.jpg" alt="objectempty"></p>
+<h3 id="1-3问题表现3"><a href="#1-3问题表现3" class="headerlink" title="1.3问题表现3"></a>1.3问题表现3</h3><p>无法切换分支</p>
+<p><img src="\writeimg\blog\17071203.jpg" alt="无法切换分支"></p>
+<h3 id="2-笨办法解决问题："><a href="#2-笨办法解决问题：" class="headerlink" title="2.笨办法解决问题："></a>2.笨办法解决问题：</h3><h4 id="Step1"><a href="#Step1" class="headerlink" title="Step1"></a>Step1</h4><p>首先使用命令find .git/objects/ -type f -empty | xargs rm 找到空的object文件</p>
+<h4 id="Step2"><a href="#Step2" class="headerlink" title="Step2"></a>Step2</h4><p>然后删除，再来使用git fetch -p 和 git fsck –full修复一下,这个时候报错</p>
+<p><img src="\writeimg\blog\17071204.jpg" alt="报错"></p>
+<h3 id="Step3"><a href="#Step3" class="headerlink" title="Step3"></a>Step3</h3><p>将分支合并到master上</p>
+<p><img src="\writeimg\blog\17071205.jpg" alt="删除空文件"></p>
+<p>这个时候发现可以切换分支以及提交到库了。</p>
+<h4 id="Step4"><a href="#Step4" class="headerlink" title="Step4"></a>Step4</h4><p>现在最后一步将目前master的版本保存到一个文件目录下，将git切回到本来的4b在基础上进行修改，将本来是4c版本的代码现在拷贝过来就行了，剩下的就是提交了。</p>
+<h3 id="3-总结"><a href="#3-总结" class="headerlink" title="3.总结"></a>3.总结</h3><p>这个方法是自己做练习用的，对git的一些高端操作不熟悉，所以有了这个笨方法。如果不想将版本合并到master如何解决呢？这个还没尝试，但是可以想到一个方向，那就是使用git的版本回退，或者对文件修改的撤销来解决。日后再有这样的问题还是好好的按照繁琐一点的方式解决。</p>
+<p>参考连接：<a href="https://stackoverflow.com/questions/11706215/how-to-fix-git-error-object-file-is-empty" target="_blank" rel="external">大神解决方案</a></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>^^谢谢你请我吃糖哦^^<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/blogimg/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -183,61 +231,100 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/07/12/笨办法修复git受损/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/06/02/网易云跟帖部署二三事/" class="archive-article-date">
-  	<time datetime="2017-06-02T01:57:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-02</time>
-</a>
-        </div>
-    	 
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/02/网易云跟帖部署二三事/">网易云跟帖部署二三事</a>
-    </h1>
+  
+    <a href="/2017/06/12/获取instagram图片-用爬虫的方式/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">获取instagram图片--用爬虫的方式</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+  
+  
+  
+  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<script>
+  var cloudTieConfig = {
+    url: "",
+    sourceId: "笨办法修复git受损",
+    productKey: "fdc017c0ec4e4e2b90dedbd46e8d5b8f",
+    target: "cloud-tie-wrapper"
+  };
+</script>
+<script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">折腾记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
 
 
           </div>
@@ -260,9 +347,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		root: "/",

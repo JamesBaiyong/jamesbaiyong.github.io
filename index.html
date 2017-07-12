@@ -140,6 +140,84 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-笨办法修复git受损" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/07/12/笨办法修复git受损/">笨办法修复git受损</a>
+    </h1>
+  
+
+        
+        <a href="/2017/07/12/笨办法修复git受损/" class="archive-article-date">
+  	<time datetime="2017-07-12T14:13:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-问题描述："><a href="#1-问题描述：" class="headerlink" title="1.问题描述："></a>1.问题描述：</h3><p>使用git有一段时间了，第一次碰见仓库受损了。情况如下，不能提交，不能切换分支，但是当前文件下是最后一次修改的代码，现在就是不能将代码提交到git仓库。随即google了一下，貌似git仓库受损还是一个比较常见的问题了。其中<a href="https://stackoverflow.com/questions/11706215/how-to-fix-git-error-object-file-is-empty" target="_blank" rel="external">stackoverflow</a>已经有大神给出了完美的解决方案，但是有点繁琐，我只想简单解决问题，继续码代码而已，所以有了一下这个笨方法，不推广，只做个人记录和借鉴使用。</p>
+<h3 id="1-1问题表现1"><a href="#1-1问题表现1" class="headerlink" title="1.1问题表现1"></a>1.1问题表现1</h3><p>本来已经提交了4c,但是查看tag却没有。</p>
+<p><img src="\writeimg\blog\17071201.jpg" alt="缺少4c"></p>
+<h3 id="1-2问题表现2"><a href="#1-2问题表现2" class="headerlink" title="1.2问题表现2"></a>1.2问题表现2</h3><p>提交报错 object file …is empty</p>
+<p><img src="\writeimg\blog\17071202.jpg" alt="objectempty"></p>
+<h3 id="1-3问题表现3"><a href="#1-3问题表现3" class="headerlink" title="1.3问题表现3"></a>1.3问题表现3</h3><p>无法切换分支</p>
+<p><img src="\writeimg\blog\17071203.jpg" alt="无法切换分支"></p>
+<h3 id="2-笨办法解决问题："><a href="#2-笨办法解决问题：" class="headerlink" title="2.笨办法解决问题："></a>2.笨办法解决问题：</h3><h4 id="Step1"><a href="#Step1" class="headerlink" title="Step1"></a>Step1</h4><p>首先使用命令find .git/objects/ -type f -empty | xargs rm 找到空的object文件</p>
+<h4 id="Step2"><a href="#Step2" class="headerlink" title="Step2"></a>Step2</h4><p>然后删除，再来使用git fetch -p 和 git fsck –full修复一下,这个时候报错</p>
+<p><img src="\writeimg\blog\17071204.jpg" alt="报错"></p>
+<h3 id="Step3"><a href="#Step3" class="headerlink" title="Step3"></a>Step3</h3><p>将分支合并到master上</p>
+<p><img src="\writeimg\blog\17071205.jpg" alt="删除空文件"></p>
+<p>这个时候发现可以切换分支以及提交到库了。</p>
+<h4 id="Step4"><a href="#Step4" class="headerlink" title="Step4"></a>Step4</h4><p>现在最后一步将目前master的版本保存到一个文件目录下，将git切回到本来的4b在基础上进行修改，将本来是4c版本的代码现在拷贝过来就行了，剩下的就是提交了。</p>
+<h3 id="3-总结"><a href="#3-总结" class="headerlink" title="3.总结"></a>3.总结</h3><p>这个方法是自己做练习用的，对git的一些高端操作不熟悉，所以有了这个笨方法。如果不想将版本合并到master如何解决呢？这个还没尝试，但是可以想到一个方向，那就是使用git的版本回退，或者对文件修改的撤销来解决。日后再有这样的问题还是好好的按照繁琐一点的方式解决。</p>
+<p>参考连接：<a href="https://stackoverflow.com/questions/11706215/how-to-fix-git-error-object-file-is-empty" target="_blank" rel="external">大神解决方案</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">折腾记</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/07/12/笨办法修复git受损/">查看本文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-获取instagram图片-用爬虫的方式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -737,11 +815,11 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">脚本</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -749,11 +827,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">脚本</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">javascript动态页面</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -762,6 +840,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">javascript动态页面</a>
               </li>
             
             <div class="clearfix"></div>
