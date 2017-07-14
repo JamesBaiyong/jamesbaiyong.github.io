@@ -6,19 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Hexo基本使用 | JamesBy博客</title>
+  <title>使用Flask-Mail发邮件 | JamesBy博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="这里简单记录一下自己使用Hexo的一些小坑和心得。 1.快速开始I.新建文章1$ hexo new Hexo基本使用 添加tags时前面有个空格。否则会有语法错误，不能创建静态文件。官方链接：写作 II.创建静态文件 1$ hexo g">
-<meta name="keywords" content="hexo">
+  <meta name="description" content="I  python发邮件的方式Web应用中，常常会遇到需要提醒用户的事情，而比较常用的方式就是采用发送邮件的方式。虽然Python在标准库中有smtplib包，可用于发送电子邮件，但包装了smtplib的Flask-Mail扩展提供了一个简单的接口，可以很方便的在flask中集成，只需在应用中设置好SMTP，就可以方便的在视图以及脚本中发送邮件信息，能更好地和Flask集成。 III 认识Fla">
+<meta name="keywords" content="python,Flask,web开发">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo基本使用">
-<meta property="og:url" content="http://yoursite.com/2017/05/23/hello-world/index.html">
+<meta property="og:title" content="使用Flask-Mail发邮件">
+<meta property="og:url" content="http://yoursite.com/2017/07/14/使用Flask-Mail发邮件/index.html">
 <meta property="og:site_name" content="JamesBy博客">
-<meta property="og:description" content="这里简单记录一下自己使用Hexo的一些小坑和心得。 1.快速开始I.新建文章1$ hexo new Hexo基本使用 添加tags时前面有个空格。否则会有语法错误，不能创建静态文件。官方链接：写作 II.创建静态文件 1$ hexo g">
-<meta property="og:updated_time" content="2017-06-02T01:06:29.515Z">
+<meta property="og:description" content="I  python发邮件的方式Web应用中，常常会遇到需要提醒用户的事情，而比较常用的方式就是采用发送邮件的方式。虽然Python在标准库中有smtplib包，可用于发送电子邮件，但包装了smtplib的Flask-Mail扩展提供了一个简单的接口，可以很方便的在flask中集成，只需在应用中设置好SMTP，就可以方便的在视图以及脚本中发送邮件信息，能更好地和Flask集成。 III 认识Fla">
+<meta property="og:image" content="http://yoursite.com/writeimg/blog/17071404.jpg">
+<meta property="og:image" content="http://yoursite.com/writeimg/blog/17071401.jpg">
+<meta property="og:image" content="http://yoursite.com/writeimg/blog/17071402.jpg">
+<meta property="og:image" content="http://yoursite.com/writeimg/blog/17071403.jpg">
+<meta property="og:updated_time" content="2017-07-14T13:18:46.170Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo基本使用">
-<meta name="twitter:description" content="这里简单记录一下自己使用Hexo的一些小坑和心得。 1.快速开始I.新建文章1$ hexo new Hexo基本使用 添加tags时前面有个空格。否则会有语法错误，不能创建静态文件。官方链接：写作 II.创建静态文件 1$ hexo g">
+<meta name="twitter:title" content="使用Flask-Mail发邮件">
+<meta name="twitter:description" content="I  python发邮件的方式Web应用中，常常会遇到需要提醒用户的事情，而比较常用的方式就是采用发送邮件的方式。虽然Python在标准库中有smtplib包，可用于发送电子邮件，但包装了smtplib的Flask-Mail扩展提供了一个简单的接口，可以很方便的在flask中集成，只需在应用中设置好SMTP，就可以方便的在视图以及脚本中发送邮件信息，能更好地和Flask集成。 III 认识Fla">
+<meta name="twitter:image" content="http://yoursite.com/writeimg/blog/17071404.jpg">
   
     <link rel="alternative" href="/atom.xml" title="JamesBy博客" type="application/atom+xml">
   
@@ -140,43 +145,100 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-hello-world" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-使用Flask-Mail发邮件" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Hexo基本使用
+      使用Flask-Mail发邮件
     </h1>
   
 
         
-        <a href="/2017/05/23/hello-world/" class="archive-article-date">
-  	<time datetime="2017-05-23T10:20:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-23</time>
+        <a href="/2017/07/14/使用Flask-Mail发邮件/" class="archive-article-date">
+  	<time datetime="2017-07-14T13:17:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-14</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>这里简单记录一下自己使用Hexo的一些小坑和心得。</p>
-<h2 id="1-快速开始"><a href="#1-快速开始" class="headerlink" title="1.快速开始"></a>1.快速开始</h2><p>I.新建文章<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new Hexo基本使用</div></pre></td></tr></table></figure></p>
-<p>添加tags时前面有个空格。否则会有语法错误，不能创建静态文件。<br>官方链接：<a href="More info: [Writing](https://hexo.io/zh-cn/docs/writing.html">写作</a></p>
-<p>II.创建静态文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo g</div></pre></td></tr></table></figure>
+        <p><img src="\writeimg\blog\17071404.jpg" alt="设置授权密码"></p>
+<h3 id="I-python发邮件的方式"><a href="#I-python发邮件的方式" class="headerlink" title="I  python发邮件的方式"></a>I  python发邮件的方式</h3><p>Web应用中，常常会遇到需要提醒用户的事情，而比较常用的方式就是采用发送邮件的方式。虽然Python在标准库中有smtplib包，可用于发送电子邮件，但包装了smtplib的Flask-Mail扩展提供了一个简单的接口，可以很方便的在flask中集成，只需在应用中设置好SMTP，就可以方便的在视图以及脚本中发送邮件信息，能更好地和Flask集成。</p>
+<h3 id="III-认识Flask-Mail"><a href="#III-认识Flask-Mail" class="headerlink" title="III 认识Flask-Mail"></a>III 认识Flask-Mail</h3><p>使用Flask-Mail发邮件的原理是连接到简单邮件传输协议（SMTP）服务器，并把邮件交给这个服务器发送。所以，需要配置好SMTP。现在通过下面的表格简单认识一下所需要用到的SMTP配置。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">配置</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">MAIL_SERVER</td>
+<td>localhost</td>
+<td>电子邮件服务器的主机名或者IP地址</td>
+</tr>
+<tr>
+<td style="text-align:left">MAIL_PORT</td>
+<td>25</td>
+<td>电子邮件服务器端口号</td>
+</tr>
+<tr>
+<td style="text-align:left">MAIL_USE_TLS</td>
+<td>False</td>
+<td>启用传输层安全协议（TLS）</td>
+</tr>
+<tr>
+<td style="text-align:left">MAIL_USE_SSL</td>
+<td>False</td>
+<td>启用安全套接层协议（SSL）</td>
+</tr>
+<tr>
+<td style="text-align:left">MAIL_PASSWORD</td>
+<td>None</td>
+<td>邮件账户密码</td>
+</tr>
+<tr>
+<td style="text-align:left">MAIL_USERNAME</td>
+<td>None</td>
+<td>邮件账户名</td>
+</tr>
+<tr>
+<td style="text-align:left">MAIL_DEFAULT_SENDER</td>
+<td>None</td>
+<td>邮件默认发送人</td>
+</tr>
+</tbody>
+</table>
+<h3 id="III实例化"><a href="#III实例化" class="headerlink" title="III实例化"></a>III实例化</h3><p>这里要用到标准库的os模块，flask框架，flask_mail 和 flask_script框架。请注意manager实例和mail实例中间的省略号，这里放到后面再说。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask</div><div class="line"><span class="keyword">from</span> flask_mail <span class="keyword">import</span> Mail, Message</div><div class="line"><span class="keyword">from</span> flask_script <span class="keyword">import</span> Manager</div><div class="line"></div><div class="line">app = Flask(__name__)</div><div class="line">manager = Manager(app)</div><div class="line">....</div><div class="line">mail = Mail(app)</div></pre></td></tr></table></figure>
 <a id="more"></a>
-<p>官方链接: <a href="https://hexo.io/zh-cn/docs/generating.html" target="_blank" rel="external">生成静态文件</a></p>
-<p>III.启动服务</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo s</div></pre></td></tr></table></figure>
-<p>官方链接: <a href="https://hexo.io/zh-cn/docs/server.html" target="_blank" rel="external">启动服务</a></p>
-<p>VI. 部署到站点</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo d</div></pre></td></tr></table></figure>
-<p>方法简单，但是容易出错，推荐使用git来部署。<br>官方链接:<a href="https://hexo.io/zh-cn/docs/deployment.html" target="_blank" rel="external">部署到站点</a></p>
-<h2 id="2-更换主题"><a href="#2-更换主题" class="headerlink" title="2.更换主题"></a>2.更换主题</h2><p>I.安装主题<br><figure class="highlight plain"><figcaption><span>hexo clean</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git clone https://github.com/litten/hexo-theme-yilia.git themes/yilia</div></pre></td></tr></table></figure></p>
-<p>II.启用主题<br>在blog目录下，修改_config.yml配置文件中得theme属性为yilia。</p>
-<p>III.更新主题<br><figure class="highlight plain"><figcaption><span>cd themes/yilia</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ git pull</div><div class="line">$ hexo g # 生成</div><div class="line">$ hexo s # 启动本地web服务器</div></pre></td></tr></table></figure></p>
-<p>这里需要注意，生成和启动需要在根目录下进行。</p>
+<h3 id="IV邮箱设置"><a href="#IV邮箱设置" class="headerlink" title="IV邮箱设置"></a>IV邮箱设置</h3><p>想要在程序中使用邮箱发送右键，这里还需要登录到邮箱当中设置一下，用163邮箱做例，别的邮箱大同小异。</p>
+<p>首先打开设置中的POP3/SMTP/IMAP，把对应的服务开启</p>
+<p><img src="\writeimg\blog\17071401.jpg" alt="开启服务"></p>
+<p>再打开客户端授权密码设置，设置好授权密码</p>
+<p><img src="\writeimg\blog\17071402.jpg" alt="设置授权密码"></p>
+<p>这里提一下，163邮箱的smtp服务器地址是smtp.163.com，端口号是465,别的邮箱只需要上网查一下就可以了。</p>
+<h3 id="V-编写代码"><a href="#V-编写代码" class="headerlink" title="V 编写代码"></a>V 编写代码</h3><h4 id="step1配置邮箱和邮箱密码"><a href="#step1配置邮箱和邮箱密码" class="headerlink" title="step1配置邮箱和邮箱密码:"></a>step1配置邮箱和邮箱密码:</h4><p>能让邮箱发出邮件必然是需要用到邮箱密码，但为了安全，是不能把密码明文写到程序中的。这里可以把邮件用户名和密码添加到环境变量之中。在linux 下执行命令：export  MAIL_USERNAME=youemail@xxx.com和export MAIL_PASSWORD=emailpassword,把邮箱用户名和密码写入环境变量，在程序中读出。</p>
+<h4 id="step2配置SMTP服务"><a href="#step2配置SMTP服务" class="headerlink" title="step2配置SMTP服务"></a>step2配置SMTP服务</h4><p>配置代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">app.config.update(dict(</div><div class="line">    DEBUG = <span class="keyword">True</span>,</div><div class="line">    MAIL_SERVER = <span class="string">'smtp.163.com'</span>,</div><div class="line">    MAIL_PORT = <span class="number">465</span>,</div><div class="line">    MAIL_USE_SSL = <span class="keyword">True</span>,</div><div class="line">    MAIL_USERNAME = os.environ.get(<span class="string">'MAIL_USERNAME'</span>),</div><div class="line">    MAIL_PASSWORD = os.environ.get(<span class="string">'MAIL_PASSWORD'</span>),</div><div class="line">    MAIL_DEFAULT_SENDER = <span class="string">'JamesBy &lt;youremail@xxx.com&gt;'</span></div><div class="line">))</div></pre></td></tr></table></figure>
+<h4 id="step3编写函数发送邮件"><a href="#step3编写函数发送邮件" class="headerlink" title="step3编写函数发送邮件"></a>step3编写函数发送邮件</h4><p>先看一段代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">msg = Message(<span class="string">"EmailTest"</span> ,recipients=[<span class="string">'someone@outlook.com'</span>])</div></pre></td></tr></table></figure>
+<p>msg是Message实例编写邮件内容和邮件发送的主题，接收邮件的人。其中”EmailTest”表示邮件主题，recipients表示收邮件的地址，发邮件的人已经在配置代码中写入，在msg实例中就可以不用在写。msg.body表示邮件正文，最后使用Mail实例中的send函数发出邮件。</p>
+<p>发邮件代码（这里触发发送邮件代码是用的访问flaskweb地址，可以改写成一些特殊事件）：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@app.route('/')</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span><span class="params">()</span>:</span></div><div class="line">        msg = Message(<span class="string">"EmailTest"</span> ,recipients=[<span class="string">'someone@outlook.com'</span>])</div><div class="line">        msg.body = <span class="string">"Hello World! This  Email from Web"</span></div><div class="line">        mail.send(msg)</div><div class="line">        <span class="keyword">return</span> <span class="string">'&lt;h3&gt;Sended  email to U! ^^&lt;/h3&gt;'</span></div></pre></td></tr></table></figure>
+<p>邮件发送成功实例图：</p>
+<p><img src="\writeimg\blog\17071403.jpg" alt="设置授权密码"></p>
+<h3 id="VI总结"><a href="#VI总结" class="headerlink" title="VI总结"></a>VI总结</h3><p>总结一下坑，也就是在实例化中间的省略号，是编写配置代码的部分。为什么要把mail实例放到配置代码后面呢？起初我并没有这样做，结果一访问就报错，提升连接被拒绝。反复修改代码过后，在stackoverflow找到了解决方法。原理是，把mail实例放到配置前面，mail实例会采用默认的邮箱服务器地址和端口号。所以使用代码所示的配置方法时，必须把mail实例放到配置代码后。</p>
+<p>关于Flask-Mail的用法官方文档有更多的说明和案例，本文只是简单的实现了发送提醒邮件的功能，后期继续深入。</p>
+<p>参考连接：</p>
+<p><a href="https://github.com/JamesBaiyong/python_pracatice/blob/master/Flask-Mail.py" target="_blank" rel="external">源码</a></p>
+<p><a href="http://www.pythondoc.com/flask-mail/" target="_blank" rel="external">官方文档</a></p>
+<p><a href="https://stackoverflow.com/questions/29111775/socket-error-errno-111-connection-refused-when-submitting-an-email-using-flas" target="_blank" rel="external">stackoverflow</a></p>
 
       
 
@@ -216,7 +278,15 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flask</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">web开发</a>
         		</li>
       		
 		</ul>
@@ -272,7 +342,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/05/23/hello-world/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/07/14/使用Flask-Mail发邮件/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -286,18 +356,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/05/24/python爬虫学习笔记I/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          python爬虫学习笔记I
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/05/23/python高级特性/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">python高级特性</div>
+    <a href="/2017/07/12/笨办法修复git受损/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">笨办法修复git受损</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -314,7 +375,7 @@
 <script>
   var cloudTieConfig = {
     url: "",
-    sourceId: "hello-world",
+    sourceId: "使用Flask-Mail发邮件",
     productKey: "fdc017c0ec4e4e2b90dedbd46e8d5b8f",
     target: "cloud-tie-wrapper"
   };
