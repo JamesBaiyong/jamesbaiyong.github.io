@@ -163,83 +163,9 @@
         <p><img src="http://ouyzqzdzy.bkt.clouddn.com/database.png" alt=""></p>
 <h3 id="SQL基础笔记"><a href="#SQL基础笔记" class="headerlink" title="SQL基础笔记"></a>SQL基础笔记</h3><p>该笔记是参考<a href="http://www.runoob.com/sql/sql-tutorial.html" target="_blank" rel="external">菜鸟教程</a>上的SQL学习笔记，将SQL语句做了简单的整理，这篇是基础的SQL语句操作。主要涵盖基本的增删改查。</p>
 <h4 id="准备："><a href="#准备：" class="headerlink" title="准备："></a>准备：</h4><p>导入sql文件到mysql</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">source d:/websites.sql;</div></pre></td></tr></table></figure>
-<p>在mysql中创建案例表</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">CREATE TABLE IF NOT EXISTS `table_name`(</div><div class="line">   `id` INT UNSIGNED AUTO_INCREMENT,</div><div class="line">   `title` VARCHAR(100) NOT NULL,</div><div class="line">   `author` VARCHAR(40) NOT NULL,</div><div class="line">   `date` DATE,</div><div class="line">   PRIMARY KEY ( `id` )</div><div class="line">)ENGINE=InnoDB DEFAULT CHARSET=utf8;</div></pre></td></tr></table></figure>
-<h4 id="一些重要的SQL命令"><a href="#一些重要的SQL命令" class="headerlink" title="一些重要的SQL命令"></a>一些重要的SQL命令</h4><ul>
-<li><strong>SELECT</strong> - 从数据库中提取数据</li>
-<li><strong>UPDATE</strong> - 更新数据库中的数据</li>
-<li><strong>DELETE</strong> - 从数据库中删除数据</li>
-<li><strong>INSERT INTO</strong> - 向数据库中插入新数据</li>
-<li><strong>CREATE DATABASE</strong> - 创建新数据库</li>
-<li><strong>ALTER DATABASE</strong> - 修改数据库</li>
-<li><strong>CREATE TABLE</strong> - 创建新表</li>
-<li><strong>ALTER TABLE</strong> - 变更（改变）数据库表</li>
-<li><strong>DROP TABLE</strong> - 删除表</li>
-<li><strong>CREATE INDEX</strong> - 创建索引（搜索键）</li>
-<li><strong>DROP INDEX</strong> - 删除索引</li>
-</ul>
-<h4 id="SQL基本的增删改查"><a href="#SQL基本的增删改查" class="headerlink" title="SQL基本的增删改查"></a>SQL基本的增删改查</h4><h5 id="查-SELECT"><a href="#查-SELECT" class="headerlink" title="查 SELECT"></a>查 SELECT</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">select * from table_name;  //查全表</div><div class="line">select name,id table_name;  //查指定的列的内容</div><div class="line">select distinct column_name from table_name; //查询指定列中唯一不同的值</div><div class="line">select * from table_name where column_name operator values ; //按照条件查询查询</div><div class="line">select * from tabl_ename where column_name operator values and[or] column_name operator valueslexa; //AND查询，必须满足两个条件,or 查询，两个条件满足一个即可，同时and和or可以组合起来查询，一般使用（）组合复杂语句</div><div class="line">select * from tablename order by column_name,column_name ASC|DESC; //按照什么列的升序或则降序查询,可同时按照多列排序查询</div></pre></td></tr></table></figure>
-<h6 id="where字句的运算符"><a href="#where字句的运算符" class="headerlink" title="where字句的运算符"></a>where字句的运算符</h6><table>
-<thead>
-<tr>
-<th>运算符</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>=</td>
-<td>等于</td>
-</tr>
-<tr>
-<td>&lt;&gt;</td>
-<td>不等于。<strong>注释：</strong>在 SQL 的一些版本中，该操作符可被写成 !=</td>
-</tr>
-<tr>
-<td>&gt;</td>
-<td>大于</td>
-</tr>
-<tr>
-<td>&lt;</td>
-<td>小于</td>
-</tr>
-<tr>
-<td>&gt;=</td>
-<td>大于等于</td>
-</tr>
-<tr>
-<td>&lt;=</td>
-<td>小于等于</td>
-</tr>
-<tr>
-<td>BETWEEN</td>
-<td>在某个范围内</td>
-</tr>
-<tr>
-<td>LIKE</td>
-<td>搜索某种模式。模糊查询</td>
-</tr>
-<tr>
-<td>IN</td>
-<td>指定针对某个列的多个可能值</td>
-</tr>
-</tbody>
-</table>
-<h6 id="模糊查询的字符串意义"><a href="#模糊查询的字符串意义" class="headerlink" title="模糊查询的字符串意义"></a>模糊查询的字符串意义</h6><ul>
-<li><strong>%</strong>: 表示多个字值，<strong>_</strong> 下划线表示一个字符。</li>
-<li><strong>M%</strong> : 为能配符，正则表达式，表示的意思为模糊查询信息为 M 开头的。</li>
-<li><strong>%M%</strong> : 表示查询包含M的所有内容。</li>
-<li><strong>%M_ </strong>: 表示查询以M在倒数第二位的所有内容。</li>
-</ul>
-<h5 id="增-INSERT-INTO"><a href="#增-INSERT-INTO" class="headerlink" title="增 INSERT INTO"></a>增 INSERT INTO</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">INSERT INTO table_name VALUES (value1,value2,value3,...); //按照表的列结构增加内容</div><div class="line">INSERT INTO table_name (column1,column2,column3,...) VALUES (value1,value2,value3,...); //按照指定的列增加内容，允许有空值</div></pre></td></tr></table></figure>
-<p><img src="http://ouyzqzdzy.bkt.clouddn.com/tishi.png" alt="注意">通常ID列是自动更新的，表中的每条记录都有一个唯一的数字，在添加的时候大部分时候不用管。</p>
-<h5 id="改-UPDATE"><a href="#改-UPDATE" class="headerlink" title="改 UPDATE"></a>改 UPDATE</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">UPDATE table_name SET column1=value1,column2=value2,... WHERE some_column=some_value //修改where字句里面的条件的列内如</div></pre></td></tr></table></figure>
-<p><img src="http://ouyzqzdzy.bkt.clouddn.com/tishi.png" alt="注意">需要特别注意的是WHERE 子句规定哪条记录或者哪些记录需要更新。如果您省略了 WHERE 子句，所有的记录都将被更新！执行没有WHERE字句的语句时需要特别慎重。</p>
-<h5 id="删-DELETE"><a href="#删-DELETE" class="headerlink" title="删 DELETE"></a>删 DELETE</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">DELETE FROM table_name WHERE some_column=some_value; //删除满足where字句条件里面指定的项</div></pre></td></tr></table></figure>
-<p> <img src="http://ouyzqzdzy.bkt.clouddn.com/tishi.png" alt="提示"> WHERE 子句规定哪条记录或者哪些记录需要删除。如果省略了 WHERE 子句，所有的记录都将被删除！ </p>
-<p>不使用WHERE字句会把表中的数据全部删除完，保留表的结构。</p>
-
+        
+          <a class="article-more-a" href="/2017/08/20/SQL常用语法笔记/#more">展开全文 >></a>
+        
       
 
       
@@ -1001,7 +927,7 @@ MathJax.Hub.Queue(function() {
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">一个努力学习编程和安全知识的小弱鸡&lt;br&gt;希望和各位交流学习&lt;br&gt;谢谢光临！&lt;br&gt;&gt;++)3</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">一个努力学习编程开发的小弱鸡&lt;br&gt;希望和各位交流学习&lt;br&gt;谢谢光临！&lt;br&gt;&gt;++)3</div>
   	  	
     	</section>
     
