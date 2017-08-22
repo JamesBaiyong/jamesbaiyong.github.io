@@ -8,19 +8,20 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Flask开发猜数字网页游戏 | JamesBy博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="使用Flask开发一款猜数字网页游戏 这个小项目是参考这个项目完成的，参考的对应文章在这里。项目很简单，能很快了解到Flask的路由，模板，以及相关的表单知识。整个项目我自己重写了一遍，原项目功能相同，只在前端做了些修改。 项目结构：123456789101112131415└─guess number    │  app.py    │  README.md    │    ├─static">
+  <meta name="description" content="使用Flask开发一款猜数字网页游戏这个小项目是参考这个项目完成的，参考的对应文章在这里。项目很简单，能很快了解到Flask的路由，模板，以及相关的表单知识。整个项目我自己重写了一遍，原项目功能相同，只在前端做了些修改。 项目结构：">
 <meta name="keywords" content="python,Flask,web开发">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Flask开发猜数字网页游戏">
 <meta property="og:url" content="http://yoursite.com/2017/08/22/Flask开发猜数字网页游戏/index.html">
 <meta property="og:site_name" content="JamesBy博客">
-<meta property="og:description" content="使用Flask开发一款猜数字网页游戏 这个小项目是参考这个项目完成的，参考的对应文章在这里。项目很简单，能很快了解到Flask的路由，模板，以及相关的表单知识。整个项目我自己重写了一遍，原项目功能相同，只在前端做了些修改。 项目结构：123456789101112131415└─guess number    │  app.py    │  README.md    │    ├─static">
+<meta property="og:description" content="使用Flask开发一款猜数字网页游戏这个小项目是参考这个项目完成的，参考的对应文章在这里。项目很简单，能很快了解到Flask的路由，模板，以及相关的表单知识。整个项目我自己重写了一遍，原项目功能相同，只在前端做了些修改。 项目结构：">
 <meta property="og:image" content="http://ouyzqzdzy.bkt.clouddn.com/%E7%8C%9C%E6%95%B0%E5%AD%97%E6%B8%B8%E6%88%8F.jpg">
 <meta property="og:image" content="http://ouyzqzdzy.bkt.clouddn.com/%E6%95%B0%E5%AD%97%E5%88%A4%E6%96%AD.jpg">
-<meta property="og:updated_time" content="2017-08-22T06:25:33.983Z">
+<meta property="og:image" content="http://ouyzqzdzy.bkt.clouddn.com/%E9%94%99%E8%AF%AF%E6%A3%80%E6%B5%8B.jpg">
+<meta property="og:updated_time" content="2017-08-22T06:31:18.340Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Flask开发猜数字网页游戏">
-<meta name="twitter:description" content="使用Flask开发一款猜数字网页游戏 这个小项目是参考这个项目完成的，参考的对应文章在这里。项目很简单，能很快了解到Flask的路由，模板，以及相关的表单知识。整个项目我自己重写了一遍，原项目功能相同，只在前端做了些修改。 项目结构：123456789101112131415└─guess number    │  app.py    │  README.md    │    ├─static">
+<meta name="twitter:description" content="使用Flask开发一款猜数字网页游戏这个小项目是参考这个项目完成的，参考的对应文章在这里。项目很简单，能很快了解到Flask的路由，模板，以及相关的表单知识。整个项目我自己重写了一遍，原项目功能相同，只在前端做了些修改。 项目结构：">
 <meta name="twitter:image" content="http://ouyzqzdzy.bkt.clouddn.com/%E7%8C%9C%E6%95%B0%E5%AD%97%E6%B8%B8%E6%88%8F.jpg">
   
     <link rel="alternative" href="/atom.xml" title="JamesBy博客" type="application/atom+xml">
@@ -163,9 +164,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="使用Flask开发一款猜数字网页游戏"><a href="#使用Flask开发一款猜数字网页游戏" class="headerlink" title="使用Flask开发一款猜数字网页游戏"></a>使用Flask开发一款猜数字网页游戏</h3><p><img src="http://ouyzqzdzy.bkt.clouddn.com/%E7%8C%9C%E6%95%B0%E5%AD%97%E6%B8%B8%E6%88%8F.jpg" alt=""></p>
-<p>这个小项目是参考<a href="https://github.com/helloflask/guess" target="_blank" rel="external">这个项目</a>完成的，参考的对应文章<a href="https://zhuanlan.zhihu.com/p/23340992" target="_blank" rel="external">在这里</a>。项目很简单，能很快了解到Flask的路由，模板，以及相关的表单知识。整个项目我自己重写了一遍，原项目功能相同，只在前端做了些修改。</p>
-<h4 id="项目结构："><a href="#项目结构：" class="headerlink" title="项目结构："></a>项目结构：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">└─guess number</div><div class="line">    │  app.py</div><div class="line">    │  README.md</div><div class="line">    │</div><div class="line">    ├─static</div><div class="line">    │      base.main.css</div><div class="line">    │      bootstrap.min.css</div><div class="line">    │      bootstrap.min.js</div><div class="line">    │      favicon.ico</div><div class="line">    │      jquery.min.js</div><div class="line">    │</div><div class="line">    └─templates</div><div class="line">            base.html</div><div class="line">            guess.html</div><div class="line">            index.html</div></pre></td></tr></table></figure>
+        <p><img src="http://ouyzqzdzy.bkt.clouddn.com/%E7%8C%9C%E6%95%B0%E5%AD%97%E6%B8%B8%E6%88%8F.jpg" alt=""></p>
+<h3 id="使用Flask开发一款猜数字网页游戏"><a href="#使用Flask开发一款猜数字网页游戏" class="headerlink" title="使用Flask开发一款猜数字网页游戏"></a>使用Flask开发一款猜数字网页游戏</h3><p>这个小项目是参考<a href="https://github.com/helloflask/guess" target="_blank" rel="external">这个项目</a>完成的，参考的对应文章<a href="https://zhuanlan.zhihu.com/p/23340992" target="_blank" rel="external">在这里</a>。项目很简单，能很快了解到Flask的路由，模板，以及相关的表单知识。整个项目我自己重写了一遍，原项目功能相同，只在前端做了些修改。</p>
+<h4 id="项目结构："><a href="#项目结构：" class="headerlink" title="项目结构："></a>项目结构：</h4><a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">└─guess number</div><div class="line">    │  app.py</div><div class="line">    │  README.md</div><div class="line">    │</div><div class="line">    ├─static</div><div class="line">    │      base.main.css</div><div class="line">    │      bootstrap.min.css</div><div class="line">    │      bootstrap.min.js</div><div class="line">    │      favicon.ico</div><div class="line">    │      jquery.min.js</div><div class="line">    │</div><div class="line">    └─templates</div><div class="line">            base.html</div><div class="line">            guess.html</div><div class="line">            index.html</div></pre></td></tr></table></figure>
 <h4 id="项目安装包："><a href="#项目安装包：" class="headerlink" title="项目安装包："></a>项目安装包：</h4><p>click==6.7<br>Flask==0.12.2<br>Flask-Bootstrap==3.0.3.1<br>Flask-WTF==0.12<br>itsdangerous==0.24<br>Jinja2==2.9.6<br>MarkupSafe==1.0<br>Werkzeug==0.12.2<br>WTForms==2.1</p>
 <h3 id="用到和复习到的知识点"><a href="#用到和复习到的知识点" class="headerlink" title="用到和复习到的知识点"></a>用到和复习到的知识点</h3><h4 id="前端方面："><a href="#前端方面：" class="headerlink" title="前端方面："></a>前端方面：</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="selector-tag">--</span>使<span class="selector-tag">DIV</span>在整个<span class="selector-tag">body</span>居中<span class="selector-tag">--</span>&gt;</div><div class="line"> <span class="selector-tag">width</span>: 50%;</div><div class="line"> <span class="selector-tag">margin</span>: 10% <span class="selector-tag">auto</span>;</div><div class="line"> &lt;<span class="selector-tag">--</span>给<span class="selector-tag">DIV</span>加上边框盒子阴影效果<span class="selector-tag">--</span>&gt;</div><div class="line"> <span class="selector-tag">box-shadow</span><span class="selector-pseudo">:0</span> 1<span class="selector-class">.5em</span> 0<span class="selector-class">.5em</span> <span class="selector-tag">-1em</span> <span class="selector-tag">olive</span>;;</div></pre></td></tr></table></figure>
 <h4 id="后台方面"><a href="#后台方面" class="headerlink" title="后台方面"></a>后台方面</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask,session,render_template,flash,redirect,url_for</div><div class="line"><span class="keyword">from</span> flask_wtf <span class="keyword">import</span> Form</div><div class="line"><span class="keyword">from</span> wtforms <span class="keyword">import</span>  IntegerField,SubmitField</div><div class="line"><span class="keyword">from</span> wtforms.validators <span class="keyword">import</span> Required,NumberRange</div><div class="line"><span class="keyword">from</span> flask_bootstrap <span class="keyword">import</span>  Bootstrap</div></pre></td></tr></table></figure>
@@ -180,6 +182,7 @@
 <p><img src="http://ouyzqzdzy.bkt.clouddn.com/%E6%95%B0%E5%AD%97%E5%88%A4%E6%96%AD.jpg" alt=""></p>
 <h3 id="表单"><a href="#表单" class="headerlink" title="表单"></a>表单</h3><p>定义了GuessNumberForm表单类，在其中实现用户竞猜的数字和完成验证，同时对用户输入做合法性检测。使用到Required和NumberRange函数。IntegerField实现输入的值为数值，NumberRange实现指定输入的数值大小。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">GuessNumberForm</span><span class="params">(Form)</span>:</span></div><div class="line">	<span class="comment">#猜数字的表单</span></div><div class="line">	number = IntegerField(<span class="string">u'输入0-1000的数字！'</span>,validators=[<span class="comment">#检测表单填写是否符合标准</span></div><div class="line">		Required(<span class="string">u'输入有效数字！'</span>),</div><div class="line">		NumberRange(<span class="number">0</span>,<span class="number">1000</span>,<span class="string">u'输入0-1000之间的数字'</span>)])</div><div class="line">	submit=SubmitField(<span class="string">u'一定是这个数字'</span>)</div></pre></td></tr></table></figure>
+<p><img src="http://ouyzqzdzy.bkt.clouddn.com/%E9%94%99%E8%AF%AF%E6%A3%80%E6%B5%8B.jpg" alt=""></p>
 <h3 id="模板渲染"><a href="#模板渲染" class="headerlink" title="模板渲染"></a>模板渲染</h3><p>默认情况下，Flask在程序文件夹中的templates文件中寻找模板，当然可以自己指定。Flask提供的render_template函数把Jinja2模板引擎集成到了程序中。render_template函数的第一个参数是模板的文件名，随后的参数都是键值对，表示模板中变量对应的真实值。当相应的变量和真实值的时候亦可不用该参数。</p>
 <p>本项目的原作者在知乎有篇介绍的很好的文章，<a href="https://zhuanlan.zhihu.com/p/23669244" target="_blank" rel="external">在这里</a>。</p>
 <h3 id="参考连接"><a href="#参考连接" class="headerlink" title="参考连接"></a>参考连接</h3><ul>
@@ -440,10 +443,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
@@ -452,15 +451,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">javascript动态页面</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">折腾记</a>
+                <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -468,7 +459,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">折腾记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">javascript动态页面</a>
               </li>
             
             <div class="clearfix"></div>
