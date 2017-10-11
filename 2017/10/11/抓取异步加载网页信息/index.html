@@ -6,24 +6,26 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>SQL常用语法笔记 | JamesBy博客</title>
+  <title>抓取异步加载网页信息 | JamesBy博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="SQL基础笔记该笔记是参考菜鸟教程上的SQL学习笔记，将SQL语句做了简单的整理，这篇是基础的SQL语句操作。主要涵盖基本的增删改查。 准备：导入sql文件到mysql">
-<meta name="keywords" content="SQL">
+  <meta name="description" content="抓取异步加载网页信息前言编写网络爬虫第一步先进行网页分析，确定自己所需获取的信息，分析网页源码结构以及渲染方式很重要。今天要抓取的页面是JD的图书销售榜单。这个网页是采用动态加载的渲染方式显示网页内容，之前的这篇文章，也是采用动态加载的方式渲染网页的，当时使用了Selenium的方式获取了网页信息。这篇文章采用了不一样的方式来处理类似的情况，那就是找接口，使用现有数据接口，分析ajax的方式获取信">
+<meta name="keywords" content="python,爬虫,异步加载">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SQL常用语法笔记">
-<meta property="og:url" content="http://yoursite.com/2017/08/20/SQL常用语法笔记/index.html">
+<meta property="og:title" content="抓取异步加载网页信息">
+<meta property="og:url" content="http://yoursite.com/2017/10/11/抓取异步加载网页信息/index.html">
 <meta property="og:site_name" content="JamesBy博客">
-<meta property="og:description" content="SQL基础笔记该笔记是参考菜鸟教程上的SQL学习笔记，将SQL语句做了简单的整理，这篇是基础的SQL语句操作。主要涵盖基本的增删改查。 准备：导入sql文件到mysql">
-<meta property="og:image" content="http://ouyzqzdzy.bkt.clouddn.com/database.png">
-<meta property="og:image" content="http://ouyzqzdzy.bkt.clouddn.com/tishi.png">
-<meta property="og:image" content="http://ouyzqzdzy.bkt.clouddn.com/tishi.png">
-<meta property="og:image" content="http://ouyzqzdzy.bkt.clouddn.com/tishi.png">
-<meta property="og:updated_time" content="2017-08-20T08:23:44.176Z">
+<meta property="og:description" content="抓取异步加载网页信息前言编写网络爬虫第一步先进行网页分析，确定自己所需获取的信息，分析网页源码结构以及渲染方式很重要。今天要抓取的页面是JD的图书销售榜单。这个网页是采用动态加载的渲染方式显示网页内容，之前的这篇文章，也是采用动态加载的方式渲染网页的，当时使用了Selenium的方式获取了网页信息。这篇文章采用了不一样的方式来处理类似的情况，那就是找接口，使用现有数据接口，分析ajax的方式获取信">
+<meta property="og:image" content="https://static.pexels.com/photos/265087/pexels-photo-265087.jpeg">
+<meta property="og:image" content="http://ouyzqzdzy.bkt.clouddn.com/%E6%BA%90%E7%A0%81.jpg">
+<meta property="og:image" content="http://ouyzqzdzy.bkt.clouddn.com/%E6%95%B0%E6%8D%AE%E5%93%8D%E5%BA%94.jpg">
+<meta property="og:image" content="http://ouyzqzdzy.bkt.clouddn.com/%E6%95%B0%E6%8D%AE%E6%8E%A5%E5%8F%A3.jpg">
+<meta property="og:image" content="http://ouyzqzdzy.bkt.clouddn.com/%E6%95%B0%E6%8D%AE1.jpg">
+<meta property="og:image" content="http://ouyzqzdzy.bkt.clouddn.com/%E5%95%86%E5%93%81%E4%BB%B7%E6%A0%BC.jpg">
+<meta property="og:updated_time" content="2017-10-11T07:11:59.615Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SQL常用语法笔记">
-<meta name="twitter:description" content="SQL基础笔记该笔记是参考菜鸟教程上的SQL学习笔记，将SQL语句做了简单的整理，这篇是基础的SQL语句操作。主要涵盖基本的增删改查。 准备：导入sql文件到mysql">
-<meta name="twitter:image" content="http://ouyzqzdzy.bkt.clouddn.com/database.png">
+<meta name="twitter:title" content="抓取异步加载网页信息">
+<meta name="twitter:description" content="抓取异步加载网页信息前言编写网络爬虫第一步先进行网页分析，确定自己所需获取的信息，分析网页源码结构以及渲染方式很重要。今天要抓取的页面是JD的图书销售榜单。这个网页是采用动态加载的渲染方式显示网页内容，之前的这篇文章，也是采用动态加载的方式渲染网页的，当时使用了Selenium的方式获取了网页信息。这篇文章采用了不一样的方式来处理类似的情况，那就是找接口，使用现有数据接口，分析ajax的方式获取信">
+<meta name="twitter:image" content="https://static.pexels.com/photos/265087/pexels-photo-265087.jpeg">
   
     <link rel="alternative" href="/atom.xml" title="JamesBy博客" type="application/atom+xml">
   
@@ -145,106 +147,58 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-SQL常用语法笔记" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-抓取异步加载网页信息" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      SQL常用语法笔记
+      抓取异步加载网页信息
     </h1>
   
 
         
-        <a href="/2017/08/20/SQL常用语法笔记/" class="archive-article-date">
-  	<time datetime="2017-08-20T08:14:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-20</time>
+        <a href="/2017/10/11/抓取异步加载网页信息/" class="archive-article-date">
+  	<time datetime="2017-10-11T07:02:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-11</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="http://ouyzqzdzy.bkt.clouddn.com/database.png" alt=""></p>
-<h3 id="SQL基础笔记"><a href="#SQL基础笔记" class="headerlink" title="SQL基础笔记"></a>SQL基础笔记</h3><p>该笔记是参考<a href="http://www.runoob.com/sql/sql-tutorial.html" target="_blank" rel="external">菜鸟教程</a>上的SQL学习笔记，将SQL语句做了简单的整理，这篇是基础的SQL语句操作。主要涵盖基本的增删改查。</p>
-<h4 id="准备："><a href="#准备：" class="headerlink" title="准备："></a>准备：</h4><p>导入sql文件到mysql</p>
-<a id="more"></a>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">source d:/websites.sql;</div></pre></td></tr></table></figure>
-<p>在mysql中创建案例表</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">CREATE TABLE IF NOT EXISTS `table_name`(</div><div class="line">   `id` INT UNSIGNED AUTO_INCREMENT,</div><div class="line">   `title` VARCHAR(100) NOT NULL,</div><div class="line">   `author` VARCHAR(40) NOT NULL,</div><div class="line">   `date` DATE,</div><div class="line">   PRIMARY KEY ( `id` )</div><div class="line">)ENGINE=InnoDB DEFAULT CHARSET=utf8;</div></pre></td></tr></table></figure>
-<h4 id="一些重要的SQL命令"><a href="#一些重要的SQL命令" class="headerlink" title="一些重要的SQL命令"></a>一些重要的SQL命令</h4><ul>
-<li><strong>SELECT</strong> - 从数据库中提取数据</li>
-<li><strong>UPDATE</strong> - 更新数据库中的数据</li>
-<li><strong>DELETE</strong> - 从数据库中删除数据</li>
-<li><strong>INSERT INTO</strong> - 向数据库中插入新数据</li>
-<li><strong>CREATE DATABASE</strong> - 创建新数据库</li>
-<li><strong>ALTER DATABASE</strong> - 修改数据库</li>
-<li><strong>CREATE TABLE</strong> - 创建新表</li>
-<li><strong>ALTER TABLE</strong> - 变更（改变）数据库表</li>
-<li><strong>DROP TABLE</strong> - 删除表</li>
-<li><strong>CREATE INDEX</strong> - 创建索引（搜索键）</li>
-<li><strong>DROP INDEX</strong> - 删除索引</li>
-</ul>
-<h4 id="SQL基本的增删改查"><a href="#SQL基本的增删改查" class="headerlink" title="SQL基本的增删改查"></a>SQL基本的增删改查</h4><h5 id="查-SELECT"><a href="#查-SELECT" class="headerlink" title="查 SELECT"></a>查 SELECT</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">select * from table_name;  //查全表</div><div class="line">select name,id table_name;  //查指定的列的内容</div><div class="line">select distinct column_name from table_name; //查询指定列中唯一不同的值</div><div class="line">select * from table_name where column_name operator values ; //按照条件查询查询</div><div class="line">select * from tabl_ename where column_name operator values and[or] column_name operator valueslexa; //AND查询，必须满足两个条件,or 查询，两个条件满足一个即可，同时and和or可以组合起来查询，一般使用（）组合复杂语句</div><div class="line">select * from tablename order by column_name,column_name ASC|DESC; //按照什么列的升序或则降序查询,可同时按照多列排序查询</div></pre></td></tr></table></figure>
-<h6 id="where字句的运算符"><a href="#where字句的运算符" class="headerlink" title="where字句的运算符"></a>where字句的运算符</h6><table>
-<thead>
-<tr>
-<th>运算符</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>=</td>
-<td>等于</td>
-</tr>
-<tr>
-<td>&lt;&gt;</td>
-<td>不等于。<strong>注释：</strong>在 SQL 的一些版本中，该操作符可被写成 !=</td>
-</tr>
-<tr>
-<td>&gt;</td>
-<td>大于</td>
-</tr>
-<tr>
-<td>&lt;</td>
-<td>小于</td>
-</tr>
-<tr>
-<td>&gt;=</td>
-<td>大于等于</td>
-</tr>
-<tr>
-<td>&lt;=</td>
-<td>小于等于</td>
-</tr>
-<tr>
-<td>BETWEEN</td>
-<td>在某个范围内</td>
-</tr>
-<tr>
-<td>LIKE</td>
-<td>搜索某种模式。模糊查询</td>
-</tr>
-<tr>
-<td>IN</td>
-<td>指定针对某个列的多个可能值</td>
-</tr>
-</tbody>
-</table>
-<h6 id="模糊查询的字符串意义"><a href="#模糊查询的字符串意义" class="headerlink" title="模糊查询的字符串意义"></a>模糊查询的字符串意义</h6><ul>
-<li><strong>%</strong>: 表示多个字值，<strong>_</strong> 下划线表示一个字符。</li>
-<li><strong>M%</strong> : 为能配符，正则表达式，表示的意思为模糊查询信息为 M 开头的。</li>
-<li><strong>%M%</strong> : 表示查询包含M的所有内容。</li>
-<li><strong>%M_ </strong>: 表示查询以M在倒数第二位的所有内容。</li>
-</ul>
-<h5 id="增-INSERT-INTO"><a href="#增-INSERT-INTO" class="headerlink" title="增 INSERT INTO"></a>增 INSERT INTO</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">INSERT INTO table_name VALUES (value1,value2,value3,...); //按照表的列结构增加内容</div><div class="line">INSERT INTO table_name (column1,column2,column3,...) VALUES (value1,value2,value3,...); //按照指定的列增加内容，允许有空值</div></pre></td></tr></table></figure>
-<p><img src="http://ouyzqzdzy.bkt.clouddn.com/tishi.png" alt="注意">通常ID列是自动更新的，表中的每条记录都有一个唯一的数字，在添加的时候大部分时候不用管。</p>
-<h5 id="改-UPDATE"><a href="#改-UPDATE" class="headerlink" title="改 UPDATE"></a>改 UPDATE</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">UPDATE table_name SET column1=value1,column2=value2,... WHERE some_column=some_value //修改where字句里面的条件的列内如</div></pre></td></tr></table></figure>
-<p><img src="http://ouyzqzdzy.bkt.clouddn.com/tishi.png" alt="注意">需要特别注意的是WHERE 子句规定哪条记录或者哪些记录需要更新。如果您省略了 WHERE 子句，所有的记录都将被更新！执行没有WHERE字句的语句时需要特别慎重。</p>
-<h5 id="删-DELETE"><a href="#删-DELETE" class="headerlink" title="删 DELETE"></a>删 DELETE</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">DELETE FROM table_name WHERE some_column=some_value; //删除满足where字句条件里面指定的项</div></pre></td></tr></table></figure>
-<p> <img src="http://ouyzqzdzy.bkt.clouddn.com/tishi.png" alt="提示"> WHERE 子句规定哪条记录或者哪些记录需要删除。如果省略了 WHERE 子句，所有的记录都将被删除！ </p>
-<p>不使用WHERE字句会把表中的数据全部删除完，保留表的结构。</p>
+        <h3 id="抓取异步加载网页信息"><a href="#抓取异步加载网页信息" class="headerlink" title="抓取异步加载网页信息"></a>抓取异步加载网页信息</h3><h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>编写网络爬虫第一步先进行网页分析，确定自己所需获取的信息，分析网页源码结构以及渲染方式很重要。今天要抓取的页面是JD的图书销售榜单。这个网页是采用动态加载的渲染方式显示网页内容，之前的<a href="http://jamesby.top/2017/06/12/%E8%8E%B7%E5%8F%96instagram%E5%9B%BE%E7%89%87-%E7%94%A8%E7%88%AC%E8%99%AB%E7%9A%84%E6%96%B9%E5%BC%8F/" target="_blank" rel="external">这篇文章</a>，也是采用动态加载的方式渲染网页的，当时使用了Selenium的方式获取了网页信息。这篇文章采用了不一样的方式来处理类似的情况，那就是找接口，使用现有数据接口，分析ajax的方式获取信息。</p>
+<p><img src="https://static.pexels.com/photos/265087/pexels-photo-265087.jpeg" alt=""></p>
+<h4 id="I-网页分析"><a href="#I-网页分析" class="headerlink" title="I.网页分析"></a>I.网页分析</h4><p>首先打开网页查看需要的信息就无需赘诉了，这里我们需要获得书籍的销售排名、书名、作者、现价、原价、出版社这几条信息。先获取网页源码看看信息在什么地方。获取到下图所示的源码，注意看标志处，这里本该是有商品价格的地方，但是通过程序得到的网页是没有价格信息的，可以得知这个网页的价格信息是异步加载的。这就是今天要解决的重点问题，也是这篇文章出现的关键因素。</p>
+<p><img src="http://ouyzqzdzy.bkt.clouddn.com/%E6%BA%90%E7%A0%81.jpg" alt=""></p>
+<p>如果判断网页是否是动态加载都使用这种方法的话，看起来蠢蠢的，所以这里安利这个<a href="https://chrome.google.com/webstore/detail/toggle-javascript/cidlcjdalomndpeagkjpnefhljffbnlo" target="_blank" rel="external">插件</a>，可以方便的判断页面哪些是使用JS的方式加载的，也就是动态加载的部分。</p>
+<h4 id="II-接口分析"><a href="#II-接口分析" class="headerlink" title="II.接口分析"></a>II.接口分析</h4><p>现在问题已经抛出来了，那就是如何获取到完整的网页源码。接下来就是用分析数据接口的方式来抓取内容吧，这里插一句，在董伟明前辈的live中也有提到如何处理这类网页，首推方法也是这种找数据接口的方法，使Selenium过于消耗资源了。在爬取大量数据的时候就比较痛苦了。</p>
+<p>接下来切入正题，如何分析和找数据接口是一个细致的活儿，看下截图就知道了。这还是响应数据比较少的，多的就得更细心了。</p>
+<p><img src="http://ouyzqzdzy.bkt.clouddn.com/%E6%95%B0%E6%8D%AE%E5%93%8D%E5%BA%94.jpg" alt=""></p>
+<h5 id="II-1获取数据接口地址"><a href="#II-1获取数据接口地址" class="headerlink" title="II.1获取数据接口地址"></a>II.1获取数据接口地址</h5><p>通过一个一个的查找，终于在下图的地方发现了价格信息的数据接口。查找方式也比较简单粗暴，打开开发者调试工具，选中network那一项，重新加载页面，在响应的文件当中挨个点击查找。当然也可以抓数据包。找到响应数据后右键复制出接口链接地址就可以了。</p>
+<p><img src="http://ouyzqzdzy.bkt.clouddn.com/%E6%95%B0%E6%8D%AE%E6%8E%A5%E5%8F%A3.jpg" alt=""></p>
+<h5 id="II-2数据获取"><a href="#II-2数据获取" class="headerlink" title="II.2数据获取"></a>II.2数据获取</h5><p>在浏览器中打开复制的链接地址，可以发现返回的是一串字符串。图截的不是很好，将就看一下，主要还是思路。<img src="http://ouyzqzdzy.bkt.clouddn.com/%E6%95%B0%E6%8D%AE1.jpg" alt=""></p>
+<p>这里我有一个疑惑点，这个数据接口是我在写这篇文章的时候再次获取的，在编写爬虫的时候我获取到的数据并不是这个样子，而是直接返回的JSON格式的值。于是我怀着好奇的心，在几次不严谨的实验下，我发现了一个可以直接获取JSON的方式，这样程序实现起来也比较简单。通过事后数据核实，也发现这个方式获取到的也并不是脏数据。好，现在来看如何获取JSON格式的值。</p>
+<p>观察链接地址可以发现有许多的ID值。大胆猜测，这些ID值就是与书籍信息相关的。链接保持不变，将链接后面有书籍ID的字符串全部删除，再按照链接格式重构一个新的链接。重新查查看，浏览器返回了这样的信息。这是一段JSON格式的值，对应的书籍通过对网页展示出来的信息也可以知道是些什么信息。到这里，本篇文章重点以完，接下来就是处理获取到的数据，编写爬虫了。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[&#123;"op":"33.40","m":"46.80","id":"J_12122095","p":"33.40"&#125;,&#123;"op":"27.30","m":"39.50","id":"J_11452840","p":"27.30"&#125;]</div></pre></td></tr></table></figure>
+<h4 id="III-爬虫编写"><a href="#III-爬虫编写" class="headerlink" title="III.爬虫编写"></a>III.爬虫编写</h4><p>为了方便快捷，这里笔者使用scrapy编写了爬虫，这里方便读者（如果有的话），放两条链接地址，方便快捷的搭车。<a href="http://book.jd.com/booktop/0-0-0.html?category=1713-0-0-0-10001-1#comfor" target="_blank" rel="external">链接1</a>，<a href="http://p.3.cn/prices/mgets?type=1&amp;skuIds=J_" target="_blank" rel="external">链接2</a>。思路是获取网站信息，定位获取信息的xpath地址，整合数据，存储起来，完事。</p>
+<p>定位信息代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">item = JdBookItem()</div><div class="line">book_info = response.xpath(<span class="string">'//ul[@class="clearfix"]/li'</span>)</div><div class="line">	<span class="keyword">for</span> book <span class="keyword">in</span> book_info:</div><div class="line">		<span class="comment">#获取在页面的书籍信息</span></div><div class="line">		item[<span class="string">'book_name'</span>] = book.xpath(<span class="string">'.//div[@class="p-img"]/a/@title'</span>).extract()[<span class="number">0</span>]</div><div class="line">		item[<span class="string">'author'</span>] = book.xpath(<span class="string">'.//div[@class="pdetail"]/dl[1]/dd/a[1]/text()'</span>).extract()[<span class="number">0</span>]</div></pre></td></tr></table></figure>
+<p>价格信息获取：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#获取ajax接口地址，将返回的JSON处理为字典</span></div><div class="line">json_url = self.price_url+item[<span class="string">'book_id'</span>]</div><div class="line">json_price = requests.get(json_url).text</div><div class="line">data = json.loads(json_price)[<span class="number">0</span>]</div><div class="line"><span class="comment">#分析字典数据，获取价格</span></div><div class="line">			</div><div class="line">item[<span class="string">'price'</span>] = data[<span class="string">'m'</span>] + <span class="string">'￥'</span>.decode(<span class="string">'utf-8'</span>)</div><div class="line">item[<span class="string">'preferential_price'</span>] = data[<span class="string">'op'</span>] + <span class="string">'￥'</span>.decode(<span class="string">'utf-8'</span>)</div></pre></td></tr></table></figure>
+<p>下一页获取：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#获取下一页</span></div><div class="line">nextLink = response.xpath(<span class="string">'//div[@class="m m-page"]/div/div/span/a[@class="pn-next"]/@href'</span>).extract()[<span class="number">0</span>]</div><div class="line"><span class="keyword">if</span> nextLink:</div><div class="line">	nextLink = <span class="string">'http:'</span> + nextLink</div><div class="line">	<span class="keyword">yield</span> Request(nextLink, headers=self.headers)</div></pre></td></tr></table></figure>
+<h4 id="IV-存储"><a href="#IV-存储" class="headerlink" title="IV.存储"></a>IV.存储</h4><p>Scrapy可以很方面的保存数据，笔者这里使用了excel的方式保存数据，除了需要在<strong>pipelines.py</strong>文件编写类似以下信息外，还需要在<strong>settings.py</strong>中添加以下字典格式的数据。</p>
+<p><code>JD_book</code>表示项目名，<code>pipelines</code>存储数据文件，<code>JdBookPipeline</code>存储数据类。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ITEM_PIPELINES = &#123;</div><div class="line">    <span class="string">'JD_book.pipelines.JdBookPipeline'</span>: <span class="number">200</span>,  <span class="comment"># 200是为了设置工序顺序</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>存储数据代码:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> openpyxl <span class="keyword">import</span>  Workbook</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">JdBookPipeline</span><span class="params">(object)</span>:</span></div><div class="line"></div><div class="line">    wb = Workbook()</div><div class="line">    ws = wb.active</div><div class="line">    ws.append([<span class="string">'销售排名'</span>,<span class="string">'书名'</span>,<span class="string">'作者'</span>,<span class="string">'现价'</span>,<span class="string">'原价'</span>,<span class="string">'出版社'</span>])  <span class="comment">#设置表格表头</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">process_item</span><span class="params">(self, item, spider)</span>:</span></div><div class="line">        line = [item[<span class="string">'number'</span>], item[<span class="string">'book_name'</span>],</div><div class="line">                item[<span class="string">'author'</span>],item[<span class="string">'preferential_price'</span>],</div><div class="line">                item[<span class="string">'price'</span>],item[<span class="string">'press'</span>]]  <span class="comment"># 把数据中每一项整理出来</span></div><div class="line"></div><div class="line">        self.ws.append(line)  <span class="comment"># 将数据以行的形式添加到xlsx中</span></div><div class="line">        self.wb.save(<span class="string">'./JD_book1.xlsx'</span>)  <span class="comment"># 保存xlsx文件</span></div><div class="line">        <span class="keyword">return</span> item</div></pre></td></tr></table></figure>
+<p>最后获得这样的信息:</p>
+<p><img src="http://ouyzqzdzy.bkt.clouddn.com/%E5%95%86%E5%93%81%E4%BB%B7%E6%A0%BC.jpg" alt=""></p>
+<h4 id="V-总结"><a href="#V-总结" class="headerlink" title="V.总结"></a>V.总结</h4><p>这个爬虫主要用到两个知识点，如何获取数据接口和scrapy爬虫的编写。其中难点和瓶颈还是在如何获取数据接口和处理异步加载网页上。还有就是反爬虫策略，这一点这个网页不是特别狠。但需要注意的是请求数据还是不要太频繁，笔者在编写的时候没有一次性获取多条信息，多次查询后就被封了IP，所以这个爬虫还需要优化一下。可以将价格信息一次性获取出来存到字典，然后使用书籍ID再获取价格信息。</p>
+<p>写这个爬虫纯粹是学习之用，无它意。如有不妥，烦劳通知笔者，笔者立刻删除。</p>
+<h4 id="相关链接："><a href="#相关链接：" class="headerlink" title="相关链接："></a>相关链接：</h4><p><a href="http://www.cnblogs.com/Erma-king/p/5281967.html" target="_blank" rel="external">学习链接</a></p>
+<p><a href="https://github.com/JamesBaiyong/python_pracatice/tree/master/JD_book" target="_blank" rel="external">笔者代码链接</a></p>
 
       
 
@@ -284,7 +238,15 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SQL</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">爬虫</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">异步加载</a>
         		</li>
       		
 		</ul>
@@ -340,7 +302,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/08/20/SQL常用语法笔记/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/10/11/抓取异步加载网页信息/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -354,18 +316,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/08/22/Flask开发猜数字网页游戏/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Flask开发猜数字网页游戏
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/07/14/使用Flask-Mail发邮件/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">使用Flask-Mail发邮件</div>
+    <a href="/2017/08/30/使用python发送短信/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">使用python发送短信</div>
       <i class="icon-circle-right"></i>
     </a>
   
