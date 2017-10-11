@@ -8,23 +8,23 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>抓取异步加载网页信息 | JamesBy博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="抓取异步加载网页信息前言编写网络爬虫第一步先进行网页分析，确定自己所需获取的信息，分析网页源码结构以及渲染方式很重要。今天要抓取的页面是JD的图书销售榜单。这个网页是采用动态加载的渲染方式显示网页内容，之前的这篇文章，也是采用动态加载的方式渲染网页的，当时使用了Selenium的方式获取了网页信息。这篇文章采用了不一样的方式来处理类似的情况，那就是找接口，使用现有数据接口，分析ajax的方式获取信">
+  <meta name="description" content="前言编写网络爬虫第一步先进行网页分析，确定自己所需获取的信息，分析网页源码结构以及渲染方式很重要。今天要抓取的页面是JD的图书销售榜单。这个网页是采用动态加载的渲染方式显示网页内容，之前的这篇文章，也是采用动态加载的方式渲染网页的，当时使用了Selenium的方式获取了网页信息。这篇文章采用了不一样的方式来处理类似的情况，那就是找接口，使用现有数据接口，分析ajax的方式获取信息。">
 <meta name="keywords" content="python,爬虫,异步加载">
 <meta property="og:type" content="article">
 <meta property="og:title" content="抓取异步加载网页信息">
 <meta property="og:url" content="http://yoursite.com/2017/10/11/抓取异步加载网页信息/index.html">
 <meta property="og:site_name" content="JamesBy博客">
-<meta property="og:description" content="抓取异步加载网页信息前言编写网络爬虫第一步先进行网页分析，确定自己所需获取的信息，分析网页源码结构以及渲染方式很重要。今天要抓取的页面是JD的图书销售榜单。这个网页是采用动态加载的渲染方式显示网页内容，之前的这篇文章，也是采用动态加载的方式渲染网页的，当时使用了Selenium的方式获取了网页信息。这篇文章采用了不一样的方式来处理类似的情况，那就是找接口，使用现有数据接口，分析ajax的方式获取信">
+<meta property="og:description" content="前言编写网络爬虫第一步先进行网页分析，确定自己所需获取的信息，分析网页源码结构以及渲染方式很重要。今天要抓取的页面是JD的图书销售榜单。这个网页是采用动态加载的渲染方式显示网页内容，之前的这篇文章，也是采用动态加载的方式渲染网页的，当时使用了Selenium的方式获取了网页信息。这篇文章采用了不一样的方式来处理类似的情况，那就是找接口，使用现有数据接口，分析ajax的方式获取信息。">
 <meta property="og:image" content="https://static.pexels.com/photos/265087/pexels-photo-265087.jpeg">
 <meta property="og:image" content="http://ouyzqzdzy.bkt.clouddn.com/%E6%BA%90%E7%A0%81.jpg">
 <meta property="og:image" content="http://ouyzqzdzy.bkt.clouddn.com/%E6%95%B0%E6%8D%AE%E5%93%8D%E5%BA%94.jpg">
 <meta property="og:image" content="http://ouyzqzdzy.bkt.clouddn.com/%E6%95%B0%E6%8D%AE%E6%8E%A5%E5%8F%A3.jpg">
 <meta property="og:image" content="http://ouyzqzdzy.bkt.clouddn.com/%E6%95%B0%E6%8D%AE1.jpg">
 <meta property="og:image" content="http://ouyzqzdzy.bkt.clouddn.com/%E5%95%86%E5%93%81%E4%BB%B7%E6%A0%BC.jpg">
-<meta property="og:updated_time" content="2017-10-11T07:11:59.615Z">
+<meta property="og:updated_time" content="2017-10-11T07:28:19.040Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="抓取异步加载网页信息">
-<meta name="twitter:description" content="抓取异步加载网页信息前言编写网络爬虫第一步先进行网页分析，确定自己所需获取的信息，分析网页源码结构以及渲染方式很重要。今天要抓取的页面是JD的图书销售榜单。这个网页是采用动态加载的渲染方式显示网页内容，之前的这篇文章，也是采用动态加载的方式渲染网页的，当时使用了Selenium的方式获取了网页信息。这篇文章采用了不一样的方式来处理类似的情况，那就是找接口，使用现有数据接口，分析ajax的方式获取信">
+<meta name="twitter:description" content="前言编写网络爬虫第一步先进行网页分析，确定自己所需获取的信息，分析网页源码结构以及渲染方式很重要。今天要抓取的页面是JD的图书销售榜单。这个网页是采用动态加载的渲染方式显示网页内容，之前的这篇文章，也是采用动态加载的方式渲染网页的，当时使用了Selenium的方式获取了网页信息。这篇文章采用了不一样的方式来处理类似的情况，那就是找接口，使用现有数据接口，分析ajax的方式获取信息。">
 <meta name="twitter:image" content="https://static.pexels.com/photos/265087/pexels-photo-265087.jpeg">
   
     <link rel="alternative" href="/atom.xml" title="JamesBy博客" type="application/atom+xml">
@@ -167,8 +167,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="抓取异步加载网页信息"><a href="#抓取异步加载网页信息" class="headerlink" title="抓取异步加载网页信息"></a>抓取异步加载网页信息</h3><h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>编写网络爬虫第一步先进行网页分析，确定自己所需获取的信息，分析网页源码结构以及渲染方式很重要。今天要抓取的页面是JD的图书销售榜单。这个网页是采用动态加载的渲染方式显示网页内容，之前的<a href="http://jamesby.top/2017/06/12/%E8%8E%B7%E5%8F%96instagram%E5%9B%BE%E7%89%87-%E7%94%A8%E7%88%AC%E8%99%AB%E7%9A%84%E6%96%B9%E5%BC%8F/" target="_blank" rel="external">这篇文章</a>，也是采用动态加载的方式渲染网页的，当时使用了Selenium的方式获取了网页信息。这篇文章采用了不一样的方式来处理类似的情况，那就是找接口，使用现有数据接口，分析ajax的方式获取信息。</p>
+        <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>编写网络爬虫第一步先进行网页分析，确定自己所需获取的信息，分析网页源码结构以及渲染方式很重要。今天要抓取的页面是JD的图书销售榜单。这个网页是采用动态加载的渲染方式显示网页内容，之前的<a href="http://jamesby.top/2017/06/12/%E8%8E%B7%E5%8F%96instagram%E5%9B%BE%E7%89%87-%E7%94%A8%E7%88%AC%E8%99%AB%E7%9A%84%E6%96%B9%E5%BC%8F/" target="_blank" rel="external">这篇文章</a>，也是采用动态加载的方式渲染网页的，当时使用了Selenium的方式获取了网页信息。这篇文章采用了不一样的方式来处理类似的情况，那就是找接口，使用现有数据接口，分析ajax的方式获取信息。</p>
 <p><img src="https://static.pexels.com/photos/265087/pexels-photo-265087.jpeg" alt=""></p>
+<a id="more"></a>
 <h4 id="I-网页分析"><a href="#I-网页分析" class="headerlink" title="I.网页分析"></a>I.网页分析</h4><p>首先打开网页查看需要的信息就无需赘诉了，这里我们需要获得书籍的销售排名、书名、作者、现价、原价、出版社这几条信息。先获取网页源码看看信息在什么地方。获取到下图所示的源码，注意看标志处，这里本该是有商品价格的地方，但是通过程序得到的网页是没有价格信息的，可以得知这个网页的价格信息是异步加载的。这就是今天要解决的重点问题，也是这篇文章出现的关键因素。</p>
 <p><img src="http://ouyzqzdzy.bkt.clouddn.com/%E6%BA%90%E7%A0%81.jpg" alt=""></p>
 <p>如果判断网页是否是动态加载都使用这种方法的话，看起来蠢蠢的，所以这里安利这个<a href="https://chrome.google.com/webstore/detail/toggle-javascript/cidlcjdalomndpeagkjpnefhljffbnlo" target="_blank" rel="external">插件</a>，可以方便的判断页面哪些是使用JS的方式加载的，也就是动态加载的部分。</p>
