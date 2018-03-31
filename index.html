@@ -143,28 +143,28 @@
     <article id="post-windows10使用ubuntu" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/31/windows10使用ubuntu/">windows10使用ubuntu</a>
+    </h1>
+  
+
+        
+        <a href="/2018/03/31/windows10使用ubuntu/" class="archive-article-date">
+  	<time datetime="2018-03-31T11:12:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-31</time>
+</a>
+        
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
         <p><img src="http://ouyzqzdzy.bkt.clouddn.com/bbb.jpg" alt=""></p>
 <h4 id="I-原由"><a href="#I-原由" class="headerlink" title="I  .原由"></a>I  .原由</h4><p>​    在公司使用ubuntu操作系统做开发也是第五个月了，愈发对Linux系统喜欢。但如若，在自己笔记本上装上linux，会有诸多不便（无法使用学校的上网客户端，PS，play~game….😋），无奈作罢。就在前几日，尝试使用了一下windows10中的ubuntu，官方是叫WSL。用了几日后发现这玩意儿还挺不错的，写于此，留录。</p>
-<h4 id="II-安装"><a href="#II-安装" class="headerlink" title="II.安装"></a>II.安装</h4><p>​    在windows10中是没有默认安装的，毕竟这玩意儿对大部分人来说，没用。所以需要在控制面板&gt;程序&gt;启用或关闭windows功能中。勾选好“适用与Linux的Windows子系统”此项目，好像这里不同的版本会有不同的叫法，反正就是那个东东，和linux相关的选项一股脑勾上就对了。</p>
-<p><img src="http://ouyzqzdzy.bkt.clouddn.com/install1.jpg" alt=""></p>
-<p>​    然后重启，在菜单栏选择运行bash，一个如同cmd的窗口就打开了。然后跟着默认操作就能安装上了。提一点，这里不仅可以装ubuntu，还能装下面这个发现版本。</p>
-<p><img src="http://ouyzqzdzy.bkt.clouddn.com/kali.jpg" alt=""></p>
-<p>​    这简直是信息安全爱好者的福利啊！😎😍</p>
-<h4 id="III-使用"><a href="#III-使用" class="headerlink" title="III.使用"></a>III.使用</h4><p>​    安装完使用就简单了，不同人有不同需求，这里只记录一下自己的需求，因为当时为了把这破东西能无缝对接公司的电脑开发环境折腾了我好一阵。</p>
-<h6 id="ssh服务"><a href="#ssh服务" class="headerlink" title="ssh服务"></a>ssh服务</h6><p>​    使用这个服务，是为了在pycharm中能远程链接Ubuntu系统中的开发环境，这样就可以在windows的外壳下去基于Linux写bug了。我自己主要也是在这里耗费了不少时间。</p>
-<p>​    1.生成ssh密钥，用于使用git和无密码链接ubuntu系统</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh-keygen -t rsa</div></pre></td></tr></table></figure>
-<p>​    2.设置权限，将下面的目录改为对应的权限，用户名对照自己的</p>
-<p>​    <img src="http://ouyzqzdzy.bkt.clouddn.com/chmod.jpg" alt=""></p>
-<p>​    3.更改配置文件，在sshd_confg文件末尾添加如下类容</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">PasswordAuthentication yes</div><div class="line">UsePrivilegeSeparation no</div><div class="line">AllowUsers zboom</div><div class="line">ListenAddress 127.0.0.1</div></pre></td></tr></table></figure>
-<p>​    4.使用pycharm链接，这里需要将第一步生成的id_rsa文件拷贝到一个地方，启用专业版的pycharm，选择链接SSH Interpreter，使用密钥文件链接即可。</p>
-<p><img src="http://ouyzqzdzy.bkt.clouddn.com/pycharm.jpg" alt=""></p>
-<p>​    注意这里的ssh服务需要手动开启，并且连接使用的过程中终端不能关闭，关闭后ssh就无法连接到ubuntu了。如果嫌麻烦的可以按照网上的方法将起改成自动开启，由于我现在目前不需要这样，就不折腾这一步了。</p>
-<h4 id="IV-总结"><a href="#IV-总结" class="headerlink" title="IV.总结"></a>IV.总结</h4><p>​    使用过程还是非常赞的，关键安装过程也很简单，如何使用这个嵌套在windows系统中的linux，就看各人的需求了。就算开发用不到，装个13还是挺不错的，如封面图所示。</p>
-
+        
+          <a class="article-more-a" href="/2018/03/31/windows10使用ubuntu/#more">展开全文 >></a>
+        
       
 
       
@@ -172,6 +172,25 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">杂谈</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">wsl</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">ubuntu</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -878,6 +897,14 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">javascript动态页面</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">wsl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">ubuntu</a>
               </li>
             
             <div class="clearfix"></div>
