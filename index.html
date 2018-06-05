@@ -152,6 +152,78 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Nginx-Gunicorn-Supervisor部署flask应用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/05/Nginx-Gunicorn-Supervisor部署flask应用/">Nginx+Gunicorn+Supervisor部署flask应用</a>
+    </h1>
+  
+
+        
+        <a href="/2018/06/05/Nginx-Gunicorn-Supervisor部署flask应用/" class="archive-article-date">
+  	<time datetime="2018-06-05T13:08:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="http://ouyzqzdzy.bkt.clouddn.com/nginx+supervisor+gunicorn+flask.png" alt=""></p>
+<h4 id="综述："><a href="#综述：" class="headerlink" title="综述："></a>综述：</h4><p>​    在ubuntu服务器上部署flaskweb应用，使用可用于企业级生产线上的部署模式Nginx+gunicorn+supervisor。使应用能支持高可用，服务更加健壮，将从以下几个内容记录。</p>
+<h4 id="概念："><a href="#概念：" class="headerlink" title="概念："></a>概念：</h4><h6 id="nginx"><a href="#nginx" class="headerlink" title="nginx:"></a>nginx:</h6><p>​    高效的web服务器和反向代理服务器，常被用于负载均衡，分担服务器的访问压力，支持高并发。本项目使用nginx做反向代理服务，也就是说，从互联网过来的请求，经过nginx转发给web服务器上的目标服务，再由目标服务作出响应，由nginx返回请求结果。    并且nginx可以缓冲http请求，减小服务器压力。</p>
+<h6 id="WSGI协议："><a href="#WSGI协议：" class="headerlink" title="WSGI协议："></a>WSGI协议：</h6><p>​    python web server gateway interface简称，它规定了一种在web服务器与web应用框架/程序之间推荐的标准接口。用于确保web应用程序在不同的web服务器之间具有可移值性。</p>
+        
+          <a class="article-more-a" href="/2018/06/05/Nginx-Gunicorn-Supervisor部署flask应用/#more">展开全文 >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flask</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">部署</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/05/Nginx-Gunicorn-Supervisor部署flask应用/">查看本文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-windows10使用ubuntu" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -628,128 +700,9 @@
 
 
   
-    <article id="post-使用Flask-Mail发邮件" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/14/使用Flask-Mail发邮件/">使用Flask-Mail发邮件</a>
-    </h1>
-  
-
-        
-        <a href="/2017/07/14/使用Flask-Mail发邮件/" class="archive-article-date">
-  	<time datetime="2017-07-14T13:17:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="\writeimg\blog\17071404.jpg" alt="设置授权密码"></p>
-<h3 id="I-python发邮件的方式"><a href="#I-python发邮件的方式" class="headerlink" title="I  python发邮件的方式"></a>I  python发邮件的方式</h3><p>Web应用中，常常会遇到需要提醒用户的事情，而比较常用的方式就是采用发送邮件的方式。虽然Python在标准库中有smtplib包，可用于发送电子邮件，但包装了smtplib的Flask-Mail扩展提供了一个简单的接口，可以很方便的在flask中集成，只需在应用中设置好SMTP，就可以方便的在视图以及脚本中发送邮件信息，能更好地和Flask集成。</p>
-<h3 id="III-认识Flask-Mail"><a href="#III-认识Flask-Mail" class="headerlink" title="III 认识Flask-Mail"></a>III 认识Flask-Mail</h3><p>使用Flask-Mail发邮件的原理是连接到简单邮件传输协议（SMTP）服务器，并把邮件交给这个服务器发送。所以，需要配置好SMTP。现在通过下面的表格简单认识一下所需要用到的SMTP配置。</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">配置</th>
-<th>默认值</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">MAIL_SERVER</td>
-<td>localhost</td>
-<td>电子邮件服务器的主机名或者IP地址</td>
-</tr>
-<tr>
-<td style="text-align:left">MAIL_PORT</td>
-<td>25</td>
-<td>电子邮件服务器端口号</td>
-</tr>
-<tr>
-<td style="text-align:left">MAIL_USE_TLS</td>
-<td>False</td>
-<td>启用传输层安全协议（TLS）</td>
-</tr>
-<tr>
-<td style="text-align:left">MAIL_USE_SSL</td>
-<td>False</td>
-<td>启用安全套接层协议（SSL）</td>
-</tr>
-<tr>
-<td style="text-align:left">MAIL_PASSWORD</td>
-<td>None</td>
-<td>邮件账户密码</td>
-</tr>
-<tr>
-<td style="text-align:left">MAIL_USERNAME</td>
-<td>None</td>
-<td>邮件账户名</td>
-</tr>
-<tr>
-<td style="text-align:left">MAIL_DEFAULT_SENDER</td>
-<td>None</td>
-<td>邮件默认发送人</td>
-</tr>
-</tbody>
-</table>
-<h3 id="III实例化"><a href="#III实例化" class="headerlink" title="III实例化"></a>III实例化</h3><p>这里要用到标准库的os模块，flask框架，flask_mail 和 flask_script框架。请注意manager实例和mail实例中间的省略号，这里放到后面再说。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask</div><div class="line"><span class="keyword">from</span> flask_mail <span class="keyword">import</span> Mail, Message</div><div class="line"><span class="keyword">from</span> flask_script <span class="keyword">import</span> Manager</div><div class="line"></div><div class="line">app = Flask(__name__)</div><div class="line">manager = Manager(app)</div><div class="line">....</div><div class="line">mail = Mail(app)</div></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2017/07/14/使用Flask-Mail发邮件/#more">展开全文 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flask</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">web开发</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/07/14/使用Flask-Mail发邮件/">查看本文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 
@@ -864,11 +817,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">部署</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">web开发</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">脚本</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -880,7 +837,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">脚本</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -908,15 +865,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">javascript动态页面</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">折腾记</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">javascript动态页面</a>
               </li>
             
             <div class="clearfix"></div>

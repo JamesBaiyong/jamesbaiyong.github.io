@@ -6,12 +6,12 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: SQL | JamesBy博客</title>
+  <title>JamesBy博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="个人博客，hexo+github">
 <meta property="og:type" content="website">
 <meta property="og:title" content="JamesBy博客">
-<meta property="og:url" content="http://yoursite.com/tags/SQL/index.html">
+<meta property="og:url" content="http://yoursite.com/page/3/index.html">
 <meta property="og:site_name" content="JamesBy博客">
 <meta property="og:description" content="个人博客，hexo+github">
 <meta name="twitter:card" content="summary">
@@ -152,96 +152,105 @@
           <div id="js-content" class="content-ll">
             
   
-  
+    <article id="post-python高级特性" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/12/29/使用SQL语句查询JSON字段的指定key/" class="archive-article-date">
-  	<time datetime="2017-12-29T13:31:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-29</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
     <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/12/29/使用SQL语句查询JSON字段的指定key/">使用SQL语句查询JSON字段的指定key</a>
+      <a class="article-title" href="/2017/05/23/python高级特性/">python高级特性</a>
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/05/23/python高级特性/" class="archive-article-date">
+  	<time datetime="2017-05-23T10:19:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="python高级特性"><a href="#python高级特性" class="headerlink" title="python高级特性"></a>python高级特性</h3><h3 id="I-切片"><a href="#I-切片" class="headerlink" title="I.切片"></a>I.切片</h3><p>用于对list和tuple取值</p>
+<table>
+<thead>
+<tr>
+<th>切片符号</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[:]</td>
+<td>表示整个list或者tuple</td>
+</tr>
+<tr>
+<td>[0:n] [:n]</td>
+<td>表示取前n个值</td>
+</tr>
+<tr>
+<td>[-2:-1]</td>
+<td>表示末尾的第二个值</td>
+</tr>
+<tr>
+<td>[-10:]</td>
+<td>表示后10个</td>
+</tr>
+<tr>
+<td>[::5]</td>
+<td>表示所有数，没隔5个取一个</td>
+</tr>
+</tbody>
+</table>
+<h3 id="迭代"><a href="#迭代" class="headerlink" title="迭代"></a>迭代</h3><p>python迭代是通过for …. in来完成的，大部分迭代都是通过下标迭代的，而python可以迭代所有可迭代对象，包括没用下标的对象。</p>
+<p>可以通过collections模块的Iterable类型来判断对象是否可以迭代</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">from collections import Iterable</div><div class="line">isinstance(&apos;abv&apos;,Iterable)#结果为True，表示str可以迭代</div><div class="line">isinstance(&#123;&apos;a&apos;:1,&apos;b&apos;:2,&apos;c&apos;:3&#125;)#结果为True，表示dict也是可以迭代的</div><div class="line">isinstance(123,Iterable)#结果为False,表示整数不可以迭代</div></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2017/05/23/python高级特性/#more">展开全文 >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SQL</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/05/23/python高级特性/">查看本文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/20/SQL常用语法笔记/" class="archive-article-date">
-  	<time datetime="2017-08-20T08:14:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/20/SQL常用语法笔记/">SQL常用语法笔记</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SQL</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+
+
   
   
-    </div></section>
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+    </nav>
   
-
-    
 
 
           </div>
@@ -263,10 +272,10 @@
     <script>
 	var yiliaConfig = {
 		mathjax: true,
-		isHome: false,
+		isHome: true,
 		isPost: false,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		root: "/",

@@ -6,17 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: SQL | JamesBy博客</title>
+  <title>Nginx+Gunicorn+Supervisor部署flask应用 | JamesBy博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="个人博客，hexo+github">
-<meta property="og:type" content="website">
-<meta property="og:title" content="JamesBy博客">
-<meta property="og:url" content="http://yoursite.com/tags/SQL/index.html">
+  <meta name="description" content="综述：​    在ubuntu服务器上部署flaskweb应用，使用可用于企业级生产线上的部署模式Nginx+gunicorn+supervisor。使应用能支持高可用，服务更加健壮，将从以下几个内容记录。 概念：nginx:​    高效的web服务器和反向代理服务器，常被用于负载均衡，分担服务器的访问压力，支持高并发。本项目使用nginx做反向代理服务，也就是说，从互联网过来的请求，经过ng">
+<meta name="keywords" content="python,Flask,部署">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nginx+Gunicorn+Supervisor部署flask应用">
+<meta property="og:url" content="http://yoursite.com/2018/06/05/Nginx-Gunicorn-Supervisor部署flask应用/index.html">
 <meta property="og:site_name" content="JamesBy博客">
-<meta property="og:description" content="个人博客，hexo+github">
+<meta property="og:description" content="综述：​    在ubuntu服务器上部署flaskweb应用，使用可用于企业级生产线上的部署模式Nginx+gunicorn+supervisor。使应用能支持高可用，服务更加健壮，将从以下几个内容记录。 概念：nginx:​    高效的web服务器和反向代理服务器，常被用于负载均衡，分担服务器的访问压力，支持高并发。本项目使用nginx做反向代理服务，也就是说，从互联网过来的请求，经过ng">
+<meta property="og:image" content="http://ouyzqzdzy.bkt.clouddn.com/nginx+supervisor+gunicorn+flask.png">
+<meta property="og:image" content="http://ouyzqzdzy.bkt.clouddn.com/supervisor%E7%BD%91%E9%A1%B5%E7%AE%A1%E7%90%86.png">
+<meta property="og:updated_time" content="2018-06-05T13:12:31.943Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JamesBy博客">
-<meta name="twitter:description" content="个人博客，hexo+github">
+<meta name="twitter:title" content="Nginx+Gunicorn+Supervisor部署flask应用">
+<meta name="twitter:description" content="综述：​    在ubuntu服务器上部署flaskweb应用，使用可用于企业级生产线上的部署模式Nginx+gunicorn+supervisor。使应用能支持高可用，服务更加健壮，将从以下几个内容记录。 概念：nginx:​    高效的web服务器和反向代理服务器，常被用于负载均衡，分担服务器的访问压力，支持高并发。本项目使用nginx做反向代理服务，也就是说，从互联网过来的请求，经过ng">
+<meta name="twitter:image" content="http://ouyzqzdzy.bkt.clouddn.com/nginx+supervisor+gunicorn+flask.png">
   
     <link rel="alternative" href="/atom.xml" title="JamesBy博客" type="application/atom+xml">
   
@@ -150,98 +155,186 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Nginx-Gunicorn-Supervisor部署flask应用" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/12/29/使用SQL语句查询JSON字段的指定key/" class="archive-article-date">
-  	<time datetime="2017-12-29T13:31:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-29</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/12/29/使用SQL语句查询JSON字段的指定key/">使用SQL语句查询JSON字段的指定key</a>
+    <h1 class="article-title" itemprop="name">
+      Nginx+Gunicorn+Supervisor部署flask应用
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/06/05/Nginx-Gunicorn-Supervisor部署flask应用/" class="archive-article-date">
+  	<time datetime="2018-06-05T13:08:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="http://ouyzqzdzy.bkt.clouddn.com/nginx+supervisor+gunicorn+flask.png" alt=""></p>
+<h4 id="综述："><a href="#综述：" class="headerlink" title="综述："></a>综述：</h4><p>​    在ubuntu服务器上部署flaskweb应用，使用可用于企业级生产线上的部署模式Nginx+gunicorn+supervisor。使应用能支持高可用，服务更加健壮，将从以下几个内容记录。</p>
+<h4 id="概念："><a href="#概念：" class="headerlink" title="概念："></a>概念：</h4><h6 id="nginx"><a href="#nginx" class="headerlink" title="nginx:"></a>nginx:</h6><p>​    高效的web服务器和反向代理服务器，常被用于负载均衡，分担服务器的访问压力，支持高并发。本项目使用nginx做反向代理服务，也就是说，从互联网过来的请求，经过nginx转发给web服务器上的目标服务，再由目标服务作出响应，由nginx返回请求结果。    并且nginx可以缓冲http请求，减小服务器压力。</p>
+<h6 id="WSGI协议："><a href="#WSGI协议：" class="headerlink" title="WSGI协议："></a>WSGI协议：</h6><p>​    python web server gateway interface简称，它规定了一种在web服务器与web应用框架/程序之间推荐的标准接口。用于确保web应用程序在不同的web服务器之间具有可移值性。</p>
+<a id="more"></a>
+<h6 id="gunicorn"><a href="#gunicorn" class="headerlink" title="gunicorn:"></a>gunicorn:</h6><p>​    Gunicorn’Green Unicorn’是一个用于UNIX的Python WSGI HTTP服务器，是常见的易于配置的wsgi容器。支持多种worker模式，</p>
+<h6 id="supervisor"><a href="#supervisor" class="headerlink" title="supervisor:"></a>supervisor:</h6><p>​    是一个用python实现的进程管理工具，可以很方便的启动，关闭，重启，查看进程。支持同事操作多个进程，并且可以对进程实行监控，在进程意外挂掉以后，自动重启进程。</p>
+<h4 id="安装："><a href="#安装：" class="headerlink" title="安装："></a>安装：</h4><h6 id="nginx-1"><a href="#nginx-1" class="headerlink" title="nginx"></a>nginx</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install nginx</div></pre></td></tr></table></figure>
+<h6 id="gunicorn-1"><a href="#gunicorn-1" class="headerlink" title="gunicorn"></a>gunicorn</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo pip install gunicorn</div></pre></td></tr></table></figure>
+<h6 id="supervisor-1"><a href="#supervisor-1" class="headerlink" title="supervisor"></a>supervisor</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo pip install supervisor</div></pre></td></tr></table></figure>
+<h4 id="配置："><a href="#配置：" class="headerlink" title="配置："></a>配置：</h4><h6 id="nginx-2"><a href="#nginx-2" class="headerlink" title="nginx"></a>nginx</h6><p>配置文件：/etc/nginx/sites-enabled/default</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">server &#123;</div><div class="line">        listen 80 default_server;</div><div class="line">        listen [::]:80 default_server ipv6only=on;</div><div class="line"></div><div class="line">        # root /usr/share/nginx/html;</div><div class="line">        # index index.html index.htm;</div><div class="line"></div><div class="line">        server_name localhost;</div><div class="line"></div><div class="line">        location / &#123;</div><div class="line">                proxy_pass http://localhost:8889;</div><div class="line">        &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>以上配置实现了nginx反向代理，将http请求转发到本地应用的8889端口上。</p>
+<h6 id="supervisor-2"><a href="#supervisor-2" class="headerlink" title="supervisor"></a>supervisor</h6><p>执行以下命令并写入相应的配置文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vim /etc/supervisor/supervosprd.conf</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">[unix_http_server]</div><div class="line">file=/var/run/supervisor.sock   ; (the path to the socket file)</div><div class="line">chmod=0700                       ; sockef file mode (default 0700)</div><div class="line"></div><div class="line">[supervisord]</div><div class="line">logfile=/var/log/supervisord/supervisord.log ; (main log file;default $CWD/supervisord.log)</div><div class="line">pidfile=/var/run/supervisord.pid ; (supervisord pidfile;default supervisord.pid)</div><div class="line">childlogdir=/var/log/supervisord            ; ('AUTO' child log dir, default $TEMP)</div><div class="line"></div><div class="line"></div><div class="line">[supervisorctl]</div><div class="line">serverurl=unix:///var/run/supervisor.sock ; use a unix:// URL  for a unix socket</div><div class="line"></div><div class="line">[include]</div><div class="line">files = /etc/supervisor/conf.d/*.conf</div><div class="line"></div><div class="line">[inet_http_server]</div><div class="line">port=9001</div><div class="line">username=user</div><div class="line">password=userpassword</div></pre></td></tr></table></figure>
+<p>[inet_http_server]是表示启动supervisorctl的网页管理，可实现可视化管理。</p>
+<p><img src="http://ouyzqzdzy.bkt.clouddn.com/supervisor%E7%BD%91%E9%A1%B5%E7%AE%A1%E7%90%86.png" alt=""></p>
+<p>[include]表示需要supervisor去管理的应用，配置文件编写在/etc/supervisor/conf.d目录下的配置文件，以conf结尾。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[program:manger]</div><div class="line">command=gunicorn -w 4 manage:app -b localhost:8889</div><div class="line">directory=/home/ubuntu/webserver/wei_manager/</div><div class="line">user=ubuntu</div></pre></td></tr></table></figure>
+<p>​    directory表示flask应用目录</p>
+<h4 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span> 加载配置</div><div class="line">sudo supervisord -c /etc/supervisor/supervisord.conf </div><div class="line"><span class="meta">#</span> 启动</div><div class="line">sudo supervisorctl start all</div></pre></td></tr></table></figure>
+<p>gunicorn单独启动：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gunicorn -w 4 manage:app -b localhost:8889</div></pre></td></tr></table></figure>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>^^谢谢你请我吃糖哦^^<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/blogimg/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SQL</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
         		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/20/SQL常用语法笔记/" class="archive-article-date">
-  	<time datetime="2017-08-20T08:14:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/20/SQL常用语法笔记/">SQL常用语法笔记</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
+      		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SQL</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flask</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">部署</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2018/06/05/Nginx-Gunicorn-Supervisor部署flask应用/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2018/03/31/windows10使用ubuntu/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">windows10使用ubuntu</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+  
+  
   
 
-    
+  
+
+  
 
 
           </div>
@@ -264,9 +357,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		root: "/",
