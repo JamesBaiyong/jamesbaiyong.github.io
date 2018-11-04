@@ -196,7 +196,7 @@
 <p>[include]表示需要supervisor去管理的应用，配置文件编写在/etc/supervisor/conf.d目录下的配置文件，以conf结尾。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[program:manger]</div><div class="line">command=gunicorn -w 4 manage:app -b localhost:8889</div><div class="line">directory=/home/ubuntu/webserver/wei_manager/</div><div class="line">user=ubuntu</div></pre></td></tr></table></figure>
 <p>​    directory表示flask应用目录</p>
-<h4 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span> 加载配置</div><div class="line">sudo supervisord -c /etc/supervisor/supervisord.conf </div><div class="line"><span class="meta">#</span> 启动</div><div class="line">sudo supervisorctl start all</div></pre></td></tr></table></figure>
+<h4 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash"> 加载配置</span></div><div class="line">sudo supervisord -c /etc/supervisor/supervisord.conf </div><div class="line"><span class="meta">#</span><span class="bash"> 启动</span></div><div class="line">sudo supervisorctl start all</div></pre></td></tr></table></figure>
 <p>gunicorn单独启动：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gunicorn -w 4 manage:app -b localhost:8889</div></pre></td></tr></table></figure>
 
@@ -315,6 +315,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2018/11/04/spark读取s3文件基于python实现/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          spark读取s3文件基于python实现
+        
+      </div>
+    </a>
   
   
     <a href="/2018/03/31/windows10使用ubuntu/" id="article-nav-older" class="article-nav-link-wrap">
@@ -439,6 +448,10 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
@@ -447,27 +460,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">部署</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">web开发</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">脚本</a>
+                <a href="javascript:void(0)" class="js-tag color3">s3</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+                <a href="javascript:void(0)" class="js-tag color1">spark</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color4">大数据</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -483,7 +488,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SMS</a>
+                <a href="javascript:void(0)" class="js-tag color3">部署</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">脚本</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -491,11 +508,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">异步加载</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">javascript动态页面</a>
+                <a href="javascript:void(0)" class="js-tag color4">SMS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -504,6 +517,14 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">折腾记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">异步加载</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">javascript动态页面</a>
               </li>
             
             <div class="clearfix"></div>

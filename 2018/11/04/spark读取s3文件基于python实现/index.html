@@ -6,25 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>网易云跟帖部署二三事 | JamesBy博客</title>
+  <title>spark读取s3文件基于python实现 | JamesBy博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="I前言​    博客初步部署完后，在部署网易云跟帖时遇到了一个坑。那就是，在保证跟帖站点信息无误，KEY值无误的情况下，跟帖无法显示的问题。瞎折腾小半天儿后有了一点感悟，这里写下，如能帮助到有缘人，不甚荣幸。">
-<meta name="keywords" content="hexo,折腾记">
+  <meta name="description" content="1.背景​    AWS的S3文件系统，是个优秀的分布式文件系统，在EC2上读取速度优异，且存取方便，本文介绍如何使用spark去读取S3上的文件，为做大数据清洗和分析做基本处理工作 2.设置s3读取环境​    需要给sparkContent设置s3读取的环境，设置相应的id和key，注意写到代码中，设置awscli可能不行 由于中国区的region相对于其他地区是隔离开的，所以使用中国亚马逊">
+<meta name="keywords" content="s3,spark,大数据">
 <meta property="og:type" content="article">
-<meta property="og:title" content="网易云跟帖部署二三事">
-<meta property="og:url" content="http://yoursite.com/2017/06/02/网易云跟帖部署二三事/index.html">
+<meta property="og:title" content="spark读取s3文件基于python实现">
+<meta property="og:url" content="http://yoursite.com/2018/11/04/spark读取s3文件基于python实现/index.html">
 <meta property="og:site_name" content="JamesBy博客">
-<meta property="og:description" content="I前言​    博客初步部署完后，在部署网易云跟帖时遇到了一个坑。那就是，在保证跟帖站点信息无误，KEY值无误的情况下，跟帖无法显示的问题。瞎折腾小半天儿后有了一点感悟，这里写下，如能帮助到有缘人，不甚荣幸。">
-<meta property="og:image" content="http://yoursite.com/writeimg/blog/wentu08.jpg">
-<meta property="og:image" content="http://yoursite.com/writeimg/blog/gentieapi06.jpg">
-<meta property="og:image" content="http://yoursite.com/writeimg/blog/errorURL04.jpg">
-<meta property="og:image" content="http://yoursite.com/writeimg/blog/staticURL05.jpg">
-<meta property="og:image" content="http://yoursite.com/writeimg/blog/kongURL07.jpg">
-<meta property="og:updated_time" content="2017-06-02T01:59:50.266Z">
+<meta property="og:description" content="1.背景​    AWS的S3文件系统，是个优秀的分布式文件系统，在EC2上读取速度优异，且存取方便，本文介绍如何使用spark去读取S3上的文件，为做大数据清洗和分析做基本处理工作 2.设置s3读取环境​    需要给sparkContent设置s3读取的环境，设置相应的id和key，注意写到代码中，设置awscli可能不行 由于中国区的region相对于其他地区是隔离开的，所以使用中国亚马逊">
+<meta property="og:image" content="http://ouyzqzdzy.bkt.clouddn.com/spark.jpg">
+<meta property="og:updated_time" content="2018-11-04T14:29:38.180Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="网易云跟帖部署二三事">
-<meta name="twitter:description" content="I前言​    博客初步部署完后，在部署网易云跟帖时遇到了一个坑。那就是，在保证跟帖站点信息无误，KEY值无误的情况下，跟帖无法显示的问题。瞎折腾小半天儿后有了一点感悟，这里写下，如能帮助到有缘人，不甚荣幸。">
-<meta name="twitter:image" content="http://yoursite.com/writeimg/blog/wentu08.jpg">
+<meta name="twitter:title" content="spark读取s3文件基于python实现">
+<meta name="twitter:description" content="1.背景​    AWS的S3文件系统，是个优秀的分布式文件系统，在EC2上读取速度优异，且存取方便，本文介绍如何使用spark去读取S3上的文件，为做大数据清洗和分析做基本处理工作 2.设置s3读取环境​    需要给sparkContent设置s3读取的环境，设置相应的id和key，注意写到代码中，设置awscli可能不行 由于中国区的region相对于其他地区是隔离开的，所以使用中国亚马逊">
+<meta name="twitter:image" content="http://ouyzqzdzy.bkt.clouddn.com/spark.jpg">
   
     <link rel="alternative" href="/atom.xml" title="JamesBy博客" type="application/atom+xml">
   
@@ -158,41 +154,40 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-网易云跟帖部署二三事" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-spark读取s3文件基于python实现" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      网易云跟帖部署二三事
+      spark读取s3文件基于python实现
     </h1>
   
 
         
-        <a href="/2017/06/02/网易云跟帖部署二三事/" class="archive-article-date">
-  	<time datetime="2017-06-02T01:57:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-02</time>
+        <a href="/2018/11/04/spark读取s3文件基于python实现/" class="archive-article-date">
+  	<time datetime="2018-11-04T14:16:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-04</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="I前言"><a href="#I前言" class="headerlink" title="I前言"></a>I前言</h3><p>​    博客初步部署完后，在部署网易云跟帖时遇到了一个坑。那就是，在保证跟帖站点信息无误，KEY值无误的情况下，跟帖无法显示的问题。瞎折腾小半天儿后有了一点感悟，这里写下，如能帮助到有缘人，不甚荣幸。</p>
-<p><img src="\writeimg\blog\wentu08.jpg" alt="配图"></p>
+        <p><img src="http://ouyzqzdzy.bkt.clouddn.com/spark.jpg" alt="spark"></p>
+<h4 id="1-背景"><a href="#1-背景" class="headerlink" title="1.背景"></a>1.背景</h4><p>​    AWS的S3文件系统，是个优秀的分布式文件系统，在EC2上读取速度优异，且存取方便，本文介绍如何使用spark去读取S3上的文件，为做大数据清洗和分析做基本处理工作</p>
+<h4 id="2-设置s3读取环境"><a href="#2-设置s3读取环境" class="headerlink" title="2.设置s3读取环境"></a>2.设置s3读取环境</h4><p>​    需要给sparkContent设置s3读取的环境，设置相应的id和key，注意写到代码中，设置awscli可能不行</p>
+<p>由于中国区的region相对于其他地区是隔离开的，所以使用中国亚马逊S3需要单另设置endpoint来指定地区，否则会去访问美国区。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sc._jsc.hadoopConfiguration().set(<span class="string">"fs.s3a.access.key"</span>, AWS_ACCESS_KEY_ID)</div><div class="line">sc._jsc.hadoopConfiguration().set(<span class="string">"fs.s3a.secret.key"</span>, AWS_SECRET_ACCESS_KEY)</div><div class="line">sc._jsc.hadoopConfiguration().set(<span class="string">"fs.s3a.endpoint"</span>, <span class="string">"s3.cn-north-1.amazonaws.com.cn"</span>)</div></pre></td></tr></table></figure>
 <a id="more"></a>
-<h3 id="II跟帖部署以及发现坑的所在"><a href="#II跟帖部署以及发现坑的所在" class="headerlink" title="II跟帖部署以及发现坑的所在"></a>II跟帖部署以及发现坑的所在</h3><p>​    从注册到KEY的获取就不说了，因为的确没有什么好说的。跟帖部署完毕后，在本地和博客均无法显示跟帖内容。于是各种找原因，期间，发现一个有趣的现象。那就是，虽然无法显示跟帖的内容，但是可以看得到网页会加载跟帖的API。</p>
-<p>​    <img src="\writeimg\blog\gentieapi06.jpg" alt="跟帖api加载"></p>
-<p>​    这说明一个问题，主题下的设置起效了，网页已经在处理网易云跟帖通用代码的JS文件了。但是却不能显示跟帖内容，既有可能是因为KEY和绑定的域名不一致导致。我在这里又去重新新建了站点信息，结果任然是无法找到显示跟帖。</p>
-<p>​    后来在一个前辈的提示下，查看了一下URL的返回，果然发现一个问题，看图所示。</p>
-<p>​    <img src="\writeimg\blog\errorURL04.jpg" alt="出错的URL"></p>
-<p>​    从图上看得出来，这里网页请求返回的是一个不存在的URL地址，显然不是我的博客地址，到这里，原因找到了。</p>
-<h3 id="III问题解决尝试"><a href="#III问题解决尝试" class="headerlink" title="III问题解决尝试"></a>III问题解决尝试</h3><p>​    找到原因后，事情就比较有方向了。一开始我有一个尝试，就是把JS代码当中的URL值写死，直接写成我的域名。这样也起到了效果，跟帖可以显示了。网页返回的URL也可以看见。</p>
-<p>​    <img src="\writeimg\blog\staticURL05.jpg" alt="尝试1"></p>
-<p>​    但是很快我发现一个BUG，那就是这样做会导致某一篇文章的评论留言会同步到每一篇文章。</p>
-<p>​    到这里我脑海当中出现一个念头，如果把URL设置为空，使用JS代码中的sourceId返回相应的值，是否也可以达到效果？我怀着试一试的心态，把URL的返回值设置为空。结果出现了神奇的一幕，跟帖显示成功，并且URL返回值在网页端可以看见就算空值，那么这是否说明sourceId和URL可以二选一呢？</p>
-<p>​    <img src="\writeimg\blog\kongURL07.jpg" alt="尝试2"></p>
-<h3 id="VI总结"><a href="#VI总结" class="headerlink" title="VI总结"></a>VI总结</h3><p>​    这番折腾学习过程中，体会到了出错心要静，认真分析的重要性。多方面找原因，找根本原因的重要远比瞎尝试有用，所谓磨刀不误砍柴工，就是在没有根据的尝试下，只会浪费更多的心血和时间。这里贴上关于这个问题的issues的<a href="https://github.com/litten/hexo-theme-yilia/issues/523" target="_blank" rel="external">链接</a>    。同时，这样的改动不是主题作者<a href="http://litten.me/" target="_blank" rel="external">litten</a>的本意，如果在日后出了bug，会在上面的issues链接当中跟进。</p>
+<h4 id="3-设置读取模式"><a href="#3-设置读取模式" class="headerlink" title="3.设置读取模式"></a>3.设置读取模式</h4><p>​    通常在读取s3的时候不单是读取一个文件，而是多个文件夹或则一个文件夹的所有文件，这里可以使用whoTextFiles这个函数来实现．当然使用textFile来读取也是可以的，只需要加上通配符即可．</p>
+<p>并且使用whoTextFiles有个好处，可以返回pair RDD，其中键是输入文件的文件名。将多个完整的文本文件一次性读取为一个pair RDD，其中键是文件名，值是文件内容。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">self.sc.wholeTextFiles（）</div></pre></td></tr></table></figure>
+<h4 id="4-使用spark-submit提交jar包"><a href="#4-使用spark-submit提交jar包" class="headerlink" title="4.使用spark-submit提交jar包"></a>4.使用spark-submit提交jar包</h4><p>​    首先我们需要引入hadoop-2.7.2的lib中的hadoop-aws-2.7.2.jar，以及aws自己提供的sdk包：aws-java-sdk-1.7.4.jar</p>
+<p>使用2.7.2的原因是由于hadoop2.7.2才支持s3。</p>
+<p>最后提交程序时注意jar包的路径即可．</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">spark-submit --jars ./sparks_jar/aws-java-sdk-1.7.4.jar,hadoop-aws-2.7.3.jar spark_read_s3.py</div></pre></td></tr></table></figure>
+<p><a href="https://github.com/JamesBaiyong/python_pracatice/blob/master/MLstatudy/spark_code/spark_read_s3.py" target="_blank" rel="external">实现demo</a></p>
 
       
 
@@ -232,11 +227,15 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">s3</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">折腾记</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">spark</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">大数据</a>
         		</li>
       		
 		</ul>
@@ -292,7 +291,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/06/02/网易云跟帖部署二三事/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2018/11/04/spark读取s3文件基于python实现/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -306,18 +305,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/06/11/python系统监控-psutil/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          python系统监控--psutil
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/05/24/写一个脚本来更新博客/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">写一个脚本来更新博客</div>
+    <a href="/2018/06/05/Nginx-Gunicorn-Supervisor部署flask应用/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Nginx+Gunicorn+Supervisor部署flask应用</div>
       <i class="icon-circle-right"></i>
     </a>
   

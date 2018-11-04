@@ -6,25 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>网易云跟帖部署二三事 | JamesBy博客</title>
+  <title>Tag: 大数据 | JamesBy博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="I前言​    博客初步部署完后，在部署网易云跟帖时遇到了一个坑。那就是，在保证跟帖站点信息无误，KEY值无误的情况下，跟帖无法显示的问题。瞎折腾小半天儿后有了一点感悟，这里写下，如能帮助到有缘人，不甚荣幸。">
-<meta name="keywords" content="hexo,折腾记">
-<meta property="og:type" content="article">
-<meta property="og:title" content="网易云跟帖部署二三事">
-<meta property="og:url" content="http://yoursite.com/2017/06/02/网易云跟帖部署二三事/index.html">
+  <meta name="description" content="个人博客，hexo+github">
+<meta property="og:type" content="website">
+<meta property="og:title" content="JamesBy博客">
+<meta property="og:url" content="http://yoursite.com/tags/大数据/index.html">
 <meta property="og:site_name" content="JamesBy博客">
-<meta property="og:description" content="I前言​    博客初步部署完后，在部署网易云跟帖时遇到了一个坑。那就是，在保证跟帖站点信息无误，KEY值无误的情况下，跟帖无法显示的问题。瞎折腾小半天儿后有了一点感悟，这里写下，如能帮助到有缘人，不甚荣幸。">
-<meta property="og:image" content="http://yoursite.com/writeimg/blog/wentu08.jpg">
-<meta property="og:image" content="http://yoursite.com/writeimg/blog/gentieapi06.jpg">
-<meta property="og:image" content="http://yoursite.com/writeimg/blog/errorURL04.jpg">
-<meta property="og:image" content="http://yoursite.com/writeimg/blog/staticURL05.jpg">
-<meta property="og:image" content="http://yoursite.com/writeimg/blog/kongURL07.jpg">
-<meta property="og:updated_time" content="2017-06-02T01:59:50.266Z">
+<meta property="og:description" content="个人博客，hexo+github">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="网易云跟帖部署二三事">
-<meta name="twitter:description" content="I前言​    博客初步部署完后，在部署网易云跟帖时遇到了一个坑。那就是，在保证跟帖站点信息无误，KEY值无误的情况下，跟帖无法显示的问题。瞎折腾小半天儿后有了一点感悟，这里写下，如能帮助到有缘人，不甚荣幸。">
-<meta name="twitter:image" content="http://yoursite.com/writeimg/blog/wentu08.jpg">
+<meta name="twitter:title" content="JamesBy博客">
+<meta name="twitter:description" content="个人博客，hexo+github">
   
     <link rel="alternative" href="/atom.xml" title="JamesBy博客" type="application/atom+xml">
   
@@ -158,182 +150,68 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-网易云跟帖部署二三事" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      网易云跟帖部署二三事
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2018" class="archive-year">2018</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2018/11/04/spark读取s3文件基于python实现/" class="archive-article-date">
+  	<time datetime="2018-11-04T14:16:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-04</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2018/11/04/spark读取s3文件基于python实现/">spark读取s3文件基于python实现</a>
     </h1>
   
 
-        
-        <a href="/2017/06/02/网易云跟帖部署二三事/" class="archive-article-date">
-  	<time datetime="2017-06-02T01:57:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-02</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="I前言"><a href="#I前言" class="headerlink" title="I前言"></a>I前言</h3><p>​    博客初步部署完后，在部署网易云跟帖时遇到了一个坑。那就是，在保证跟帖站点信息无误，KEY值无误的情况下，跟帖无法显示的问题。瞎折腾小半天儿后有了一点感悟，这里写下，如能帮助到有缘人，不甚荣幸。</p>
-<p><img src="\writeimg\blog\wentu08.jpg" alt="配图"></p>
-<a id="more"></a>
-<h3 id="II跟帖部署以及发现坑的所在"><a href="#II跟帖部署以及发现坑的所在" class="headerlink" title="II跟帖部署以及发现坑的所在"></a>II跟帖部署以及发现坑的所在</h3><p>​    从注册到KEY的获取就不说了，因为的确没有什么好说的。跟帖部署完毕后，在本地和博客均无法显示跟帖内容。于是各种找原因，期间，发现一个有趣的现象。那就是，虽然无法显示跟帖的内容，但是可以看得到网页会加载跟帖的API。</p>
-<p>​    <img src="\writeimg\blog\gentieapi06.jpg" alt="跟帖api加载"></p>
-<p>​    这说明一个问题，主题下的设置起效了，网页已经在处理网易云跟帖通用代码的JS文件了。但是却不能显示跟帖内容，既有可能是因为KEY和绑定的域名不一致导致。我在这里又去重新新建了站点信息，结果任然是无法找到显示跟帖。</p>
-<p>​    后来在一个前辈的提示下，查看了一下URL的返回，果然发现一个问题，看图所示。</p>
-<p>​    <img src="\writeimg\blog\errorURL04.jpg" alt="出错的URL"></p>
-<p>​    从图上看得出来，这里网页请求返回的是一个不存在的URL地址，显然不是我的博客地址，到这里，原因找到了。</p>
-<h3 id="III问题解决尝试"><a href="#III问题解决尝试" class="headerlink" title="III问题解决尝试"></a>III问题解决尝试</h3><p>​    找到原因后，事情就比较有方向了。一开始我有一个尝试，就是把JS代码当中的URL值写死，直接写成我的域名。这样也起到了效果，跟帖可以显示了。网页返回的URL也可以看见。</p>
-<p>​    <img src="\writeimg\blog\staticURL05.jpg" alt="尝试1"></p>
-<p>​    但是很快我发现一个BUG，那就是这样做会导致某一篇文章的评论留言会同步到每一篇文章。</p>
-<p>​    到这里我脑海当中出现一个念头，如果把URL设置为空，使用JS代码中的sourceId返回相应的值，是否也可以达到效果？我怀着试一试的心态，把URL的返回值设置为空。结果出现了神奇的一幕，跟帖显示成功，并且URL返回值在网页端可以看见就算空值，那么这是否说明sourceId和URL可以二选一呢？</p>
-<p>​    <img src="\writeimg\blog\kongURL07.jpg" alt="尝试2"></p>
-<h3 id="VI总结"><a href="#VI总结" class="headerlink" title="VI总结"></a>VI总结</h3><p>​    这番折腾学习过程中，体会到了出错心要静，认真分析的重要性。多方面找原因，找根本原因的重要远比瞎尝试有用，所谓磨刀不误砍柴工，就是在没有根据的尝试下，只会浪费更多的心血和时间。这里贴上关于这个问题的issues的<a href="https://github.com/litten/hexo-theme-yilia/issues/523" target="_blank" rel="external">链接</a>    。同时，这样的改动不是主题作者<a href="http://litten.me/" target="_blank" rel="external">litten</a>的本意，如果在日后出了bug，会在上面的issues链接当中跟进。</p>
-
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>^^谢谢你请我吃糖哦^^<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/blogimg/alipay.jpg">
-                      <span class="reward-type">支付宝</span>
-                    </div>
-                    
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">s3</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">折腾记</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">spark</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">大数据</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/06/02/网易云跟帖部署二三事/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2017/06/11/python系统监控-psutil/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          python系统监控--psutil
-        
-      </div>
-    </a>
   
   
-    <a href="/2017/05/24/写一个脚本来更新博客/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">写一个脚本来更新博客</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
+    
 
 
           </div>
@@ -356,9 +234,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: false,
 		root: "/",
