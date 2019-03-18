@@ -6,17 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: 杂谈 | JamesBy博客</title>
+  <title>Elasticsearch简单使用笔记 | JamesBy博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="个人博客，hexo+github">
-<meta property="og:type" content="website">
-<meta property="og:title" content="JamesBy博客">
-<meta property="og:url" content="http://yoursite.com/tags/杂谈/index.html">
+  <meta name="description" content="信息相关查询 1.localhost:9200 查看elasticsearch版本信息   2.localhost:9200/_cat/indices?v 查看es所有index信息   3.localhost:9200/_mapping?pretty=true 查看所有index的mapping(字段)    查询语句Filter DSLterm过滤用于精确匹配哪些值，数字，日期布尔值或not">
+<meta name="keywords" content="数据库,ES,Elasticsearch">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Elasticsearch简单使用笔记">
+<meta property="og:url" content="http://yoursite.com/2019/03/18/简单使用笔记/index.html">
 <meta property="og:site_name" content="JamesBy博客">
-<meta property="og:description" content="个人博客，hexo+github">
+<meta property="og:description" content="信息相关查询 1.localhost:9200 查看elasticsearch版本信息   2.localhost:9200/_cat/indices?v 查看es所有index信息   3.localhost:9200/_mapping?pretty=true 查看所有index的mapping(字段)    查询语句Filter DSLterm过滤用于精确匹配哪些值，数字，日期布尔值或not">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007tzpNZly1g126a4gm7aj32n21dhmyq.jpg">
+<meta property="og:updated_time" content="2019-03-18T10:08:09.832Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JamesBy博客">
-<meta name="twitter:description" content="个人博客，hexo+github">
+<meta name="twitter:title" content="Elasticsearch简单使用笔记">
+<meta name="twitter:description" content="信息相关查询 1.localhost:9200 查看elasticsearch版本信息   2.localhost:9200/_cat/indices?v 查看es所有index信息   3.localhost:9200/_mapping?pretty=true 查看所有index的mapping(字段)    查询语句Filter DSLterm过滤用于精确匹配哪些值，数字，日期布尔值或not">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/007tzpNZly1g126a4gm7aj32n21dhmyq.jpg">
   
     <link rel="alternative" href="/atom.xml" title="JamesBy博客" type="application/atom+xml">
   
@@ -150,116 +154,226 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-简单使用笔记" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/03/31/windows10使用ubuntu/" class="archive-article-date">
-  	<time datetime="2018-03-31T11:49:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-31</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/03/31/windows10使用ubuntu/">windows10使用ubuntu</a>
+    <h1 class="article-title" itemprop="name">
+      Elasticsearch简单使用笔记
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2019/03/18/简单使用笔记/" class="archive-article-date">
+  	<time datetime="2019-03-18T10:05:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="http://ww1.sinaimg.cn/large/007tzpNZly1g126a4gm7aj32n21dhmyq.jpg" alt=""></p>
+<h3 id="信息相关查询"><a href="#信息相关查询" class="headerlink" title="信息相关查询"></a>信息相关查询</h3><ul>
+<li>1.localhost:9200<ul>
+<li>查看elasticsearch版本信息</li>
+</ul>
+</li>
+<li>2.localhost:9200/_cat/indices?v<ul>
+<li>查看es所有index信息</li>
+</ul>
+</li>
+<li>3.localhost:9200/_mapping?pretty=true<ul>
+<li>查看所有index的mapping(字段)</li>
+</ul>
+</li>
+</ul>
+<h3 id="查询语句"><a href="#查询语句" class="headerlink" title="查询语句"></a>查询语句</h3><h4 id="Filter-DSL"><a href="#Filter-DSL" class="headerlink" title="Filter DSL"></a>Filter DSL</h4><h4 id="term过滤"><a href="#term过滤" class="headerlink" title="term过滤"></a>term过滤</h4><p>用于精确匹配哪些值，数字，日期布尔值或not_analyzed 的字符串(未经分析的文本数据类型)</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># 精确查询id为IKDd91dsfF</div><div class="line">&#123;</div><div class="line">  "query":&#123;</div><div class="line">    "term":&#123;</div><div class="line">      "id":"IKDd91dsfF"</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="terms过滤"><a href="#terms过滤" class="headerlink" title="terms过滤"></a>terms过滤</h4><p>和term类似，不同的是terms支持多个值</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># 精确查询id为IKDd91dsfF和ddDSDsad2的值</div><div class="line">&#123;</div><div class="line">  "query":&#123;</div><div class="line">    "term":&#123;</div><div class="line">      "id":["IKDd91dsfF","ddDSDsad2"]</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="range过滤"><a href="#range过滤" class="headerlink" title="range过滤"></a>range过滤</h4><p>用于指定范围查询</p>
+<p>范围操作符：</p>
+<ul>
+<li>gt:大于</li>
+<li>gte:大于等于</li>
+<li>lt:小于</li>
+<li>lte:小于等于</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"># 查询code大于等于1和小于等于1000的值</div><div class="line">&#123; </div><div class="line">  "query": &#123; </div><div class="line">    "range": &#123; </div><div class="line">      "code": &#123; </div><div class="line">        "gte": 1 </div><div class="line">        "lte":1000</div><div class="line">      &#125; </div><div class="line">    &#125; </div><div class="line">  &#125; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="exists和missing过滤"><a href="#exists和missing过滤" class="headerlink" title="exists和missing过滤"></a>exists和missing过滤</h4><p>用于查询文档中是否包含指定字段或没有某个字段,类似IS_NULL条件;</p>
+<p>这两个过滤，用于对已经查询出来的一批数据，区分某个字段是否存在的时候用</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&#123; </div><div class="line">  <span class="attr">"query"</span>: &#123; </div><div class="line">    <span class="attr">"exists"</span>: &#123; </div><div class="line">      <span class="attr">"field"</span>: <span class="string">"search"</span></div><div class="line">    &#125; </div><div class="line">  &#125; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="bool过滤"><a href="#bool过滤" class="headerlink" title="bool过滤"></a>bool过滤</h4><p>用来合并多个过滤条件查询结果的布尔逻辑，涵盖以下操作符：</p>
+<ul>
+<li>must:多个查询条件精确匹配，相当于and使用</li>
+<li>must_not:多个查询条件的相反匹配，相当于not</li>
+<li>should:至少有一个查询条件匹配，相对于or</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&#123; </div><div class="line">  <span class="attr">"query"</span>: &#123; </div><div class="line">     <span class="attr">"bool"</span>: &#123; </div><div class="line">        <span class="attr">"must"</span>:     &#123; <span class="attr">"term"</span>: &#123; <span class="attr">"folder"</span>: <span class="string">"inbox"</span>&#125;&#125;, </div><div class="line">        <span class="attr">"must_not"</span>: &#123; <span class="attr">"term"</span>: &#123; <span class="attr">"tag"</span>: <span class="string">"spam"</span>&#125;&#125;, </div><div class="line">        <span class="attr">"should"</span>: [ </div><div class="line">                    &#123; <span class="attr">"term"</span>: &#123; <span class="attr">"starred"</span>: <span class="literal">true</span>&#125;&#125;, </div><div class="line">                    &#123; <span class="attr">"term"</span>: &#123; <span class="attr">"unread"</span>:  <span class="literal">true</span>&#125;&#125; </div><div class="line">        ] </div><div class="line">    &#125; </div><div class="line">  &#125; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="Query-DSL"><a href="#Query-DSL" class="headerlink" title="Query DSL"></a>Query DSL</h4><h4 id="match-all查询"><a href="#match-all查询" class="headerlink" title="match_all查询"></a>match_all查询</h4><p>可以查询所有文档，没有其他查询条件的默认语句</p>
+<p>常用于合并过滤条件</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"match_all"</span>:&#123;&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="match查询"><a href="#match查询" class="headerlink" title="match查询"></a>match查询</h4><p>match查询是标准查询，只能指定某个确切字段，某个确切的值进行搜索。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123; <span class="attr">"match"</span>: &#123; <span class="attr">"age"</span>: <span class="number">26</span>&#125;&#125; </div><div class="line">&#123; <span class="attr">"match"</span>: &#123; <span class="attr">"date"</span>: <span class="string">"2014-09-01"</span> &#125;&#125; </div><div class="line">&#123; <span class="attr">"match"</span>: &#123; <span class="attr">"public"</span>: <span class="literal">true</span>&#125;&#125; </div><div class="line">&#123; <span class="attr">"match"</span>: &#123; <span class="attr">"tag"</span>: <span class="string">"full_text"</span>&#125;&#125;</div></pre></td></tr></table></figure>
+<h4 id="multi-match查询"><a href="#multi-match查询" class="headerlink" title="multi_match查询"></a>multi_match查询</h4><p>允许做match查询的基础上同时搜索多个字段。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"># 在body和title字段查询</div><div class="line">&#123; </div><div class="line">  "multi_match": &#123; </div><div class="line">    "query": "full text search",</div><div class="line">    "fields": [ "title", "body" ]</div><div class="line">  &#125; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="bool查询"><a href="#bool查询" class="headerlink" title="bool查询"></a>bool查询</h4><p>同bool过滤类似，合并多个子查询，不同的是，bool过滤可以直接给出是否匹配成功，bool查询是给出每个子查询子句的是_score，也就是相关性分值。</p>
+<ul>
+<li>must:查询指定文档全匹配</li>
+<li>must_not:查询文档不匹配</li>
+<li>should:查询指定文档，有则可以为文档那个相关性加分</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&#123; </div><div class="line">    <span class="attr">"bool"</span>: &#123; </div><div class="line">        <span class="attr">"must"</span>:     &#123; <span class="attr">"match"</span>: &#123; <span class="attr">"title"</span>: <span class="string">"how to make millions"</span> &#125;&#125;, </div><div class="line">        <span class="attr">"must_not"</span>: &#123; <span class="attr">"match"</span>: &#123; <span class="attr">"tag"</span>: <span class="string">"spam"</span> &#125;&#125;, </div><div class="line">        <span class="attr">"should"</span>: [ </div><div class="line">            &#123; <span class="attr">"match"</span>: &#123; <span class="attr">"tag"</span>: <span class="string">"starred"</span> &#125;&#125;, </div><div class="line">            &#123; <span class="attr">"range"</span>: &#123; <span class="attr">"date"</span>: &#123; <span class="attr">"gte"</span>: <span class="string">"2014-01-01"</span> &#125;&#125;&#125; </div><div class="line">        ] </div><div class="line">    &#125; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="regexp查询"><a href="#regexp查询" class="headerlink" title="regexp查询"></a>regexp查询</h3><p>支持使用正则对文本进行查询</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># postcode以W开头，紧跟着0到9的数字</div><div class="line">&#123; </div><div class="line">    "query": &#123; </div><div class="line">        "regexp": &#123; </div><div class="line">            "postcode": "W[0-9].+" </div><div class="line">        &#125; </div><div class="line">    &#125; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="prefix查询"><a href="#prefix查询" class="headerlink" title="prefix查询"></a>prefix查询</h4><p>以什么字符开头的查询</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"query"</span>:&#123;</div><div class="line">    <span class="attr">"prefix"</span>:&#123;</div><div class="line">      <span class="attr">"address"</span>:<span class="string">"北京"</span></div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="短语匹配"><a href="#短语匹配" class="headerlink" title="短语匹配"></a>短语匹配</h3><h4 id="match-phrase"><a href="#match-phrase" class="headerlink" title="match_phrase"></a>match_phrase</h4><p>需要寻找邻近几个单词时用到</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">"match": &#123;</div><div class="line">    "title": &#123;</div><div class="line">        "query": "quick brown fox",</div><div class="line">        "type":  "phrase"</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="参考链接地址"><a href="#参考链接地址" class="headerlink" title="参考链接地址"></a>参考链接地址</h3><ul>
+<li><a href="http://www.ruanyifeng.com/blog/2017/08/elasticsearch.html" target="_blank" rel="external">链接1</a></li>
+<li><a href="https://blog.csdn.net/qingmoruoxi/article/details/77221602" target="_blank" rel="external">链接2</a></li>
+<li><a href="https://es.xiaoleilu.com/054_Query_DSL/00_Intro.html" target="_blank" rel="external">链接3</a></li>
+<li><a href="https://github.com/JamesBaiyong/python_pracatice/blob/master/script/es_search_simple_demo.py" target="_blank" rel="external">使用demo</a></li>
+</ul>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>^^谢谢你请我吃糖哦^^<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/blogimg/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">wsl</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">ubuntu</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ES</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">杂谈</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Elasticsearch</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2019/03/18/简单使用笔记/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-      
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/24/写一个脚本来更新博客/" class="archive-article-date">
-  	<time datetime="2017-05-24T10:08:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-24</time>
-</a>
-        </div>
-    	 
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/24/写一个脚本来更新博客/">写一个脚本来更新博客</a>
-    </h1>
+  
+    <a href="/2018/11/04/spark读取s3文件基于python实现/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">spark读取s3文件基于python实现</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+  
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">杂谈</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
 
 
           </div>
@@ -282,9 +396,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		root: "/",
