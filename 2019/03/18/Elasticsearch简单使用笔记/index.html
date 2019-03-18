@@ -6,17 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>JamesBy博客</title>
+  <title>Elasticsearch简单使用笔记 | JamesBy博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="个人博客，hexo+github">
-<meta property="og:type" content="website">
-<meta property="og:title" content="JamesBy博客">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="信息相关查询 1.localhost:9200  查看elasticsearch版本信息   2.localhost:9200/_cat/indices?v  查看es所有index信息   3.localhost:9200/_mapping?pretty=true  查看所有index的mapping(字段)">
+<meta name="keywords" content="数据库,ES,Elasticsearch">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Elasticsearch简单使用笔记">
+<meta property="og:url" content="http://yoursite.com/2019/03/18/Elasticsearch简单使用笔记/index.html">
 <meta property="og:site_name" content="JamesBy博客">
-<meta property="og:description" content="个人博客，hexo+github">
+<meta property="og:description" content="信息相关查询 1.localhost:9200  查看elasticsearch版本信息   2.localhost:9200/_cat/indices?v  查看es所有index信息   3.localhost:9200/_mapping?pretty=true  查看所有index的mapping(字段)">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007tzpNZly1g126a4gm7aj32n21dhmyq.jpg">
+<meta property="og:updated_time" content="2019-03-18T10:11:30.720Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JamesBy博客">
-<meta name="twitter:description" content="个人博客，hexo+github">
+<meta name="twitter:title" content="Elasticsearch简单使用笔记">
+<meta name="twitter:description" content="信息相关查询 1.localhost:9200  查看elasticsearch版本信息   2.localhost:9200/_cat/indices?v  查看es所有index信息   3.localhost:9200/_mapping?pretty=true  查看所有index的mapping(字段)">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/007tzpNZly1g126a4gm7aj32n21dhmyq.jpg">
   
     <link rel="alternative" href="/atom.xml" title="JamesBy博客" type="application/atom+xml">
   
@@ -150,16 +154,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-Elasticsearch简单使用笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-Elasticsearch简单使用笔记" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/18/Elasticsearch简单使用笔记/">Elasticsearch简单使用笔记</a>
+    <h1 class="article-title" itemprop="name">
+      Elasticsearch简单使用笔记
     </h1>
   
 
@@ -188,11 +190,87 @@
 <ul>
 <li>查看所有index的mapping(字段)</li>
 </ul>
-        
-          <a class="article-more-a" href="/2019/03/18/Elasticsearch简单使用笔记/#more">展开全文 >></a>
-        
+<a id="more"></a>
+</li>
+</ul>
+<h3 id="查询语句"><a href="#查询语句" class="headerlink" title="查询语句"></a>查询语句</h3><h4 id="Filter-DSL"><a href="#Filter-DSL" class="headerlink" title="Filter DSL"></a>Filter DSL</h4><h4 id="term过滤"><a href="#term过滤" class="headerlink" title="term过滤"></a>term过滤</h4><p>用于精确匹配哪些值，数字，日期布尔值或not_analyzed 的字符串(未经分析的文本数据类型)</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># 精确查询id为IKDd91dsfF</div><div class="line">&#123;</div><div class="line">  "query":&#123;</div><div class="line">    "term":&#123;</div><div class="line">      "id":"IKDd91dsfF"</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="terms过滤"><a href="#terms过滤" class="headerlink" title="terms过滤"></a>terms过滤</h4><p>和term类似，不同的是terms支持多个值</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># 精确查询id为IKDd91dsfF和ddDSDsad2的值</div><div class="line">&#123;</div><div class="line">  "query":&#123;</div><div class="line">    "term":&#123;</div><div class="line">      "id":["IKDd91dsfF","ddDSDsad2"]</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="range过滤"><a href="#range过滤" class="headerlink" title="range过滤"></a>range过滤</h4><p>用于指定范围查询</p>
+<p>范围操作符：</p>
+<ul>
+<li>gt:大于</li>
+<li>gte:大于等于</li>
+<li>lt:小于</li>
+<li>lte:小于等于</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"># 查询code大于等于1和小于等于1000的值</div><div class="line">&#123; </div><div class="line">  "query": &#123; </div><div class="line">    "range": &#123; </div><div class="line">      "code": &#123; </div><div class="line">        "gte": 1 </div><div class="line">        "lte":1000</div><div class="line">      &#125; </div><div class="line">    &#125; </div><div class="line">  &#125; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="exists和missing过滤"><a href="#exists和missing过滤" class="headerlink" title="exists和missing过滤"></a>exists和missing过滤</h4><p>用于查询文档中是否包含指定字段或没有某个字段,类似IS_NULL条件;</p>
+<p>这两个过滤，用于对已经查询出来的一批数据，区分某个字段是否存在的时候用</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&#123; </div><div class="line">  <span class="attr">"query"</span>: &#123; </div><div class="line">    <span class="attr">"exists"</span>: &#123; </div><div class="line">      <span class="attr">"field"</span>: <span class="string">"search"</span></div><div class="line">    &#125; </div><div class="line">  &#125; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="bool过滤"><a href="#bool过滤" class="headerlink" title="bool过滤"></a>bool过滤</h4><p>用来合并多个过滤条件查询结果的布尔逻辑，涵盖以下操作符：</p>
+<ul>
+<li>must:多个查询条件精确匹配，相当于and使用</li>
+<li>must_not:多个查询条件的相反匹配，相当于not</li>
+<li>should:至少有一个查询条件匹配，相对于or</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&#123; </div><div class="line">  <span class="attr">"query"</span>: &#123; </div><div class="line">     <span class="attr">"bool"</span>: &#123; </div><div class="line">        <span class="attr">"must"</span>:     &#123; <span class="attr">"term"</span>: &#123; <span class="attr">"folder"</span>: <span class="string">"inbox"</span>&#125;&#125;, </div><div class="line">        <span class="attr">"must_not"</span>: &#123; <span class="attr">"term"</span>: &#123; <span class="attr">"tag"</span>: <span class="string">"spam"</span>&#125;&#125;, </div><div class="line">        <span class="attr">"should"</span>: [ </div><div class="line">                    &#123; <span class="attr">"term"</span>: &#123; <span class="attr">"starred"</span>: <span class="literal">true</span>&#125;&#125;, </div><div class="line">                    &#123; <span class="attr">"term"</span>: &#123; <span class="attr">"unread"</span>:  <span class="literal">true</span>&#125;&#125; </div><div class="line">        ] </div><div class="line">    &#125; </div><div class="line">  &#125; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="Query-DSL"><a href="#Query-DSL" class="headerlink" title="Query DSL"></a>Query DSL</h4><h4 id="match-all查询"><a href="#match-all查询" class="headerlink" title="match_all查询"></a>match_all查询</h4><p>可以查询所有文档，没有其他查询条件的默认语句</p>
+<p>常用于合并过滤条件</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"match_all"</span>:&#123;&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="match查询"><a href="#match查询" class="headerlink" title="match查询"></a>match查询</h4><p>match查询是标准查询，只能指定某个确切字段，某个确切的值进行搜索。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123; <span class="attr">"match"</span>: &#123; <span class="attr">"age"</span>: <span class="number">26</span>&#125;&#125; </div><div class="line">&#123; <span class="attr">"match"</span>: &#123; <span class="attr">"date"</span>: <span class="string">"2014-09-01"</span> &#125;&#125; </div><div class="line">&#123; <span class="attr">"match"</span>: &#123; <span class="attr">"public"</span>: <span class="literal">true</span>&#125;&#125; </div><div class="line">&#123; <span class="attr">"match"</span>: &#123; <span class="attr">"tag"</span>: <span class="string">"full_text"</span>&#125;&#125;</div></pre></td></tr></table></figure>
+<h4 id="multi-match查询"><a href="#multi-match查询" class="headerlink" title="multi_match查询"></a>multi_match查询</h4><p>允许做match查询的基础上同时搜索多个字段。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"># 在body和title字段查询</div><div class="line">&#123; </div><div class="line">  "multi_match": &#123; </div><div class="line">    "query": "full text search",</div><div class="line">    "fields": [ "title", "body" ]</div><div class="line">  &#125; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="bool查询"><a href="#bool查询" class="headerlink" title="bool查询"></a>bool查询</h4><p>同bool过滤类似，合并多个子查询，不同的是，bool过滤可以直接给出是否匹配成功，bool查询是给出每个子查询子句的是_score，也就是相关性分值。</p>
+<ul>
+<li>must:查询指定文档全匹配</li>
+<li>must_not:查询文档不匹配</li>
+<li>should:查询指定文档，有则可以为文档那个相关性加分</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&#123; </div><div class="line">    <span class="attr">"bool"</span>: &#123; </div><div class="line">        <span class="attr">"must"</span>:     &#123; <span class="attr">"match"</span>: &#123; <span class="attr">"title"</span>: <span class="string">"how to make millions"</span> &#125;&#125;, </div><div class="line">        <span class="attr">"must_not"</span>: &#123; <span class="attr">"match"</span>: &#123; <span class="attr">"tag"</span>: <span class="string">"spam"</span> &#125;&#125;, </div><div class="line">        <span class="attr">"should"</span>: [ </div><div class="line">            &#123; <span class="attr">"match"</span>: &#123; <span class="attr">"tag"</span>: <span class="string">"starred"</span> &#125;&#125;, </div><div class="line">            &#123; <span class="attr">"range"</span>: &#123; <span class="attr">"date"</span>: &#123; <span class="attr">"gte"</span>: <span class="string">"2014-01-01"</span> &#125;&#125;&#125; </div><div class="line">        ] </div><div class="line">    &#125; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="regexp查询"><a href="#regexp查询" class="headerlink" title="regexp查询"></a>regexp查询</h3><p>支持使用正则对文本进行查询</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># postcode以W开头，紧跟着0到9的数字</div><div class="line">&#123; </div><div class="line">    "query": &#123; </div><div class="line">        "regexp": &#123; </div><div class="line">            "postcode": "W[0-9].+" </div><div class="line">        &#125; </div><div class="line">    &#125; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="prefix查询"><a href="#prefix查询" class="headerlink" title="prefix查询"></a>prefix查询</h4><p>以什么字符开头的查询</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"query"</span>:&#123;</div><div class="line">    <span class="attr">"prefix"</span>:&#123;</div><div class="line">      <span class="attr">"address"</span>:<span class="string">"北京"</span></div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="短语匹配"><a href="#短语匹配" class="headerlink" title="短语匹配"></a>短语匹配</h3><h4 id="match-phrase"><a href="#match-phrase" class="headerlink" title="match_phrase"></a>match_phrase</h4><p>需要寻找邻近几个单词时用到</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">"match": &#123;</div><div class="line">    "title": &#123;</div><div class="line">        "query": "quick brown fox",</div><div class="line">        "type":  "phrase"</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="参考链接地址"><a href="#参考链接地址" class="headerlink" title="参考链接地址"></a>参考链接地址</h3><ul>
+<li><a href="http://www.ruanyifeng.com/blog/2017/08/elasticsearch.html" target="_blank" rel="external">链接1</a></li>
+<li><a href="https://blog.csdn.net/qingmoruoxi/article/details/77221602" target="_blank" rel="external">链接2</a></li>
+<li><a href="https://es.xiaoleilu.com/054_Query_DSL/00_Intro.html" target="_blank" rel="external">链接3</a></li>
+<li><a href="https://github.com/JamesBaiyong/python_pracatice/blob/master/script/es_search_simple_demo.py" target="_blank" rel="external">使用demo</a></li>
+</ul>
+
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>^^谢谢你请我吃糖哦^^<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/blogimg/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -220,503 +298,74 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/03/18/Elasticsearch简单使用笔记/">查看本文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2019/03/18/Elasticsearch简单使用笔记/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
 
-
-
-
-
   
-    <article id="post-spark读取s3文件基于python实现" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/04/spark读取s3文件基于python实现/">spark读取s3文件基于python实现</a>
-    </h1>
   
-
-        
-        <a href="/2018/11/04/spark读取s3文件基于python实现/" class="archive-article-date">
-  	<time datetime="2018-11-04T14:16:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="http://ouyzqzdzy.bkt.clouddn.com/spark.jpg" alt="spark"></p>
-<h4 id="1-背景"><a href="#1-背景" class="headerlink" title="1.背景"></a>1.背景</h4><p>​    AWS的S3文件系统，是个优秀的分布式文件系统，在EC2上读取速度优异，且存取方便，本文介绍如何使用spark去读取S3上的文件，为做大数据清洗和分析做基本处理工作</p>
-<h4 id="2-设置s3读取环境"><a href="#2-设置s3读取环境" class="headerlink" title="2.设置s3读取环境"></a>2.设置s3读取环境</h4><p>​    需要给sparkContent设置s3读取的环境，设置相应的id和key，注意写到代码中，设置awscli可能不行</p>
-<p>由于中国区的region相对于其他地区是隔离开的，所以使用中国亚马逊S3需要单另设置endpoint来指定地区，否则会去访问美国区。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sc._jsc.hadoopConfiguration().set(<span class="string">"fs.s3a.access.key"</span>, AWS_ACCESS_KEY_ID)</div><div class="line">sc._jsc.hadoopConfiguration().set(<span class="string">"fs.s3a.secret.key"</span>, AWS_SECRET_ACCESS_KEY)</div><div class="line">sc._jsc.hadoopConfiguration().set(<span class="string">"fs.s3a.endpoint"</span>, <span class="string">"s3.cn-north-1.amazonaws.com.cn"</span>)</div></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2018/11/04/spark读取s3文件基于python实现/#more">展开全文 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">s3</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">spark</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/11/04/spark读取s3文件基于python实现/">查看本文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
+    <a href="/2018/11/04/spark读取s3文件基于python实现/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">spark读取s3文件基于python实现</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
-    <article id="post-Nginx-Gunicorn-Supervisor部署flask应用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/05/Nginx-Gunicorn-Supervisor部署flask应用/">Nginx+Gunicorn+Supervisor部署flask应用</a>
-    </h1>
-  
-
-        
-        <a href="/2018/06/05/Nginx-Gunicorn-Supervisor部署flask应用/" class="archive-article-date">
-  	<time datetime="2018-06-05T13:08:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="http://ouyzqzdzy.bkt.clouddn.com/nginx+supervisor+gunicorn+flask.png" alt=""></p>
-<h4 id="综述："><a href="#综述：" class="headerlink" title="综述："></a>综述：</h4><p>​    在ubuntu服务器上部署flaskweb应用，使用可用于企业级生产线上的部署模式Nginx+gunicorn+supervisor。使应用能支持高可用，服务更加健壮，将从以下几个内容记录。</p>
-<h4 id="概念："><a href="#概念：" class="headerlink" title="概念："></a>概念：</h4><h6 id="nginx"><a href="#nginx" class="headerlink" title="nginx:"></a>nginx:</h6><p>​    高效的web服务器和反向代理服务器，常被用于负载均衡，分担服务器的访问压力，支持高并发。本项目使用nginx做反向代理服务，也就是说，从互联网过来的请求，经过nginx转发给web服务器上的目标服务，再由目标服务作出响应，由nginx返回请求结果。    并且nginx可以缓冲http请求，减小服务器压力。</p>
-<h6 id="WSGI协议："><a href="#WSGI协议：" class="headerlink" title="WSGI协议："></a>WSGI协议：</h6><p>​    python web server gateway interface简称，它规定了一种在web服务器与web应用框架/程序之间推荐的标准接口。用于确保web应用程序在不同的web服务器之间具有可移值性。</p>
-        
-          <a class="article-more-a" href="/2018/06/05/Nginx-Gunicorn-Supervisor部署flask应用/#more">展开全文 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flask</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">部署</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/05/Nginx-Gunicorn-Supervisor部署flask应用/">查看本文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-windows10使用ubuntu" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/31/windows10使用ubuntu/">windows10使用ubuntu</a>
-    </h1>
-  
-
-        
-        <a href="/2018/03/31/windows10使用ubuntu/" class="archive-article-date">
-  	<time datetime="2018-03-31T11:49:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-31</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="http://ouyzqzdzy.bkt.clouddn.com/bbb.jpg" alt=""></p>
-<h4 id="I-原由"><a href="#I-原由" class="headerlink" title="I  .原由"></a>I  .原由</h4><p>​    在公司使用ubuntu操作系统做开发也是第五个月了，愈发对Linux系统喜欢。但如若，在自己笔记本上装上linux，会有诸多不便（无法使用学校的上网客户端，PS，play~game….😋），无奈作罢。就在前几日，尝试使用了一下windows10中的ubuntu，官方是叫WSL。用了几日后发现这玩意儿还挺不错的，写于此，留录。</p>
-        
-          <a class="article-more-a" href="/2018/03/31/windows10使用ubuntu/#more">展开全文 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">wsl</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">ubuntu</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">杂谈</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/03/31/windows10使用ubuntu/">查看本文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-使用SQL语句查询JSON字段的指定key" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/29/使用SQL语句查询JSON字段的指定key/">使用SQL语句查询JSON字段的指定key</a>
-    </h1>
-  
-
-        
-        <a href="/2017/12/29/使用SQL语句查询JSON字段的指定key/" class="archive-article-date">
-  	<time datetime="2017-12-29T13:31:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="http://ouyzqzdzy.bkt.clouddn.com/architecture.png" alt=""></p>
-<h6 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h6><p>最近因为某些需求，需要查询数据库中JSON数据格式字段中指定key的数据信息，如何获取字段中的特定”字段”,这就有意思了，当然第一时间可能会想到使用SQL的模糊查询，但是字段为JSON数据格式，这样就行不通了。所以需要换一种思维，经过查询和尝试得出了以下的解决方案，写于此备忘。</p>
-        
-          <a class="article-more-a" href="/2017/12/29/使用SQL语句查询JSON字段的指定key/#more">展开全文 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SQL</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/29/使用SQL语句查询JSON字段的指定key/">查看本文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-使用mysql存储爬取数据" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/10/24/使用mysql存储爬取数据/">使用mysql存储爬取数据</a>
-    </h1>
-  
-
-        
-        <a href="/2017/10/24/使用mysql存储爬取数据/" class="archive-article-date">
-  	<time datetime="2017-10-24T11:42:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="I-实现目标"><a href="#I-实现目标" class="headerlink" title="I.实现目标"></a>I.实现目标</h4><p>当数据量大了以后，爬取出的数据存储就是个不能避而不谈的问题，这篇短文就学习一下如何把抓取数据入库。这里使用的是mysql数据库，将要爬取的是百度阅读计算机类的书籍信息。由于所需要的书籍信息比较多，这里所采用的技术路线是Scrapy+Mysql的方式。这篇主要学习数据入库，所以爬取信息不是重点。</p>
-<p><img src="http://img.hb.aicdn.com/c6c31a961d2ca573aecdd1eecc60a135bfb261861136b3-z5yXU8_fw658" alt=""></p>
-        
-          <a class="article-more-a" href="/2017/10/24/使用mysql存储爬取数据/#more">展开全文 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">爬虫</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/10/24/使用mysql存储爬取数据/">查看本文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-抓取异步加载网页信息" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/10/11/抓取异步加载网页信息/">抓取异步加载网页信息</a>
-    </h1>
-  
-
-        
-        <a href="/2017/10/11/抓取异步加载网页信息/" class="archive-article-date">
-  	<time datetime="2017-10-11T07:02:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>编写网络爬虫第一步先进行网页分析，确定自己所需获取的信息，分析网页源码结构以及渲染方式很重要。今天要抓取的页面是JD的图书销售榜单。这个网页是采用动态加载的渲染方式显示网页内容，之前的<a href="http://jamesby.top/2017/06/12/%E8%8E%B7%E5%8F%96instagram%E5%9B%BE%E7%89%87-%E7%94%A8%E7%88%AC%E8%99%AB%E7%9A%84%E6%96%B9%E5%BC%8F/" target="_blank" rel="external">这篇文章</a>，也是采用动态加载的方式渲染网页的，当时使用了Selenium的方式获取了网页信息。这篇文章采用了不一样的方式来处理类似的情况，那就是找接口，使用现有数据接口，分析ajax的方式获取信息。</p>
-<p><img src="https://static.pexels.com/photos/265087/pexels-photo-265087.jpeg" alt=""></p>
-        
-          <a class="article-more-a" href="/2017/10/11/抓取异步加载网页信息/#more">展开全文 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">爬虫</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">异步加载</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/10/11/抓取异步加载网页信息/">查看本文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-使用python发送短信" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/30/使用python发送短信/">使用python发送短信</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/30/使用python发送短信/" class="archive-article-date">
-  	<time datetime="2017-08-30T02:27:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="https://static.pexels.com/photos/230554/pexels-photo-230554.jpeg" alt=""></p>
-<h3 id="简单介绍python发送短信的方式"><a href="#简单介绍python发送短信的方式" class="headerlink" title="简单介绍python发送短信的方式"></a>简单介绍python发送短信的方式</h3><p>与电子邮件相比较，短信更直接可靠，生活当中接收各种的验证码，密码找回，取快递的验证码信息，这些生活场景都会用到程序到短信的应用。这篇文章笔者简单介绍了一下使用python发送短信的方式以及在文末贴上了笔者的应用案例。如有不妥之处还望不吝赐言。</p>
-        
-          <a class="article-more-a" href="/2017/08/30/使用python发送短信/#more">展开全文 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">web开发</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SMS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/30/使用python发送短信/">查看本文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
+</nav>
 
 
 
@@ -724,9 +373,10 @@
 
   
   
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
-    </nav>
+  
+
+  
+
   
 
 
@@ -749,8 +399,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: true,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
