@@ -17,7 +17,7 @@
 <meta property="og:description" content="综述：​    在ubuntu服务器上部署flaskweb应用，使用可用于企业级生产线上的部署模式Nginx+gunicorn+supervisor。使应用能支持高可用，服务更加健壮，将从以下几个内容记录。 概念：nginx:​    高效的web服务器和反向代理服务器，常被用于负载均衡，分担服务器的访问压力，支持高并发。本项目使用nginx做反向代理服务，也就是说，从互联网过来的请求，经过ng">
 <meta property="og:image" content="http://ouyzqzdzy.bkt.clouddn.com/nginx+supervisor+gunicorn+flask.png">
 <meta property="og:image" content="http://ouyzqzdzy.bkt.clouddn.com/supervisor%E7%BD%91%E9%A1%B5%E7%AE%A1%E7%90%86.png">
-<meta property="og:updated_time" content="2018-06-05T13:12:31.943Z">
+<meta property="og:updated_time" content="2018-06-05T13:12:32.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Nginx+Gunicorn+Supervisor部署flask应用">
 <meta name="twitter:description" content="综述：​    在ubuntu服务器上部署flaskweb应用，使用可用于企业级生产线上的部署模式Nginx+gunicorn+supervisor。使应用能支持高可用，服务更加健壮，将从以下几个内容记录。 概念：nginx:​    高效的web服务器和反向代理服务器，常被用于负载均衡，分担服务器的访问压力，支持高并发。本项目使用nginx做反向代理服务，也就是说，从互联网过来的请求，经过ng">
@@ -196,7 +196,7 @@
 <p>[include]表示需要supervisor去管理的应用，配置文件编写在/etc/supervisor/conf.d目录下的配置文件，以conf结尾。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[program:manger]</div><div class="line">command=gunicorn -w 4 manage:app -b localhost:8889</div><div class="line">directory=/home/ubuntu/webserver/wei_manager/</div><div class="line">user=ubuntu</div></pre></td></tr></table></figure>
 <p>​    directory表示flask应用目录</p>
-<h4 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash"> 加载配置</span></div><div class="line">sudo supervisord -c /etc/supervisor/supervisord.conf </div><div class="line"><span class="meta">#</span><span class="bash"> 启动</span></div><div class="line">sudo supervisorctl start all</div></pre></td></tr></table></figure>
+<h4 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span> 加载配置</div><div class="line">sudo supervisord -c /etc/supervisor/supervisord.conf </div><div class="line"><span class="meta">#</span> 启动</div><div class="line">sudo supervisorctl start all</div></pre></td></tr></table></figure>
 <p>gunicorn单独启动：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gunicorn -w 4 manage:app -b localhost:8889</div></pre></td></tr></table></figure>
 
@@ -448,10 +448,6 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
@@ -464,7 +460,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">ES</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Elasticsearch</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -472,7 +476,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hero</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">脚本</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -488,10 +508,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">wsl</a>
               </li>
              
@@ -501,18 +517,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">脚本</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">ES</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Elasticsearch</a>
               </li>
              
               <li class="article-tag-list-item">

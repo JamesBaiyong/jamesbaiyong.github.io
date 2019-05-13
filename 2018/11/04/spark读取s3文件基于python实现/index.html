@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="JamesBy博客">
 <meta property="og:description" content="1.背景​    AWS的S3文件系统，是个优秀的分布式文件系统，在EC2上读取速度优异，且存取方便，本文介绍如何使用spark去读取S3上的文件，为做大数据清洗和分析做基本处理工作 2.设置s3读取环境​    需要给sparkContent设置s3读取的环境，设置相应的id和key，注意写到代码中，设置awscli可能不行 由于中国区的region相对于其他地区是隔离开的，所以使用中国亚马逊">
 <meta property="og:image" content="http://ouyzqzdzy.bkt.clouddn.com/spark.jpg">
-<meta property="og:updated_time" content="2018-11-04T14:29:38.180Z">
+<meta property="og:updated_time" content="2018-11-04T14:29:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="spark读取s3文件基于python实现">
 <meta name="twitter:description" content="1.背景​    AWS的S3文件系统，是个优秀的分布式文件系统，在EC2上读取速度优异，且存取方便，本文介绍如何使用spark去读取S3上的文件，为做大数据清洗和分析做基本处理工作 2.设置s3读取环境​    需要给sparkContent设置s3读取的环境，设置相应的id和key，注意写到代码中，设置awscli可能不行 由于中国区的region相对于其他地区是隔离开的，所以使用中国亚马逊">
@@ -437,10 +437,6 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
@@ -453,7 +449,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">ES</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Elasticsearch</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -461,7 +465,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hero</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">脚本</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -477,10 +497,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">wsl</a>
               </li>
              
@@ -490,18 +506,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">脚本</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">ES</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Elasticsearch</a>
               </li>
              
               <li class="article-tag-list-item">
