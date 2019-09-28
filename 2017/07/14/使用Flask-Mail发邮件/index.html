@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>使用Flask-Mail发邮件 | JamesBy博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -15,6 +15,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/07/14/使用Flask-Mail发邮件/index.html">
 <meta property="og:site_name" content="JamesBy博客">
 <meta property="og:description" content="I  python发邮件的方式Web应用中，常常会遇到需要提醒用户的事情，而比较常用的方式就是采用发送邮件的方式。虽然Python在标准库中有smtplib包，可用于发送电子邮件，但包装了smtplib的Flask-Mail扩展提供了一个简单的接口，可以很方便的在flask中集成，只需在应用中设置好SMTP，就可以方便的在视图以及脚本中发送邮件信息，能更好地和Flask集成。 III 认识Fla">
+<meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/writeimg/blog/17071404.jpg">
 <meta property="og:image" content="http://yoursite.com/writeimg/blog/17071401.jpg">
 <meta property="og:image" content="http://yoursite.com/writeimg/blog/17071402.jpg">
@@ -31,6 +32,7 @@
     <link rel="icon" href="/blogimg/favicon.ico">
   
   <link rel="stylesheet" type="text/css" href="/./main.b3331d.css">
+
   <style type="text/css">
   
     #container.show {
@@ -54,7 +56,7 @@
         
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -177,9 +179,14 @@
     
     <div class="article-entry" itemprop="articleBody">
       
+        
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">I  python发邮件的方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">III 认识Flask-Mail</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">III实例化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">IV邮箱设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">V 编写代码</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">step1配置邮箱和邮箱密码:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">step2配置SMTP服务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">step3编写函数发送邮件</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">VI总结</span></a></li></ol>
+    </div>
+    
         <p><img src="\writeimg\blog\17071404.jpg" alt="设置授权密码"></p>
-<h3 id="I-python发邮件的方式"><a href="#I-python发邮件的方式" class="headerlink" title="I  python发邮件的方式"></a>I  python发邮件的方式</h3><p>Web应用中，常常会遇到需要提醒用户的事情，而比较常用的方式就是采用发送邮件的方式。虽然Python在标准库中有smtplib包，可用于发送电子邮件，但包装了smtplib的Flask-Mail扩展提供了一个简单的接口，可以很方便的在flask中集成，只需在应用中设置好SMTP，就可以方便的在视图以及脚本中发送邮件信息，能更好地和Flask集成。</p>
-<h3 id="III-认识Flask-Mail"><a href="#III-认识Flask-Mail" class="headerlink" title="III 认识Flask-Mail"></a>III 认识Flask-Mail</h3><p>使用Flask-Mail发邮件的原理是连接到简单邮件传输协议（SMTP）服务器，并把邮件交给这个服务器发送。所以，需要配置好SMTP。现在通过下面的表格简单认识一下所需要用到的SMTP配置。</p>
+<h3><span id="i-python发邮件的方式">I  python发邮件的方式</span></h3><p>Web应用中，常常会遇到需要提醒用户的事情，而比较常用的方式就是采用发送邮件的方式。虽然Python在标准库中有smtplib包，可用于发送电子邮件，但包装了smtplib的Flask-Mail扩展提供了一个简单的接口，可以很方便的在flask中集成，只需在应用中设置好SMTP，就可以方便的在视图以及脚本中发送邮件信息，能更好地和Flask集成。</p>
+<h3><span id="iii-认识flask-mail">III 认识Flask-Mail</span></h3><p>使用Flask-Mail发邮件的原理是连接到简单邮件传输协议（SMTP）服务器，并把邮件交给这个服务器发送。所以，需要配置好SMTP。现在通过下面的表格简单认识一下所需要用到的SMTP配置。</p>
 <table>
 <thead>
 <tr>
@@ -226,31 +233,31 @@
 </tr>
 </tbody>
 </table>
-<h3 id="III实例化"><a href="#III实例化" class="headerlink" title="III实例化"></a>III实例化</h3><p>这里要用到标准库的os模块，flask框架，flask_mail 和 flask_script框架。请注意manager实例和mail实例中间的省略号，这里放到后面再说。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask</div><div class="line"><span class="keyword">from</span> flask_mail <span class="keyword">import</span> Mail, Message</div><div class="line"><span class="keyword">from</span> flask_script <span class="keyword">import</span> Manager</div><div class="line"></div><div class="line">app = Flask(__name__)</div><div class="line">manager = Manager(app)</div><div class="line">....</div><div class="line">mail = Mail(app)</div></pre></td></tr></table></figure>
+<h3><span id="iii实例化">III实例化</span></h3><p>这里要用到标准库的os模块，flask框架，flask_mail 和 flask_script框架。请注意manager实例和mail实例中间的省略号，这里放到后面再说。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask</span><br><span class="line"><span class="keyword">from</span> flask_mail <span class="keyword">import</span> Mail, Message</span><br><span class="line"><span class="keyword">from</span> flask_script <span class="keyword">import</span> Manager</span><br><span class="line"></span><br><span class="line">app = Flask(__name__)</span><br><span class="line">manager = Manager(app)</span><br><span class="line">....</span><br><span class="line">mail = Mail(app)</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
-<h3 id="IV邮箱设置"><a href="#IV邮箱设置" class="headerlink" title="IV邮箱设置"></a>IV邮箱设置</h3><p>想要在程序中使用邮箱发送右键，这里还需要登录到邮箱当中设置一下，用163邮箱做例，别的邮箱大同小异。</p>
+<h3><span id="iv邮箱设置">IV邮箱设置</span></h3><p>想要在程序中使用邮箱发送右键，这里还需要登录到邮箱当中设置一下，用163邮箱做例，别的邮箱大同小异。</p>
 <p>首先打开设置中的POP3/SMTP/IMAP，把对应的服务开启</p>
 <p><img src="\writeimg\blog\17071401.jpg" alt="开启服务"></p>
 <p>再打开客户端授权密码设置，设置好授权密码</p>
 <p><img src="\writeimg\blog\17071402.jpg" alt="设置授权密码"></p>
 <p>这里提一下，163邮箱的smtp服务器地址是smtp.163.com，端口号是465,别的邮箱只需要上网查一下就可以了。</p>
-<h3 id="V-编写代码"><a href="#V-编写代码" class="headerlink" title="V 编写代码"></a>V 编写代码</h3><h4 id="step1配置邮箱和邮箱密码"><a href="#step1配置邮箱和邮箱密码" class="headerlink" title="step1配置邮箱和邮箱密码:"></a>step1配置邮箱和邮箱密码:</h4><p>能让邮箱发出邮件必然是需要用到邮箱密码，但为了安全，是不能把密码明文写到程序中的。这里可以把邮件用户名和密码添加到环境变量之中。在linux 下执行命令：export  MAIL_USERNAME=youemail@xxx.com和export MAIL_PASSWORD=emailpassword,把邮箱用户名和密码写入环境变量，在程序中读出。</p>
-<h4 id="step2配置SMTP服务"><a href="#step2配置SMTP服务" class="headerlink" title="step2配置SMTP服务"></a>step2配置SMTP服务</h4><p>配置代码：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">app.config.update(dict(</div><div class="line">    DEBUG = <span class="keyword">True</span>,</div><div class="line">    MAIL_SERVER = <span class="string">'smtp.163.com'</span>,</div><div class="line">    MAIL_PORT = <span class="number">465</span>,</div><div class="line">    MAIL_USE_SSL = <span class="keyword">True</span>,</div><div class="line">    MAIL_USERNAME = os.environ.get(<span class="string">'MAIL_USERNAME'</span>),</div><div class="line">    MAIL_PASSWORD = os.environ.get(<span class="string">'MAIL_PASSWORD'</span>),</div><div class="line">    MAIL_DEFAULT_SENDER = <span class="string">'JamesBy &lt;youremail@xxx.com&gt;'</span></div><div class="line">))</div></pre></td></tr></table></figure>
-<h4 id="step3编写函数发送邮件"><a href="#step3编写函数发送邮件" class="headerlink" title="step3编写函数发送邮件"></a>step3编写函数发送邮件</h4><p>先看一段代码：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">msg = Message(<span class="string">"EmailTest"</span> ,recipients=[<span class="string">'someone@outlook.com'</span>])</div></pre></td></tr></table></figure>
+<h3><span id="v-编写代码">V 编写代码</span></h3><h4><span id="step1配置邮箱和邮箱密码">step1配置邮箱和邮箱密码:</span></h4><p>能让邮箱发出邮件必然是需要用到邮箱密码，但为了安全，是不能把密码明文写到程序中的。这里可以把邮件用户名和密码添加到环境变量之中。在linux 下执行命令：export  MAIL_USERNAME=youemail@xxx.com和export MAIL_PASSWORD=emailpassword,把邮箱用户名和密码写入环境变量，在程序中读出。</p>
+<h4><span id="step2配置smtp服务">step2配置SMTP服务</span></h4><p>配置代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">app.config.update(dict(</span><br><span class="line">    DEBUG = <span class="keyword">True</span>,</span><br><span class="line">    MAIL_SERVER = <span class="string">'smtp.163.com'</span>,</span><br><span class="line">    MAIL_PORT = <span class="number">465</span>,</span><br><span class="line">    MAIL_USE_SSL = <span class="keyword">True</span>,</span><br><span class="line">    MAIL_USERNAME = os.environ.get(<span class="string">'MAIL_USERNAME'</span>),</span><br><span class="line">    MAIL_PASSWORD = os.environ.get(<span class="string">'MAIL_PASSWORD'</span>),</span><br><span class="line">    MAIL_DEFAULT_SENDER = <span class="string">'JamesBy &lt;youremail@xxx.com&gt;'</span></span><br><span class="line">))</span><br></pre></td></tr></table></figure>
+<h4><span id="step3编写函数发送邮件">step3编写函数发送邮件</span></h4><p>先看一段代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msg = Message(<span class="string">"EmailTest"</span> ,recipients=[<span class="string">'someone@outlook.com'</span>])</span><br></pre></td></tr></table></figure>
 <p>msg是Message实例编写邮件内容和邮件发送的主题，接收邮件的人。其中”EmailTest”表示邮件主题，recipients表示收邮件的地址，发邮件的人已经在配置代码中写入，在msg实例中就可以不用在写。msg.body表示邮件正文，最后使用Mail实例中的send函数发出邮件。</p>
 <p>发邮件代码（这里触发发送邮件代码是用的访问flaskweb地址，可以改写成一些特殊事件）：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@app.route('/')</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span><span class="params">()</span>:</span></div><div class="line">        msg = Message(<span class="string">"EmailTest"</span> ,recipients=[<span class="string">'someone@outlook.com'</span>])</div><div class="line">        msg.body = <span class="string">"Hello World! This  Email from Web"</span></div><div class="line">        mail.send(msg)</div><div class="line">        <span class="keyword">return</span> <span class="string">'&lt;h3&gt;Sended  email to U! ^^&lt;/h3&gt;'</span></div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.route('/')</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span><span class="params">()</span>:</span></span><br><span class="line">        msg = Message(<span class="string">"EmailTest"</span> ,recipients=[<span class="string">'someone@outlook.com'</span>])</span><br><span class="line">        msg.body = <span class="string">"Hello World! This  Email from Web"</span></span><br><span class="line">        mail.send(msg)</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'&lt;h3&gt;Sended  email to U! ^^&lt;/h3&gt;'</span></span><br></pre></td></tr></table></figure>
 <p>邮件发送成功实例图：</p>
 <p><img src="\writeimg\blog\17071403.jpg" alt="设置授权密码"></p>
-<h3 id="VI总结"><a href="#VI总结" class="headerlink" title="VI总结"></a>VI总结</h3><p>总结一下坑，也就是在实例化中间的省略号，是编写配置代码的部分。为什么要把mail实例放到配置代码后面呢？起初我并没有这样做，结果一访问就报错，提升连接被拒绝。反复修改代码过后，在stackoverflow找到了解决方法。原理是，把mail实例放到配置前面，mail实例会采用默认的邮箱服务器地址和端口号。所以使用代码所示的配置方法时，必须把mail实例放到配置代码后。</p>
+<h3><span id="vi总结">VI总结</span></h3><p>总结一下坑，也就是在实例化中间的省略号，是编写配置代码的部分。为什么要把mail实例放到配置代码后面呢？起初我并没有这样做，结果一访问就报错，提升连接被拒绝。反复修改代码过后，在stackoverflow找到了解决方法。原理是，把mail实例放到配置前面，mail实例会采用默认的邮箱服务器地址和端口号。所以使用代码所示的配置方法时，必须把mail实例放到配置代码后。</p>
 <p>关于Flask-Mail的用法官方文档有更多的说明和案例，本文只是简单的实现了发送提醒邮件的功能，后期继续深入。</p>
 <p>参考连接：</p>
-<p><a href="https://github.com/JamesBaiyong/python_pracatice/blob/master/Flask-Mail.py" target="_blank" rel="external">源码</a></p>
-<p><a href="http://www.pythondoc.com/flask-mail/" target="_blank" rel="external">官方文档</a></p>
-<p><a href="https://stackoverflow.com/questions/29111775/socket-error-errno-111-connection-refused-when-submitting-an-email-using-flas" target="_blank" rel="external">stackoverflow</a></p>
+<p><a href="https://github.com/JamesBaiyong/python_pracatice/blob/master/Flask-Mail.py" target="_blank" rel="noopener">源码</a></p>
+<p><a href="http://www.pythondoc.com/flask-mail/" target="_blank" rel="noopener">官方文档</a></p>
+<p><a href="https://stackoverflow.com/questions/29111775/socket-error-errno-111-connection-refused-when-submitting-an-email-using-flas" target="_blank" rel="noopener">stackoverflow</a></p>
 
       
 
@@ -398,6 +405,7 @@
   
 
 
+
           </div>
         </div>
       </div>
@@ -500,18 +508,6 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">ES</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Elasticsearch</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
@@ -524,7 +520,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">web开发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">ES</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Elasticsearch</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -532,7 +544,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">web开发</a>
+                <a href="javascript:void(0)" class="js-tag color5">hero</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -540,19 +552,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hero</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">wsl</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">ubuntu</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color3">脚本</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -568,7 +568,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">脚本</a>
+                <a href="javascript:void(0)" class="js-tag color4">wsl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">ubuntu</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SMS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -584,15 +596,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SMS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">javascript动态页面</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">python - Numpy</a>
+                <a href="javascript:void(0)" class="js-tag color1">Numpy</a>
               </li>
             
             <div class="clearfix"></div>

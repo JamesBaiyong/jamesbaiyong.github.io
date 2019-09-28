@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>使用SQL语句查询JSON字段的指定key | JamesBy博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -15,6 +15,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/12/29/使用SQL语句查询JSON字段的指定key/index.html">
 <meta property="og:site_name" content="JamesBy博客">
 <meta property="og:description" content="问题最近因为某些需求，需要查询数据库中JSON数据格式字段中指定key的数据信息，如何获取字段中的特定”字段”,这就有意思了，当然第一时间可能会想到使用SQL的模糊查询，但是字段为JSON数据格式，这样就行不通了。所以需要换一种思维，经过查询和尝试得出了以下的解决方案，写于此备忘。">
+<meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://ouyzqzdzy.bkt.clouddn.com/architecture.png">
 <meta property="og:updated_time" content="2017-12-29T13:33:44.000Z">
 <meta name="twitter:card" content="summary">
@@ -28,6 +29,7 @@
     <link rel="icon" href="/blogimg/favicon.ico">
   
   <link rel="stylesheet" type="text/css" href="/./main.b3331d.css">
+
   <style type="text/css">
   
     #container.show {
@@ -51,7 +53,7 @@
         
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -174,16 +176,21 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="http://ouyzqzdzy.bkt.clouddn.com/architecture.png" alt=""></p>
-<h6 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h6><p>最近因为某些需求，需要查询数据库中JSON数据格式字段中指定key的数据信息，如何获取字段中的特定”字段”,这就有意思了，当然第一时间可能会想到使用SQL的模糊查询，但是字段为JSON数据格式，这样就行不通了。所以需要换一种思维，经过查询和尝试得出了以下的解决方案，写于此备忘。</p>
+        
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-6"><a class="toc-link" href="#null"><span class="toc-text">问题</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#null"><span class="toc-text">解决</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#null"><span class="toc-text">思考:</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#null"><span class="toc-text">拓展:查询key和值</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#null"><span class="toc-text">总结:</span></a></li></ol>
+    </div>
+    
+        <p><img src="http://ouyzqzdzy.bkt.clouddn.com/architecture.png" alt></p>
+<h6><span id="问题">问题</span></h6><p>最近因为某些需求，需要查询数据库中JSON数据格式字段中指定key的数据信息，如何获取字段中的特定”字段”,这就有意思了，当然第一时间可能会想到使用SQL的模糊查询，但是字段为JSON数据格式，这样就行不通了。所以需要换一种思维，经过查询和尝试得出了以下的解决方案，写于此备忘。</p>
 <a id="more"></a>
-<h6 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h6><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> tableName <span class="keyword">where</span> <span class="keyword">data</span>::<span class="built_in">text</span> <span class="keyword">like</span> <span class="string">'%keyName%'</span></div></pre></td></tr></table></figure>
-<h6 id="思考"><a href="#思考" class="headerlink" title="思考:"></a>思考:</h6><p>原理:</p>
+<h6><span id="解决">解决</span></h6><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> tableName <span class="keyword">where</span> <span class="keyword">data</span>::<span class="built_in">text</span> <span class="keyword">like</span> <span class="string">'%keyName%'</span></span><br></pre></td></tr></table></figure>
+<h6><span id="思考">思考:</span></h6><p>原理:</p>
 <p>在PG库中不能比较json值,但可以比较文本值,故先把json值转换为text，最后使用模糊查询,找到想要获取到的值。</p>
-<h6 id="拓展-查询key和值"><a href="#拓展-查询key和值" class="headerlink" title="拓展:查询key和值"></a>拓展:查询key和值</h6><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> table_name <span class="keyword">where</span> <span class="keyword">data</span>::<span class="built_in">text</span> <span class="keyword">like</span> <span class="string">'%"key": "value"%'</span></div></pre></td></tr></table></figure>
+<h6><span id="拓展查询key和值">拓展:查询key和值</span></h6><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> table_name <span class="keyword">where</span> <span class="keyword">data</span>::<span class="built_in">text</span> <span class="keyword">like</span> <span class="string">'%"key": "value"%'</span></span><br></pre></td></tr></table></figure>
 <p>在Postgres 9.4+可以使用jsonb来比较json的值。</p>
-<h6 id="总结"><a href="#总结" class="headerlink" title="总结:"></a>总结:</h6><p>最近因为上班和准备毕业论文的事情，足有两个月没更新博客了，找个时间总结一下吧。</p>
-<p><a href="https://stackoverflow.com/questions/32843213/operator-does-not-exist-json-json" target="_blank" rel="external">参考</a></p>
+<h6><span id="总结">总结:</span></h6><p>最近因为上班和准备毕业论文的事情，足有两个月没更新博客了，找个时间总结一下吧。</p>
+<p><a href="https://stackoverflow.com/questions/32843213/operator-does-not-exist-json-json" target="_blank" rel="noopener">参考</a></p>
 
       
 
@@ -323,6 +330,7 @@
   
 
 
+
           </div>
         </div>
       </div>
@@ -425,18 +433,6 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">ES</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Elasticsearch</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
@@ -449,7 +445,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">web开发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">ES</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Elasticsearch</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -457,7 +469,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">web开发</a>
+                <a href="javascript:void(0)" class="js-tag color5">hero</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -465,19 +477,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hero</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">wsl</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">ubuntu</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color3">脚本</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -493,7 +493,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">脚本</a>
+                <a href="javascript:void(0)" class="js-tag color4">wsl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">ubuntu</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SMS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -509,15 +521,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SMS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">javascript动态页面</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">python - Numpy</a>
+                <a href="javascript:void(0)" class="js-tag color1">Numpy</a>
               </li>
             
             <div class="clearfix"></div>

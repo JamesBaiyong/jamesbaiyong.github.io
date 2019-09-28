@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>网易云跟帖部署二三事 | JamesBy博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -15,6 +15,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/06/02/网易云跟帖部署二三事/index.html">
 <meta property="og:site_name" content="JamesBy博客">
 <meta property="og:description" content="I前言​    博客初步部署完后，在部署网易云跟帖时遇到了一个坑。那就是，在保证跟帖站点信息无误，KEY值无误的情况下，跟帖无法显示的问题。瞎折腾小半天儿后有了一点感悟，这里写下，如能帮助到有缘人，不甚荣幸。">
+<meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/writeimg/blog/wentu08.jpg">
 <meta property="og:image" content="http://yoursite.com/writeimg/blog/gentieapi06.jpg">
 <meta property="og:image" content="http://yoursite.com/writeimg/blog/errorURL04.jpg">
@@ -32,6 +33,7 @@
     <link rel="icon" href="/blogimg/favicon.ico">
   
   <link rel="stylesheet" type="text/css" href="/./main.b3331d.css">
+
   <style type="text/css">
   
     #container.show {
@@ -55,7 +57,7 @@
         
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -178,21 +180,26 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="I前言"><a href="#I前言" class="headerlink" title="I前言"></a>I前言</h3><p>​    博客初步部署完后，在部署网易云跟帖时遇到了一个坑。那就是，在保证跟帖站点信息无误，KEY值无误的情况下，跟帖无法显示的问题。瞎折腾小半天儿后有了一点感悟，这里写下，如能帮助到有缘人，不甚荣幸。</p>
+        
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">I前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">II跟帖部署以及发现坑的所在</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">III问题解决尝试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">VI总结</span></a></li></ol>
+    </div>
+    
+        <h3><span id="i前言">I前言</span></h3><p>​    博客初步部署完后，在部署网易云跟帖时遇到了一个坑。那就是，在保证跟帖站点信息无误，KEY值无误的情况下，跟帖无法显示的问题。瞎折腾小半天儿后有了一点感悟，这里写下，如能帮助到有缘人，不甚荣幸。</p>
 <p><img src="\writeimg\blog\wentu08.jpg" alt="配图"></p>
 <a id="more"></a>
-<h3 id="II跟帖部署以及发现坑的所在"><a href="#II跟帖部署以及发现坑的所在" class="headerlink" title="II跟帖部署以及发现坑的所在"></a>II跟帖部署以及发现坑的所在</h3><p>​    从注册到KEY的获取就不说了，因为的确没有什么好说的。跟帖部署完毕后，在本地和博客均无法显示跟帖内容。于是各种找原因，期间，发现一个有趣的现象。那就是，虽然无法显示跟帖的内容，但是可以看得到网页会加载跟帖的API。</p>
+<h3><span id="ii跟帖部署以及发现坑的所在">II跟帖部署以及发现坑的所在</span></h3><p>​    从注册到KEY的获取就不说了，因为的确没有什么好说的。跟帖部署完毕后，在本地和博客均无法显示跟帖内容。于是各种找原因，期间，发现一个有趣的现象。那就是，虽然无法显示跟帖的内容，但是可以看得到网页会加载跟帖的API。</p>
 <p>​    <img src="\writeimg\blog\gentieapi06.jpg" alt="跟帖api加载"></p>
 <p>​    这说明一个问题，主题下的设置起效了，网页已经在处理网易云跟帖通用代码的JS文件了。但是却不能显示跟帖内容，既有可能是因为KEY和绑定的域名不一致导致。我在这里又去重新新建了站点信息，结果任然是无法找到显示跟帖。</p>
 <p>​    后来在一个前辈的提示下，查看了一下URL的返回，果然发现一个问题，看图所示。</p>
 <p>​    <img src="\writeimg\blog\errorURL04.jpg" alt="出错的URL"></p>
 <p>​    从图上看得出来，这里网页请求返回的是一个不存在的URL地址，显然不是我的博客地址，到这里，原因找到了。</p>
-<h3 id="III问题解决尝试"><a href="#III问题解决尝试" class="headerlink" title="III问题解决尝试"></a>III问题解决尝试</h3><p>​    找到原因后，事情就比较有方向了。一开始我有一个尝试，就是把JS代码当中的URL值写死，直接写成我的域名。这样也起到了效果，跟帖可以显示了。网页返回的URL也可以看见。</p>
+<h3><span id="iii问题解决尝试">III问题解决尝试</span></h3><p>​    找到原因后，事情就比较有方向了。一开始我有一个尝试，就是把JS代码当中的URL值写死，直接写成我的域名。这样也起到了效果，跟帖可以显示了。网页返回的URL也可以看见。</p>
 <p>​    <img src="\writeimg\blog\staticURL05.jpg" alt="尝试1"></p>
 <p>​    但是很快我发现一个BUG，那就是这样做会导致某一篇文章的评论留言会同步到每一篇文章。</p>
 <p>​    到这里我脑海当中出现一个念头，如果把URL设置为空，使用JS代码中的sourceId返回相应的值，是否也可以达到效果？我怀着试一试的心态，把URL的返回值设置为空。结果出现了神奇的一幕，跟帖显示成功，并且URL返回值在网页端可以看见就算空值，那么这是否说明sourceId和URL可以二选一呢？</p>
 <p>​    <img src="\writeimg\blog\kongURL07.jpg" alt="尝试2"></p>
-<h3 id="VI总结"><a href="#VI总结" class="headerlink" title="VI总结"></a>VI总结</h3><p>​    这番折腾学习过程中，体会到了出错心要静，认真分析的重要性。多方面找原因，找根本原因的重要远比瞎尝试有用，所谓磨刀不误砍柴工，就是在没有根据的尝试下，只会浪费更多的心血和时间。这里贴上关于这个问题的issues的<a href="https://github.com/litten/hexo-theme-yilia/issues/523" target="_blank" rel="external">链接</a>    。同时，这样的改动不是主题作者<a href="http://litten.me/" target="_blank" rel="external">litten</a>的本意，如果在日后出了bug，会在上面的issues链接当中跟进。</p>
+<h3><span id="vi总结">VI总结</span></h3><p>​    这番折腾学习过程中，体会到了出错心要静，认真分析的重要性。多方面找原因，找根本原因的重要远比瞎尝试有用，所谓磨刀不误砍柴工，就是在没有根据的尝试下，只会浪费更多的心血和时间。这里贴上关于这个问题的issues的<a href="https://github.com/litten/hexo-theme-yilia/issues/523" target="_blank" rel="noopener">链接</a>    。同时，这样的改动不是主题作者<a href="http://litten.me/" target="_blank" rel="noopener">litten</a>的本意，如果在日后出了bug，会在上面的issues链接当中跟进。</p>
 
       
 
@@ -336,6 +343,7 @@
   
 
 
+
           </div>
         </div>
       </div>
@@ -438,18 +446,6 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">ES</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Elasticsearch</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
@@ -462,7 +458,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">web开发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">ES</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Elasticsearch</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -470,7 +482,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">web开发</a>
+                <a href="javascript:void(0)" class="js-tag color5">hero</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -478,19 +490,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hero</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">wsl</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">ubuntu</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color3">脚本</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -506,7 +506,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">脚本</a>
+                <a href="javascript:void(0)" class="js-tag color4">wsl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">ubuntu</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SMS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -522,15 +534,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SMS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">javascript动态页面</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">python - Numpy</a>
+                <a href="javascript:void(0)" class="js-tag color1">Numpy</a>
               </li>
             
             <div class="clearfix"></div>

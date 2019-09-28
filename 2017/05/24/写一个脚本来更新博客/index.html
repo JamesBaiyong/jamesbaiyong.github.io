@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>写一个脚本来更新博客 | JamesBy博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -15,6 +15,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/05/24/写一个脚本来更新博客/index.html">
 <meta property="og:site_name" content="JamesBy博客">
 <meta property="og:description" content="​     ​    昨天勉强把博客部署了，今天起来发现，我要是更新一篇博客需要做那么多重复的命令行操作，实在过于繁琐和复杂了。于是有了思考。要是写一个脚本来代替我做这些重复的操作，岂不美滋滋。">
+<meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/writeimg/01.jpg">
 <meta property="og:image" content="http://yoursite.com/writeimg/02.jpg">
 <meta property="og:updated_time" content="2017-05-24T10:13:00.000Z">
@@ -29,6 +30,7 @@
     <link rel="icon" href="/blogimg/favicon.ico">
   
   <link rel="stylesheet" type="text/css" href="/./main.b3331d.css">
+
   <style type="text/css">
   
     #container.show {
@@ -52,7 +54,7 @@
         
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -175,6 +177,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
+        
+    <div id="toc">
+      
+    </div>
+    
         <p>​    <img src="\writeimg\01.jpg" alt="01"></p>
 <p>​    昨天勉强把博客部署了，今天起来发现，我要是更新一篇博客需要做那么多重复的命令行操作，实在过于繁琐和复杂了。于是有了思考。要是写一个脚本来代替我做这些重复的操作，岂不美滋滋。<a id="more"></a>于是折腾了几个小时，按照以前写启动Django的脚本一步步修改，一点点google，于是有了一个更新博客脚本1.0。由于，脚本很简单，都是一些命令行操作，先试试，等着脚本更健壮后再上传到博客里面。</p>
 <p>​    脚本的基本作用就是在启动脚本后，输入要编写的博客文章，自动打开要编写的博客文章（现阶段只能打开文章所在文件夹），等写完文章保存后，操作脚本更新博客文章。</p>
@@ -319,6 +326,7 @@
   
 
 
+
           </div>
         </div>
       </div>
@@ -421,18 +429,6 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">ES</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Elasticsearch</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
@@ -445,7 +441,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">web开发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">ES</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Elasticsearch</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -453,7 +465,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">web开发</a>
+                <a href="javascript:void(0)" class="js-tag color5">hero</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -461,19 +473,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hero</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">wsl</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">ubuntu</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color3">脚本</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -489,7 +489,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">脚本</a>
+                <a href="javascript:void(0)" class="js-tag color4">wsl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">ubuntu</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SMS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -505,15 +517,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SMS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">javascript动态页面</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">python - Numpy</a>
+                <a href="javascript:void(0)" class="js-tag color1">Numpy</a>
               </li>
             
             <div class="clearfix"></div>

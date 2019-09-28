@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>使用python发送短信 | JamesBy博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -15,6 +15,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/08/30/使用python发送短信/index.html">
 <meta property="og:site_name" content="JamesBy博客">
 <meta property="og:description" content="简单介绍python发送短信的方式与电子邮件相比较，短信更直接可靠，生活当中接收各种的验证码，密码找回，取快递的验证码信息，这些生活场景都会用到程序到短信的应用。这篇文章笔者简单介绍了一下使用python发送短信的方式以及在文末贴上了笔者的应用案例。如有不妥之处还望不吝赐言。">
+<meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://static.pexels.com/photos/230554/pexels-photo-230554.jpeg">
 <meta property="og:image" content="http://ouyzqzdzy.bkt.clouddn.com/%E7%9F%AD%E4%BF%A1%E6%9C%8D%E5%8A%A1.jpg">
 <meta property="og:image" content="http://ouyzqzdzy.bkt.clouddn.com/keys.jpg">
@@ -31,6 +32,7 @@
     <link rel="icon" href="/blogimg/favicon.ico">
   
   <link rel="stylesheet" type="text/css" href="/./main.b3331d.css">
+
   <style type="text/css">
   
     #container.show {
@@ -54,7 +56,7 @@
         
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -177,46 +179,51 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="https://static.pexels.com/photos/230554/pexels-photo-230554.jpeg" alt=""></p>
-<h3 id="简单介绍python发送短信的方式"><a href="#简单介绍python发送短信的方式" class="headerlink" title="简单介绍python发送短信的方式"></a>简单介绍python发送短信的方式</h3><p>与电子邮件相比较，短信更直接可靠，生活当中接收各种的验证码，密码找回，取快递的验证码信息，这些生活场景都会用到程序到短信的应用。这篇文章笔者简单介绍了一下使用python发送短信的方式以及在文末贴上了笔者的应用案例。如有不妥之处还望不吝赐言。</p>
+        
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">简单介绍python发送短信的方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">使用模块——用Twiio发送短信</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">使用API——阿里云短信服务</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">开始使用：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-text">发送短信必须的条件：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">相关链接：</span></a></li></ol>
+    </div>
+    
+        <p><img src="https://static.pexels.com/photos/230554/pexels-photo-230554.jpeg" alt></p>
+<h3><span id="简单介绍python发送短信的方式">简单介绍python发送短信的方式</span></h3><p>与电子邮件相比较，短信更直接可靠，生活当中接收各种的验证码，密码找回，取快递的验证码信息，这些生活场景都会用到程序到短信的应用。这篇文章笔者简单介绍了一下使用python发送短信的方式以及在文末贴上了笔者的应用案例。如有不妥之处还望不吝赐言。</p>
 <a id="more"></a>
-<h3 id="使用模块——用Twiio发送短信"><a href="#使用模块——用Twiio发送短信" class="headerlink" title="使用模块——用Twiio发送短信"></a>使用模块——用Twiio发送短信</h3><p>Twilio是一个免费的SMS网关服务，在官网注册后可以使用程序向登记过的电话号码发送短信。但为了安全方面的因素，仅支持对注册电话号码发送短信，也就是说，这个方式不试用于网站面向网站用户。Twilio提供试用账户包含一个电话号码，将作为短信的发送者。而在使用该模块发送短信时，需要三个信息，就是账户的SID和用户AUTH以及twilio电话号码。登录Twilio后，可以在页面中找到这些信息。</p>
+<h3><span id="使用模块用twiio发送短信">使用模块——用Twiio发送短信</span></h3><p>Twilio是一个免费的SMS网关服务，在官网注册后可以使用程序向登记过的电话号码发送短信。但为了安全方面的因素，仅支持对注册电话号码发送短信，也就是说，这个方式不试用于网站面向网站用户。Twilio提供试用账户包含一个电话号码，将作为短信的发送者。而在使用该模块发送短信时，需要三个信息，就是账户的SID和用户AUTH以及twilio电话号码。登录Twilio后，可以在页面中找到这些信息。</p>
 <p>使用前需要安装twilio模块。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install twilio</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install twilio</span><br></pre></td></tr></table></figure>
 <p>使用Twilio发送短信大概非为以下三个步骤：</p>
 <ul>
-<li>1.在<a href="https://github.com/JamesBaiyong/python_automte/blob/master/Email-SmS/www.twilio.com" target="_blank" rel="external">官网</a>注册登记</li>
+<li>1.在<a href="https://github.com/JamesBaiyong/python_automte/blob/master/Email-SmS/www.twilio.com" target="_blank" rel="noopener">官网</a>注册登记</li>
 <li>2.记录下accountSID,authToken,twilio电话号码</li>
 <li>3.调用Client发送短信</li>
 </ul>
 <p>由于twilio模块的设计方式，导入它时需要试用twilio.rest。调用模块发送短信的代码也相当简单，只需调用模块的Client模块，设置好accountSID,authToken即可，但需要注意的是，短信号码需要加上国际区号，而且的python3和python2在这里有所不同。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> twilio.rest <span class="keyword">import</span> Client</div><div class="line"></div><div class="line">accountSID=<span class="string">'youraccounSID'</span></div><div class="line">authToken=<span class="string">'yourauthToken'</span></div><div class="line">myNumber=<span class="string">'+8618888888888'</span></div><div class="line">twilioNumber=<span class="string">'+15555555555'</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">textmyself</span><span class="params">(message)</span>:</span></div><div class="line">	twilioCli = Client(accountSID,authToken)</div><div class="line">	twilioCli.api.account.messages.create(body=message,from_=twilioNumber,to=myNumber)//python2</div><div class="line">	twilioCli.messages.create(body=message,from_=twilioNumber,to=myNumber)//python3</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> twilio.rest <span class="keyword">import</span> Client</span><br><span class="line"></span><br><span class="line">accountSID=<span class="string">'youraccounSID'</span></span><br><span class="line">authToken=<span class="string">'yourauthToken'</span></span><br><span class="line">myNumber=<span class="string">'+8618888888888'</span></span><br><span class="line">twilioNumber=<span class="string">'+15555555555'</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">textmyself</span><span class="params">(message)</span>:</span></span><br><span class="line">	twilioCli = Client(accountSID,authToken)</span><br><span class="line">	twilioCli.api.account.messages.create(body=message,from_=twilioNumber,to=myNumber)//python2</span><br><span class="line">	twilioCli.messages.create(body=message,from_=twilioNumber,to=myNumber)//python3</span><br></pre></td></tr></table></figure>
 <p>参数意义：</p>
 <p>body ：短信消息内容</p>
 <p>from_：twilio号码</p>
 <p>to:注册号码</p>
-<h3 id="使用API——阿里云短信服务"><a href="#使用API——阿里云短信服务" class="headerlink" title="使用API——阿里云短信服务"></a>使用API——阿里云短信服务</h3><p>前面所提到的twilio模块不适用于网站面向用户体的方式，但网站面向用户体发送短信是比较重要的。使用阿里云短信服务可以满足常见的应用场景的需求，比如用户的密码找回，短信验证码这些通常网站都需要的服务。而事实上，比较多的网站也是用阿里云的短信服务来支撑短信业务的。所以使用阿里云的短信服务可以完全满足个人使用。同时它弥补了twilio不能发送短信到陌生号码的短板，当然阿里的安全是做的相当好的，所以想给比人弄短信轰炸还是省省吧。阿里云短信服务是一项收费的服务，不过价格对于企业或则说对于个人开发者来说都是可以接受的，<a href="https://www.aliyun.com/price/product#/sms/detail" target="_blank" rel="external">价格表在这里</a>。</p>
-<h4 id="开始使用："><a href="#开始使用：" class="headerlink" title="开始使用："></a>开始使用：</h4><p>相比较twilio所提供的短信发送服务来说，阿里云短信服务较为复杂。下面将简单介绍一下如何使用阿里云短信服务发送短信。</p>
+<h3><span id="使用api阿里云短信服务">使用API——阿里云短信服务</span></h3><p>前面所提到的twilio模块不适用于网站面向用户体的方式，但网站面向用户体发送短信是比较重要的。使用阿里云短信服务可以满足常见的应用场景的需求，比如用户的密码找回，短信验证码这些通常网站都需要的服务。而事实上，比较多的网站也是用阿里云的短信服务来支撑短信业务的。所以使用阿里云的短信服务可以完全满足个人使用。同时它弥补了twilio不能发送短信到陌生号码的短板，当然阿里的安全是做的相当好的，所以想给比人弄短信轰炸还是省省吧。阿里云短信服务是一项收费的服务，不过价格对于企业或则说对于个人开发者来说都是可以接受的，<a href="https://www.aliyun.com/price/product#/sms/detail" target="_blank" rel="noopener">价格表在这里</a>。</p>
+<h4><span id="开始使用">开始使用：</span></h4><p>相比较twilio所提供的短信发送服务来说，阿里云短信服务较为复杂。下面将简单介绍一下如何使用阿里云短信服务发送短信。</p>
 <p>首先登录阿里云，在全部导航&gt;产品&gt;云通信&gt;短信服务找到短信服务进入口，进入后需先开通该服务，然后才可以管理短信服务。</p>
 <p><img src="http://ouyzqzdzy.bkt.clouddn.com/%E7%9F%AD%E4%BF%A1%E6%9C%8D%E5%8A%A1.jpg" alt="短信服务"></p>
-<h5 id="发送短信必须的条件："><a href="#发送短信必须的条件：" class="headerlink" title="发送短信必须的条件："></a>发送短信必须的条件：</h5><ul>
+<h5><span id="发送短信必须的条件">发送短信必须的条件：</span></h5><ul>
 <li>1.短信签名</li>
 <li>2.短信模板</li>
 <li>3.用户key</li>
 </ul>
 <p>首先需要设置短信签名和短信模板，短信签名和短信模板都需要认证，一般几十分钟即可认证完毕。新建签名和模板比较容易，阿里云已经给出了模板，按照自己所需填写完毕即可。</p>
-<p>然后到管理控制台记录下AccessKey和AccessKeySercet，用于填写到后面的程序中。准备好这些信息后，就可以按需调用接口了，接口的调用阿里云有比较完善的文档和程序注释，按照官方的文档和注释操作即可。笔者做了一个简单的应用实例，<a href="https://github.com/JamesBaiyong/pythonSMS/blob/master/SendSMSapp.py" target="_blank" rel="external">贴在这里</a>。这个实例的作用是记录特定的天数，查询当地的天气情况，然后发送到用户电话号码。</p>
+<p>然后到管理控制台记录下AccessKey和AccessKeySercet，用于填写到后面的程序中。准备好这些信息后，就可以按需调用接口了，接口的调用阿里云有比较完善的文档和程序注释，按照官方的文档和注释操作即可。笔者做了一个简单的应用实例，<a href="https://github.com/JamesBaiyong/pythonSMS/blob/master/SendSMSapp.py" target="_blank" rel="noopener">贴在这里</a>。这个实例的作用是记录特定的天数，查询当地的天气情况，然后发送到用户电话号码。</p>
 <p><img src="http://ouyzqzdzy.bkt.clouddn.com/keys.jpg" alt="key"></p>
-<p>做好以上的事情以后，调用短信服务的API(在短信服务&gt;短信服务概括底部)，可按需求选择不同的API接口,这里就选择“短信发送API python”。点进去是详细的<a href="https://help.aliyun.com/document_detail/55491.html?spm=5176.sms-account.**109.3.66e3621YjPqVO**" target="_blank" rel="external">文档说明</a>，这里有API使用的详细介绍，这里不做赘述。</p>
-<p><img src="http://ouyzqzdzy.bkt.clouddn.com/%E6%8E%A5%E5%8F%A3%E8%B0%83%E7%94%A8.jpg" alt=""></p>
+<p>做好以上的事情以后，调用短信服务的API(在短信服务&gt;短信服务概括底部)，可按需求选择不同的API接口,这里就选择“短信发送API python”。点进去是详细的<a href="https://help.aliyun.com/document_detail/55491.html?spm=5176.sms-account.**109.3.66e3621YjPqVO**" target="_blank" rel="noopener">文档说明</a>，这里有API使用的详细介绍，这里不做赘述。</p>
+<p><img src="http://ouyzqzdzy.bkt.clouddn.com/%E6%8E%A5%E5%8F%A3%E8%B0%83%E7%94%A8.jpg" alt></p>
 <p>这里需要注意的是，API调用传递变量的时候，需要把我们预先在短信模板上设置的变量赋值，然后转化为JSON格式，传递到调用的相应函数中，否则短信内容就是显示相应的变量名，而没有实际的值。</p>
 <p>值的转换案例：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#设置天数</span></div><div class="line">day_timedelta =datetime.datetime.now()- datetime.datetime(<span class="number">2016</span>,<span class="number">8</span>,<span class="number">25</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>)</div><div class="line">day=day_timedelta.days</div><div class="line"></div><div class="line"><span class="comment">#设置天气</span></div><div class="line">url =<span class="string">'https://free-api.heweather.com/v5/forecast?city=%s&amp;key=%s'</span> % (<span class="string">'yourcity'</span>,<span class="string">'yourkey'</span>)</div><div class="line">response = requests.get(url)</div><div class="line">response.raise_for_status()</div><div class="line">weatherDate = json.loads(response.text,encoding=<span class="string">'utf-8'</span>)</div><div class="line">w = weatherDate[<span class="string">"HeWeather5"</span>]</div><div class="line">weather=w[<span class="number">0</span>][<span class="string">'daily_forecast'</span>][<span class="number">0</span>][<span class="string">'cond'</span>][<span class="string">'txt_d'</span>]</div><div class="line"></div><div class="line"><span class="comment">#转换成python字典格式</span></div><div class="line">data = &#123;</div><div class="line">    <span class="string">'name'</span> : <span class="string">'someone'</span>,</div><div class="line">    <span class="string">'oday'</span> : day,</div><div class="line">    <span class="string">'weather'</span> : weather</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">#转换成JSON格式</span></div><div class="line">params = json.dumps(data)</div><div class="line"><span class="keyword">print</span> send_sms(__business_id, <span class="string">"180000000"</span>, <span class="string">"短信签名"</span>, <span class="string">"SMS_12365e"</span>, params)</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#设置天数</span></span><br><span class="line">day_timedelta =datetime.datetime.now()- datetime.datetime(<span class="number">2016</span>,<span class="number">8</span>,<span class="number">25</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>)</span><br><span class="line">day=day_timedelta.days</span><br><span class="line"></span><br><span class="line"><span class="comment">#设置天气</span></span><br><span class="line">url =<span class="string">'https://free-api.heweather.com/v5/forecast?city=%s&amp;key=%s'</span> % (<span class="string">'yourcity'</span>,<span class="string">'yourkey'</span>)</span><br><span class="line">response = requests.get(url)</span><br><span class="line">response.raise_for_status()</span><br><span class="line">weatherDate = json.loads(response.text,encoding=<span class="string">'utf-8'</span>)</span><br><span class="line">w = weatherDate[<span class="string">"HeWeather5"</span>]</span><br><span class="line">weather=w[<span class="number">0</span>][<span class="string">'daily_forecast'</span>][<span class="number">0</span>][<span class="string">'cond'</span>][<span class="string">'txt_d'</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">#转换成python字典格式</span></span><br><span class="line">data = &#123;</span><br><span class="line">    <span class="string">'name'</span> : <span class="string">'someone'</span>,</span><br><span class="line">    <span class="string">'oday'</span> : day,</span><br><span class="line">    <span class="string">'weather'</span> : weather</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#转换成JSON格式</span></span><br><span class="line">params = json.dumps(data)</span><br><span class="line"><span class="keyword">print</span> send_sms(__business_id, <span class="string">"180000000"</span>, <span class="string">"短信签名"</span>, <span class="string">"SMS_12365e"</span>, params)</span><br></pre></td></tr></table></figure>
 <p>做好这些事情后就可以发送短信了，写好触发事件就可以收到程序发来的短信了，想想生活当中的实例，这一项功能还是比较有意思的。</p>
-<h3 id="相关链接："><a href="#相关链接：" class="headerlink" title="相关链接："></a>相关链接：</h3><p><a href="https://dysms.console.aliyun.com/dysms.htm?spm=5176.sms-sign.101.6.3ad73f87o90vw3#/statistic" target="_blank" rel="external">短信服务</a></p>
-<p><a href="https://help.aliyun.com/document_detail/55491.html?spm=5176.sms-account.109.3.66e3621hCH9jl" target="_blank" rel="external">API</a></p>
-<p><a href="https://github.com/JamesBaiyong/pythonSMS/blob/master/SendSMSapp.py" target="_blank" rel="external">阿里云短信服务使用案例</a></p>
-<p><a href="https://github.com/JamesBaiyong/python_automte/tree/master/Email-SmS" target="_blank" rel="external">Twilio使用案例</a></p>
+<h3><span id="相关链接">相关链接：</span></h3><p><a href="https://dysms.console.aliyun.com/dysms.htm?spm=5176.sms-sign.101.6.3ad73f87o90vw3#/statistic" target="_blank" rel="noopener">短信服务</a></p>
+<p><a href="https://help.aliyun.com/document_detail/55491.html?spm=5176.sms-account.109.3.66e3621hCH9jl" target="_blank" rel="noopener">API</a></p>
+<p><a href="https://github.com/JamesBaiyong/pythonSMS/blob/master/SendSMSapp.py" target="_blank" rel="noopener">阿里云短信服务使用案例</a></p>
+<p><a href="https://github.com/JamesBaiyong/python_automte/tree/master/Email-SmS" target="_blank" rel="noopener">Twilio使用案例</a></p>
 
       
 
@@ -364,6 +371,7 @@
   
 
 
+
           </div>
         </div>
       </div>
@@ -466,18 +474,6 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">ES</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Elasticsearch</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
@@ -490,7 +486,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">web开发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">ES</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Elasticsearch</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -498,7 +510,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">web开发</a>
+                <a href="javascript:void(0)" class="js-tag color5">hero</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -506,19 +518,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hero</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">wsl</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">ubuntu</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color3">脚本</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -534,7 +534,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">脚本</a>
+                <a href="javascript:void(0)" class="js-tag color4">wsl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">ubuntu</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SMS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -550,15 +562,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SMS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">javascript动态页面</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">python - Numpy</a>
+                <a href="javascript:void(0)" class="js-tag color1">Numpy</a>
               </li>
             
             <div class="clearfix"></div>

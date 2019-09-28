@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>python系统监控--psutil | JamesBy博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -15,6 +15,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/06/11/python系统监控-psutil/index.html">
 <meta property="og:site_name" content="JamesBy博客">
 <meta property="og:description" content="I.前言​    这两日学习中，发现我养成了一个小小的强迫证，那就是当电脑运行过多的程序时，总会时不时打开任务管理器看看到底哪些程序比较吃内存和CPU。于是我google了一下如何写一个脚本来完成这项操作，然后发现了python的一个名为psutil的库文件,这个库文件可以直接打印出我所需要的CPU和内存信息。稍微了解了一下下，写到博客做备忘。 ​    由于个人学习情况不同，我这里仅仅简单介绍和">
+<meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/writeimg/blog/17061101.jpg">
 <meta property="og:image" content="http://yoursite.com/writeimg/blog/17061102.jpg">
 <meta property="og:image" content="http://yoursite.com/writeimg/blog/17061103.jpg">
@@ -33,6 +34,7 @@
     <link rel="icon" href="/blogimg/favicon.ico">
   
   <link rel="stylesheet" type="text/css" href="/./main.b3331d.css">
+
   <style type="text/css">
   
     #container.show {
@@ -56,7 +58,7 @@
         
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -179,12 +181,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="I-前言"><a href="#I-前言" class="headerlink" title="I.前言"></a>I.前言</h3><p>​    这两日学习中，发现我养成了一个小小的强迫证，那就是当电脑运行过多的程序时，总会时不时打开任务管理器看看到底哪些程序比较吃内存和CPU。于是我google了一下如何写一个脚本来完成这项操作，然后发现了python的一个名为psutil的库文件,这个库文件可以直接打印出我所需要的CPU和内存信息。稍微了解了一下下，写到博客做备忘。</p>
-<p>​    由于个人学习情况不同，我这里仅仅简单介绍和记录一些常用的操作，详细介绍和操作可以到<a href="https://pypi.python.org/pypi/psutil" target="_blank" rel="external">官网</a>和<a href="http://www.jianshu.com/p/64e265f663f6" target="_blank" rel="external">简书</a>查看学习。</p>
+        
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">I.前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">II.pustil介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">III.pustil简单操作</span></a></li></ol>
+    </div>
+    
+        <h3><span id="i前言">I.前言</span></h3><p>​    这两日学习中，发现我养成了一个小小的强迫证，那就是当电脑运行过多的程序时，总会时不时打开任务管理器看看到底哪些程序比较吃内存和CPU。于是我google了一下如何写一个脚本来完成这项操作，然后发现了python的一个名为psutil的库文件,这个库文件可以直接打印出我所需要的CPU和内存信息。稍微了解了一下下，写到博客做备忘。</p>
+<p>​    由于个人学习情况不同，我这里仅仅简单介绍和记录一些常用的操作，详细介绍和操作可以到<a href="https://pypi.python.org/pypi/psutil" target="_blank" rel="noopener">官网</a>和<a href="http://www.jianshu.com/p/64e265f663f6" target="_blank" rel="noopener">简书</a>查看学习。</p>
 <p><img src="\writeimg\blog\17061101.jpg" alt="配图"></p>
 <a id="more"></a>
-<h3 id="II-pustil介绍"><a href="#II-pustil介绍" class="headerlink" title="II.pustil介绍"></a>II.pustil介绍</h3><p>​    pustil是一个跨平台的进程管理和系统利用工具，可以处理CPU，内存，硬盘，网络，进程等信息。主要用于系统的监控，分析和限制进程资源。实现了许多我们熟知的命令行工具，比如：ps,top,ifconfig,netstat,free等，目前支持linux，windows，OSX，sun,Solaris, FreeBSD, OpenBSD and NetBSD操作系统。最新版本只支持python2.6到python3.6。</p>
-<h3 id="III-pustil简单操作"><a href="#III-pustil简单操作" class="headerlink" title="III.pustil简单操作"></a>III.pustil简单操作</h3><p>​    CPU模块：比较关心的就是CPU使用率，pustil提供了函数psutil.cpu_percent()来读取。该函数有两个参数，分别是interval和percpu分别代表时间（秒），CPU核数当值为True会返回每一个CPU的利用率。</p>
+<h3><span id="iipustil介绍">II.pustil介绍</span></h3><p>​    pustil是一个跨平台的进程管理和系统利用工具，可以处理CPU，内存，硬盘，网络，进程等信息。主要用于系统的监控，分析和限制进程资源。实现了许多我们熟知的命令行工具，比如：ps,top,ifconfig,netstat,free等，目前支持linux，windows，OSX，sun,Solaris, FreeBSD, OpenBSD and NetBSD操作系统。最新版本只支持python2.6到python3.6。</p>
+<h3><span id="iiipustil简单操作">III.pustil简单操作</span></h3><p>​    CPU模块：比较关心的就是CPU使用率，pustil提供了函数psutil.cpu_percent()来读取。该函数有两个参数，分别是interval和percpu分别代表时间（秒），CPU核数当值为True会返回每一个CPU的利用率。</p>
 <p><img src="\writeimg\blog\17061102.jpg" alt="CPU"></p>
 <p>​    内存模块：这个模块首先关心的是占用情况和占用率，pustil在内存模块提供了一个函数就可以解决这些我们想要知道的信息，函数psutil.virtual_memory()将返回一个内存信息元祖，大小为字节，其中包含内存的总大小，可以分配的内存大小（不同的系统计算方式不同，linux下的计算方式是free+buffers+cached），使用率，已经用掉的内存大小，空闲未用的大小在linux中不包含buffers和cached。</p>
 <p><img src="\writeimg\blog\17061103.jpg" alt="内存"></p>
@@ -336,6 +343,7 @@
   
 
 
+
           </div>
         </div>
       </div>
@@ -438,18 +446,6 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">ES</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Elasticsearch</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
@@ -462,7 +458,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">web开发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">ES</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Elasticsearch</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -470,7 +482,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">web开发</a>
+                <a href="javascript:void(0)" class="js-tag color5">hero</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -478,19 +490,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hero</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">wsl</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">ubuntu</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color3">脚本</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -506,7 +506,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">脚本</a>
+                <a href="javascript:void(0)" class="js-tag color4">wsl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">ubuntu</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SMS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -522,15 +534,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SMS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">javascript动态页面</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">python - Numpy</a>
+                <a href="javascript:void(0)" class="js-tag color1">Numpy</a>
               </li>
             
             <div class="clearfix"></div>

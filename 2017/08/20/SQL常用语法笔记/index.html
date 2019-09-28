@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>SQL常用语法笔记 | JamesBy博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -15,6 +15,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/08/20/SQL常用语法笔记/index.html">
 <meta property="og:site_name" content="JamesBy博客">
 <meta property="og:description" content="SQL基础笔记该笔记是参考菜鸟教程上的SQL学习笔记，将SQL语句做了简单的整理，这篇是基础的SQL语句操作。主要涵盖基本的增删改查。 准备：导入sql文件到mysql">
+<meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://ouyzqzdzy.bkt.clouddn.com/database.png">
 <meta property="og:image" content="http://ouyzqzdzy.bkt.clouddn.com/tishi.png">
 <meta property="og:image" content="http://ouyzqzdzy.bkt.clouddn.com/tishi.png">
@@ -31,6 +32,7 @@
     <link rel="icon" href="/blogimg/favicon.ico">
   
   <link rel="stylesheet" type="text/css" href="/./main.b3331d.css">
+
   <style type="text/css">
   
     #container.show {
@@ -54,7 +56,7 @@
         
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -177,14 +179,19 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="http://ouyzqzdzy.bkt.clouddn.com/database.png" alt=""></p>
-<h3 id="SQL基础笔记"><a href="#SQL基础笔记" class="headerlink" title="SQL基础笔记"></a>SQL基础笔记</h3><p>该笔记是参考<a href="http://www.runoob.com/sql/sql-tutorial.html" target="_blank" rel="external">菜鸟教程</a>上的SQL学习笔记，将SQL语句做了简单的整理，这篇是基础的SQL语句操作。主要涵盖基本的增删改查。</p>
-<h4 id="准备："><a href="#准备：" class="headerlink" title="准备："></a>准备：</h4><p>导入sql文件到mysql</p>
+        
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">SQL基础笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">准备：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">一些重要的SQL命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">SQL基本的增删改查</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-text">查 SELECT</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#null"><span class="toc-text">where字句的运算符</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#null"><span class="toc-text">模糊查询的字符串意义</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-text">增 INSERT INTO</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-text">改 UPDATE</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-text">删 DELETE</span></a></li></ol></li></ol></li></ol>
+    </div>
+    
+        <p><img src="http://ouyzqzdzy.bkt.clouddn.com/database.png" alt></p>
+<h3><span id="sql基础笔记">SQL基础笔记</span></h3><p>该笔记是参考<a href="http://www.runoob.com/sql/sql-tutorial.html" target="_blank" rel="noopener">菜鸟教程</a>上的SQL学习笔记，将SQL语句做了简单的整理，这篇是基础的SQL语句操作。主要涵盖基本的增删改查。</p>
+<h4><span id="准备">准备：</span></h4><p>导入sql文件到mysql</p>
 <a id="more"></a>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">source d:/websites.sql;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source d:/websites.sql;</span><br></pre></td></tr></table></figure>
 <p>在mysql中创建案例表</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">CREATE TABLE IF NOT EXISTS `table_name`(</div><div class="line">   `id` INT UNSIGNED AUTO_INCREMENT,</div><div class="line">   `title` VARCHAR(100) NOT NULL,</div><div class="line">   `author` VARCHAR(40) NOT NULL,</div><div class="line">   `date` DATE,</div><div class="line">   PRIMARY KEY ( `id` )</div><div class="line">)ENGINE=InnoDB DEFAULT CHARSET=utf8;</div></pre></td></tr></table></figure>
-<h4 id="一些重要的SQL命令"><a href="#一些重要的SQL命令" class="headerlink" title="一些重要的SQL命令"></a>一些重要的SQL命令</h4><ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE IF NOT EXISTS `table_name`(</span><br><span class="line">   `id` INT UNSIGNED AUTO_INCREMENT,</span><br><span class="line">   `title` VARCHAR(100) NOT NULL,</span><br><span class="line">   `author` VARCHAR(40) NOT NULL,</span><br><span class="line">   `date` DATE,</span><br><span class="line">   PRIMARY KEY ( `id` )</span><br><span class="line">)ENGINE=InnoDB DEFAULT CHARSET=utf8;</span><br></pre></td></tr></table></figure>
+<h4><span id="一些重要的sql命令">一些重要的SQL命令</span></h4><ul>
 <li><strong>SELECT</strong> - 从数据库中提取数据</li>
 <li><strong>UPDATE</strong> - 更新数据库中的数据</li>
 <li><strong>DELETE</strong> - 从数据库中删除数据</li>
@@ -197,8 +204,8 @@
 <li><strong>CREATE INDEX</strong> - 创建索引（搜索键）</li>
 <li><strong>DROP INDEX</strong> - 删除索引</li>
 </ul>
-<h4 id="SQL基本的增删改查"><a href="#SQL基本的增删改查" class="headerlink" title="SQL基本的增删改查"></a>SQL基本的增删改查</h4><h5 id="查-SELECT"><a href="#查-SELECT" class="headerlink" title="查 SELECT"></a>查 SELECT</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">select * from table_name;  //查全表</div><div class="line">select name,id table_name;  //查指定的列的内容</div><div class="line">select distinct column_name from table_name; //查询指定列中唯一不同的值</div><div class="line">select * from table_name where column_name operator values ; //按照条件查询查询</div><div class="line">select * from tabl_ename where column_name operator values and[or] column_name operator valueslexa; //AND查询，必须满足两个条件,or 查询，两个条件满足一个即可，同时and和or可以组合起来查询，一般使用（）组合复杂语句</div><div class="line">select * from tablename order by column_name,column_name ASC|DESC; //按照什么列的升序或则降序查询,可同时按照多列排序查询</div></pre></td></tr></table></figure>
-<h6 id="where字句的运算符"><a href="#where字句的运算符" class="headerlink" title="where字句的运算符"></a>where字句的运算符</h6><table>
+<h4><span id="sql基本的增删改查">SQL基本的增删改查</span></h4><h5><span id="查-select">查 SELECT</span></h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">select * from table_name;  //查全表</span><br><span class="line">select name,id table_name;  //查指定的列的内容</span><br><span class="line">select distinct column_name from table_name; //查询指定列中唯一不同的值</span><br><span class="line">select * from table_name where column_name operator values ; //按照条件查询查询</span><br><span class="line">select * from tabl_ename where column_name operator values and[or] column_name operator valueslexa; //AND查询，必须满足两个条件,or 查询，两个条件满足一个即可，同时and和or可以组合起来查询，一般使用（）组合复杂语句</span><br><span class="line">select * from tablename order by column_name,column_name ASC|DESC; //按照什么列的升序或则降序查询,可同时按照多列排序查询</span><br></pre></td></tr></table></figure>
+<h6><span id="where字句的运算符">where字句的运算符</span></h6><table>
 <thead>
 <tr>
 <th>运算符</th>
@@ -244,17 +251,17 @@
 </tr>
 </tbody>
 </table>
-<h6 id="模糊查询的字符串意义"><a href="#模糊查询的字符串意义" class="headerlink" title="模糊查询的字符串意义"></a>模糊查询的字符串意义</h6><ul>
+<h6><span id="模糊查询的字符串意义">模糊查询的字符串意义</span></h6><ul>
 <li><strong>%</strong>: 表示多个字值，<strong>_</strong> 下划线表示一个字符。</li>
 <li><strong>M%</strong> : 为能配符，正则表达式，表示的意思为模糊查询信息为 M 开头的。</li>
 <li><strong>%M%</strong> : 表示查询包含M的所有内容。</li>
 <li><strong>%M_ </strong>: 表示查询以M在倒数第二位的所有内容。</li>
 </ul>
-<h5 id="增-INSERT-INTO"><a href="#增-INSERT-INTO" class="headerlink" title="增 INSERT INTO"></a>增 INSERT INTO</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">INSERT INTO table_name VALUES (value1,value2,value3,...); //按照表的列结构增加内容</div><div class="line">INSERT INTO table_name (column1,column2,column3,...) VALUES (value1,value2,value3,...); //按照指定的列增加内容，允许有空值</div></pre></td></tr></table></figure>
+<h5><span id="增-insert-into">增 INSERT INTO</span></h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO table_name VALUES (value1,value2,value3,...); //按照表的列结构增加内容</span><br><span class="line">INSERT INTO table_name (column1,column2,column3,...) VALUES (value1,value2,value3,...); //按照指定的列增加内容，允许有空值</span><br></pre></td></tr></table></figure>
 <p><img src="http://ouyzqzdzy.bkt.clouddn.com/tishi.png" alt="注意">通常ID列是自动更新的，表中的每条记录都有一个唯一的数字，在添加的时候大部分时候不用管。</p>
-<h5 id="改-UPDATE"><a href="#改-UPDATE" class="headerlink" title="改 UPDATE"></a>改 UPDATE</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">UPDATE table_name SET column1=value1,column2=value2,... WHERE some_column=some_value //修改where字句里面的条件的列内如</div></pre></td></tr></table></figure>
+<h5><span id="改-update">改 UPDATE</span></h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UPDATE table_name SET column1=value1,column2=value2,... WHERE some_column=some_value //修改where字句里面的条件的列内如</span><br></pre></td></tr></table></figure>
 <p><img src="http://ouyzqzdzy.bkt.clouddn.com/tishi.png" alt="注意">需要特别注意的是WHERE 子句规定哪条记录或者哪些记录需要更新。如果您省略了 WHERE 子句，所有的记录都将被更新！执行没有WHERE字句的语句时需要特别慎重。</p>
-<h5 id="删-DELETE"><a href="#删-DELETE" class="headerlink" title="删 DELETE"></a>删 DELETE</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">DELETE FROM table_name WHERE some_column=some_value; //删除满足where字句条件里面指定的项</div></pre></td></tr></table></figure>
+<h5><span id="删-delete">删 DELETE</span></h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DELETE FROM table_name WHERE some_column=some_value; //删除满足where字句条件里面指定的项</span><br></pre></td></tr></table></figure>
 <p> <img src="http://ouyzqzdzy.bkt.clouddn.com/tishi.png" alt="提示"> WHERE 子句规定哪条记录或者哪些记录需要删除。如果省略了 WHERE 子句，所有的记录都将被删除！ </p>
 <p>不使用WHERE字句会把表中的数据全部删除完，保留表的结构。</p>
 
@@ -396,6 +403,7 @@
   
 
 
+
           </div>
         </div>
       </div>
@@ -498,18 +506,6 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">ES</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Elasticsearch</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
@@ -522,7 +518,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">web开发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">ES</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Elasticsearch</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -530,7 +542,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">web开发</a>
+                <a href="javascript:void(0)" class="js-tag color5">hero</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -538,19 +550,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hero</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">wsl</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">ubuntu</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color3">脚本</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -566,7 +566,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">脚本</a>
+                <a href="javascript:void(0)" class="js-tag color4">wsl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">ubuntu</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SMS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -582,15 +594,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SMS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">javascript动态页面</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">python - Numpy</a>
+                <a href="javascript:void(0)" class="js-tag color1">Numpy</a>
               </li>
             
             <div class="clearfix"></div>

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Flask开发猜数字网页游戏 | JamesBy博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -15,6 +15,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/08/22/Flask开发猜数字网页游戏/index.html">
 <meta property="og:site_name" content="JamesBy博客">
 <meta property="og:description" content="使用Flask开发一款猜数字网页游戏这个小项目是参考这个项目完成的，参考的对应文章在这里。项目很简单，能很快了解到Flask的路由，模板，以及相关的表单知识。整个项目我自己重写了一遍，原项目功能相同，只在前端做了些修改。 项目结构：">
+<meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://ouyzqzdzy.bkt.clouddn.com/%E7%8C%9C%E6%95%B0%E5%AD%97%E6%B8%B8%E6%88%8F.jpg">
 <meta property="og:image" content="http://ouyzqzdzy.bkt.clouddn.com/%E6%95%B0%E5%AD%97%E5%88%A4%E6%96%AD.jpg">
 <meta property="og:image" content="http://ouyzqzdzy.bkt.clouddn.com/%E9%94%99%E8%AF%AF%E6%A3%80%E6%B5%8B.jpg">
@@ -30,6 +31,7 @@
     <link rel="icon" href="/blogimg/favicon.ico">
   
   <link rel="stylesheet" type="text/css" href="/./main.b3331d.css">
+
   <style type="text/css">
   
     #container.show {
@@ -53,7 +55,7 @@
         
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -176,32 +178,37 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="http://ouyzqzdzy.bkt.clouddn.com/%E7%8C%9C%E6%95%B0%E5%AD%97%E6%B8%B8%E6%88%8F.jpg" alt=""></p>
-<h3 id="使用Flask开发一款猜数字网页游戏"><a href="#使用Flask开发一款猜数字网页游戏" class="headerlink" title="使用Flask开发一款猜数字网页游戏"></a>使用Flask开发一款猜数字网页游戏</h3><p>这个小项目是参考<a href="https://github.com/helloflask/guess" target="_blank" rel="external">这个项目</a>完成的，参考的对应文章<a href="https://zhuanlan.zhihu.com/p/23340992" target="_blank" rel="external">在这里</a>。项目很简单，能很快了解到Flask的路由，模板，以及相关的表单知识。整个项目我自己重写了一遍，原项目功能相同，只在前端做了些修改。</p>
-<h4 id="项目结构："><a href="#项目结构：" class="headerlink" title="项目结构："></a>项目结构：</h4><a id="more"></a>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">└─guess number</div><div class="line">    │  app.py</div><div class="line">    │  README.md</div><div class="line">    │</div><div class="line">    ├─static</div><div class="line">    │      base.main.css</div><div class="line">    │      bootstrap.min.css</div><div class="line">    │      bootstrap.min.js</div><div class="line">    │      favicon.ico</div><div class="line">    │      jquery.min.js</div><div class="line">    │</div><div class="line">    └─templates</div><div class="line">            base.html</div><div class="line">            guess.html</div><div class="line">            index.html</div></pre></td></tr></table></figure>
-<h4 id="项目安装包："><a href="#项目安装包：" class="headerlink" title="项目安装包："></a>项目安装包：</h4><p>click==6.7<br>Flask==0.12.2<br>Flask-Bootstrap==3.0.3.1<br>Flask-WTF==0.12<br>itsdangerous==0.24<br>Jinja2==2.9.6<br>MarkupSafe==1.0<br>Werkzeug==0.12.2<br>WTForms==2.1</p>
-<h3 id="用到和复习到的知识点"><a href="#用到和复习到的知识点" class="headerlink" title="用到和复习到的知识点"></a>用到和复习到的知识点</h3><h4 id="前端方面："><a href="#前端方面：" class="headerlink" title="前端方面："></a>前端方面：</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="selector-tag">--</span>使<span class="selector-tag">DIV</span>在整个<span class="selector-tag">body</span>居中<span class="selector-tag">--</span>&gt;</div><div class="line"> <span class="selector-tag">width</span>: 50%;</div><div class="line"> <span class="selector-tag">margin</span>: 10% <span class="selector-tag">auto</span>;</div><div class="line"> &lt;<span class="selector-tag">--</span>给<span class="selector-tag">DIV</span>加上边框盒子阴影效果<span class="selector-tag">--</span>&gt;</div><div class="line"> <span class="selector-tag">box-shadow</span><span class="selector-pseudo">:0</span> 1<span class="selector-class">.5em</span> 0<span class="selector-class">.5em</span> <span class="selector-tag">-1em</span> <span class="selector-tag">olive</span>;;</div></pre></td></tr></table></figure>
-<h4 id="后台方面"><a href="#后台方面" class="headerlink" title="后台方面"></a>后台方面</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask,session,render_template,flash,redirect,url_for</div><div class="line"><span class="keyword">from</span> flask_wtf <span class="keyword">import</span> Form</div><div class="line"><span class="keyword">from</span> wtforms <span class="keyword">import</span>  IntegerField,SubmitField</div><div class="line"><span class="keyword">from</span> wtforms.validators <span class="keyword">import</span> Required,NumberRange</div><div class="line"><span class="keyword">from</span> flask_bootstrap <span class="keyword">import</span>  Bootstrap</div></pre></td></tr></table></figure>
+        
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">使用Flask开发一款猜数字网页游戏</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">项目结构：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">项目安装包：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">用到和复习到的知识点</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">前端方面：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">后台方面</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">后台业务逻辑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">表单</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">模板渲染</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">参考连接</span></a></li></ol>
+    </div>
+    
+        <p><img src="http://ouyzqzdzy.bkt.clouddn.com/%E7%8C%9C%E6%95%B0%E5%AD%97%E6%B8%B8%E6%88%8F.jpg" alt></p>
+<h3><span id="使用flask开发一款猜数字网页游戏">使用Flask开发一款猜数字网页游戏</span></h3><p>这个小项目是参考<a href="https://github.com/helloflask/guess" target="_blank" rel="noopener">这个项目</a>完成的，参考的对应文章<a href="https://zhuanlan.zhihu.com/p/23340992" target="_blank" rel="noopener">在这里</a>。项目很简单，能很快了解到Flask的路由，模板，以及相关的表单知识。整个项目我自己重写了一遍，原项目功能相同，只在前端做了些修改。</p>
+<h4><span id="项目结构">项目结构：</span></h4><a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">└─guess number</span><br><span class="line">    │  app.py</span><br><span class="line">    │  README.md</span><br><span class="line">    │</span><br><span class="line">    ├─static</span><br><span class="line">    │      base.main.css</span><br><span class="line">    │      bootstrap.min.css</span><br><span class="line">    │      bootstrap.min.js</span><br><span class="line">    │      favicon.ico</span><br><span class="line">    │      jquery.min.js</span><br><span class="line">    │</span><br><span class="line">    └─templates</span><br><span class="line">            base.html</span><br><span class="line">            guess.html</span><br><span class="line">            index.html</span><br></pre></td></tr></table></figure>
+<h4><span id="项目安装包">项目安装包：</span></h4><p>click==6.7<br>Flask==0.12.2<br>Flask-Bootstrap==3.0.3.1<br>Flask-WTF==0.12<br>itsdangerous==0.24<br>Jinja2==2.9.6<br>MarkupSafe==1.0<br>Werkzeug==0.12.2<br>WTForms==2.1</p>
+<h3><span id="用到和复习到的知识点">用到和复习到的知识点</span></h3><h4><span id="前端方面">前端方面：</span></h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="selector-tag">--</span>使<span class="selector-tag">DIV</span>在整个<span class="selector-tag">body</span>居中<span class="selector-tag">--</span>&gt;</span><br><span class="line"> <span class="selector-tag">width</span>: 50%;</span><br><span class="line"> <span class="selector-tag">margin</span>: 10% <span class="selector-tag">auto</span>;</span><br><span class="line"> &lt;<span class="selector-tag">--</span>给<span class="selector-tag">DIV</span>加上边框盒子阴影效果<span class="selector-tag">--</span>&gt;</span><br><span class="line"> <span class="selector-tag">box-shadow</span><span class="selector-pseudo">:0</span> 1<span class="selector-class">.5em</span> 0<span class="selector-class">.5em</span> <span class="selector-tag">-1em</span> <span class="selector-tag">olive</span>;;</span><br></pre></td></tr></table></figure>
+<h4><span id="后台方面">后台方面</span></h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask,session,render_template,flash,redirect,url_for</span><br><span class="line"><span class="keyword">from</span> flask_wtf <span class="keyword">import</span> Form</span><br><span class="line"><span class="keyword">from</span> wtforms <span class="keyword">import</span>  IntegerField,SubmitField</span><br><span class="line"><span class="keyword">from</span> wtforms.validators <span class="keyword">import</span> Required,NumberRange</span><br><span class="line"><span class="keyword">from</span> flask_bootstrap <span class="keyword">import</span>  Bootstrap</span><br></pre></td></tr></table></figure>
 <p>flash:Flash消息，是flask的核心特性，flash()函数实现</p>
 <p>redurect:重定向</p>
 <p>session:session会话</p>
 <p>IntegerField:数字表单</p>
 <p>SubmitField:提交表单</p>
 <p>validators：指定错误信息，使用Required,NumberRange可对输入框做检查</p>
-<h3 id="后台业务逻辑"><a href="#后台业务逻辑" class="headerlink" title="后台业务逻辑"></a>后台业务逻辑</h3><p>使用session获取和保存由random函数随机生成的整数，设置竞猜次数。再由指向guess的路由里guess()函数做整个逻辑判断，首先获取到session中的竞猜数值和竞猜次数，验证竞猜次数是否为0，为0则结束游戏，不为0则判断输入的值于随机获取的值的大小关系，并给出相应提示，直到游戏结束或则游戏胜利。注意，guess页面的竞猜按钮点击后触发函数的相应事件。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@app.route('/')</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span><span class="params">()</span>:</span></div><div class="line">	<span class="comment">#使用flask的session设置猜数字的值和竞猜次数</span></div><div class="line">	session[<span class="string">'number'</span>] = random.randint(<span class="number">0</span>,<span class="number">1000</span>)</div><div class="line">	session[<span class="string">'times'</span>] = <span class="number">10</span></div><div class="line">	<span class="keyword">return</span> render_template(<span class="string">'index.html'</span>)</div><div class="line">	</div><div class="line"><span class="meta">@app.route('/guess',methods=['GET','POST'])</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">guess</span><span class="params">()</span>:</span></div><div class="line">	<span class="comment">#猜数字的整个逻辑判断</span></div><div class="line">	times=session[<span class="string">'times'</span>]</div><div class="line">	result = session.get(<span class="string">'number'</span>)</div><div class="line">	<span class="comment"># print result</span></div><div class="line">	form=GuessNumberForm()</div><div class="line">	<span class="keyword">if</span> form.validate_on_submit():</div><div class="line">		times-=<span class="number">1</span></div><div class="line">		session[<span class="string">'times'</span>]=times</div><div class="line">		<span class="keyword">if</span> times==<span class="number">0</span>:</div><div class="line">			flash(<span class="string">'GAME OVER --'</span>)</div><div class="line">			<span class="keyword">return</span> redirect(url_for(<span class="string">'index'</span>))</div><div class="line">		answer = form.number.data</div><div class="line">		<span class="keyword">if</span> answer &gt; result:</div><div class="line">			flash(<span class="string">u'太大了！你还剩下%s次机会'</span>%times)</div><div class="line">		<span class="keyword">elif</span> answer &lt; result:</div><div class="line">			flash(<span class="string">u'太小了！你还剩下%s次机会'</span>%times)</div><div class="line">		<span class="keyword">else</span>:</div><div class="line">			flash(<span class="string">u'你真聪明，仅仅用了%s次机会'</span>%(<span class="number">10</span>-times))</div><div class="line">			<span class="keyword">return</span> redirect(url_for(<span class="string">'index'</span>))</div><div class="line">		<span class="keyword">return</span> redirect(url_for(<span class="string">'guess'</span>))</div><div class="line">	<span class="keyword">return</span> render_template(<span class="string">'guess.html'</span>,form=form)</div></pre></td></tr></table></figure>
-<p><img src="http://ouyzqzdzy.bkt.clouddn.com/%E6%95%B0%E5%AD%97%E5%88%A4%E6%96%AD.jpg" alt=""></p>
-<h3 id="表单"><a href="#表单" class="headerlink" title="表单"></a>表单</h3><p>定义了GuessNumberForm表单类，在其中实现用户竞猜的数字和完成验证，同时对用户输入做合法性检测。使用到Required和NumberRange函数。IntegerField实现输入的值为数值，NumberRange实现指定输入的数值大小。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">GuessNumberForm</span><span class="params">(Form)</span>:</span></div><div class="line">	<span class="comment">#猜数字的表单</span></div><div class="line">	number = IntegerField(<span class="string">u'输入0-1000的数字！'</span>,validators=[<span class="comment">#检测表单填写是否符合标准</span></div><div class="line">		Required(<span class="string">u'输入有效数字！'</span>),</div><div class="line">		NumberRange(<span class="number">0</span>,<span class="number">1000</span>,<span class="string">u'输入0-1000之间的数字'</span>)])</div><div class="line">	submit=SubmitField(<span class="string">u'一定是这个数字'</span>)</div></pre></td></tr></table></figure>
-<p><img src="http://ouyzqzdzy.bkt.clouddn.com/%E9%94%99%E8%AF%AF%E6%A3%80%E6%B5%8B.jpg" alt=""></p>
-<h3 id="模板渲染"><a href="#模板渲染" class="headerlink" title="模板渲染"></a>模板渲染</h3><p>默认情况下，Flask在程序文件夹中的templates文件中寻找模板，当然可以自己指定。Flask提供的render_template函数把Jinja2模板引擎集成到了程序中。render_template函数的第一个参数是模板的文件名，随后的参数都是键值对，表示模板中变量对应的真实值。当相应的变量和真实值的时候亦可不用该参数。</p>
-<p>本项目的原作者在知乎有篇介绍的很好的文章，<a href="https://zhuanlan.zhihu.com/p/23669244" target="_blank" rel="external">在这里</a>。</p>
-<h3 id="参考连接"><a href="#参考连接" class="headerlink" title="参考连接"></a>参考连接</h3><ul>
-<li><a href="http://docs.jinkan.org/docs/flask/quickstart.html#quickstart" target="_blank" rel="external">中文Flask官方文档</a></li>
-<li><a href="http://docs.jinkan.org/docs/jinja2/" target="_blank" rel="external">中文Jiaja2官方文档</a></li>
-<li><a href="https://github.com/helloflask/guess" target="_blank" rel="external">原项目</a></li>
-<li><a href="https://zhuanlan.zhihu.com/p/23340992" target="_blank" rel="external">参考文</a></li>
+<h3><span id="后台业务逻辑">后台业务逻辑</span></h3><p>使用session获取和保存由random函数随机生成的整数，设置竞猜次数。再由指向guess的路由里guess()函数做整个逻辑判断，首先获取到session中的竞猜数值和竞猜次数，验证竞猜次数是否为0，为0则结束游戏，不为0则判断输入的值于随机获取的值的大小关系，并给出相应提示，直到游戏结束或则游戏胜利。注意，guess页面的竞猜按钮点击后触发函数的相应事件。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.route('/')</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span><span class="params">()</span>:</span></span><br><span class="line">	<span class="comment">#使用flask的session设置猜数字的值和竞猜次数</span></span><br><span class="line">	session[<span class="string">'number'</span>] = random.randint(<span class="number">0</span>,<span class="number">1000</span>)</span><br><span class="line">	session[<span class="string">'times'</span>] = <span class="number">10</span></span><br><span class="line">	<span class="keyword">return</span> render_template(<span class="string">'index.html'</span>)</span><br><span class="line">	</span><br><span class="line"><span class="meta">@app.route('/guess',methods=['GET','POST'])</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">guess</span><span class="params">()</span>:</span></span><br><span class="line">	<span class="comment">#猜数字的整个逻辑判断</span></span><br><span class="line">	times=session[<span class="string">'times'</span>]</span><br><span class="line">	result = session.get(<span class="string">'number'</span>)</span><br><span class="line">	<span class="comment"># print result</span></span><br><span class="line">	form=GuessNumberForm()</span><br><span class="line">	<span class="keyword">if</span> form.validate_on_submit():</span><br><span class="line">		times-=<span class="number">1</span></span><br><span class="line">		session[<span class="string">'times'</span>]=times</span><br><span class="line">		<span class="keyword">if</span> times==<span class="number">0</span>:</span><br><span class="line">			flash(<span class="string">'GAME OVER --'</span>)</span><br><span class="line">			<span class="keyword">return</span> redirect(url_for(<span class="string">'index'</span>))</span><br><span class="line">		answer = form.number.data</span><br><span class="line">		<span class="keyword">if</span> answer &gt; result:</span><br><span class="line">			flash(<span class="string">u'太大了！你还剩下%s次机会'</span>%times)</span><br><span class="line">		<span class="keyword">elif</span> answer &lt; result:</span><br><span class="line">			flash(<span class="string">u'太小了！你还剩下%s次机会'</span>%times)</span><br><span class="line">		<span class="keyword">else</span>:</span><br><span class="line">			flash(<span class="string">u'你真聪明，仅仅用了%s次机会'</span>%(<span class="number">10</span>-times))</span><br><span class="line">			<span class="keyword">return</span> redirect(url_for(<span class="string">'index'</span>))</span><br><span class="line">		<span class="keyword">return</span> redirect(url_for(<span class="string">'guess'</span>))</span><br><span class="line">	<span class="keyword">return</span> render_template(<span class="string">'guess.html'</span>,form=form)</span><br></pre></td></tr></table></figure>
+<p><img src="http://ouyzqzdzy.bkt.clouddn.com/%E6%95%B0%E5%AD%97%E5%88%A4%E6%96%AD.jpg" alt></p>
+<h3><span id="表单">表单</span></h3><p>定义了GuessNumberForm表单类，在其中实现用户竞猜的数字和完成验证，同时对用户输入做合法性检测。使用到Required和NumberRange函数。IntegerField实现输入的值为数值，NumberRange实现指定输入的数值大小。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GuessNumberForm</span><span class="params">(Form)</span>:</span></span><br><span class="line">	<span class="comment">#猜数字的表单</span></span><br><span class="line">	number = IntegerField(<span class="string">u'输入0-1000的数字！'</span>,validators=[<span class="comment">#检测表单填写是否符合标准</span></span><br><span class="line">		Required(<span class="string">u'输入有效数字！'</span>),</span><br><span class="line">		NumberRange(<span class="number">0</span>,<span class="number">1000</span>,<span class="string">u'输入0-1000之间的数字'</span>)])</span><br><span class="line">	submit=SubmitField(<span class="string">u'一定是这个数字'</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="http://ouyzqzdzy.bkt.clouddn.com/%E9%94%99%E8%AF%AF%E6%A3%80%E6%B5%8B.jpg" alt></p>
+<h3><span id="模板渲染">模板渲染</span></h3><p>默认情况下，Flask在程序文件夹中的templates文件中寻找模板，当然可以自己指定。Flask提供的render_template函数把Jinja2模板引擎集成到了程序中。render_template函数的第一个参数是模板的文件名，随后的参数都是键值对，表示模板中变量对应的真实值。当相应的变量和真实值的时候亦可不用该参数。</p>
+<p>本项目的原作者在知乎有篇介绍的很好的文章，<a href="https://zhuanlan.zhihu.com/p/23669244" target="_blank" rel="noopener">在这里</a>。</p>
+<h3><span id="参考连接">参考连接</span></h3><ul>
+<li><a href="http://docs.jinkan.org/docs/flask/quickstart.html#quickstart" target="_blank" rel="noopener">中文Flask官方文档</a></li>
+<li><a href="http://docs.jinkan.org/docs/jinja2/" target="_blank" rel="noopener">中文Jiaja2官方文档</a></li>
+<li><a href="https://github.com/helloflask/guess" target="_blank" rel="noopener">原项目</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/23340992" target="_blank" rel="noopener">参考文</a></li>
 </ul>
 
       
@@ -350,6 +357,7 @@
   
 
 
+
           </div>
         </div>
       </div>
@@ -452,18 +460,6 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">ES</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Elasticsearch</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
@@ -476,7 +472,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">web开发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">ES</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Elasticsearch</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -484,7 +496,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">web开发</a>
+                <a href="javascript:void(0)" class="js-tag color5">hero</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -492,19 +504,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hero</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">wsl</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">ubuntu</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color3">脚本</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -520,7 +520,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">脚本</a>
+                <a href="javascript:void(0)" class="js-tag color4">wsl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">ubuntu</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SMS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -536,15 +548,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SMS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">javascript动态页面</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">python - Numpy</a>
+                <a href="javascript:void(0)" class="js-tag color1">Numpy</a>
               </li>
             
             <div class="clearfix"></div>

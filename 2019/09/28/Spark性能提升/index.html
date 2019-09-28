@@ -6,18 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>JamesBy博客</title>
+  <title>Spark性能提升 | JamesBy博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="个人博客，hexo+github">
-<meta property="og:type" content="website">
-<meta property="og:title" content="JamesBy博客">
-<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+  <meta name="description" content="[TOC] 1. spark-submit参数调优1.1spark运行原理: 1.1.1资源申请spark-submit提交作业后会根据部署模式不同，选择在本地或者集群节点启动Driver进程。由Driver进程向集群管理器，这里是Yran，请求作业运行所需的资源，这里的资源即作业所需的executor。Yarn根据提交的参数，在各节点启动一定数量的executor。">
+<meta name="keywords" content="spark,大数据">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spark性能提升">
+<meta property="og:url" content="http://yoursite.com/2019/09/28/Spark性能提升/index.html">
 <meta property="og:site_name" content="JamesBy博客">
-<meta property="og:description" content="个人博客，hexo+github">
+<meta property="og:description" content="[TOC] 1. spark-submit参数调优1.1spark运行原理: 1.1.1资源申请spark-submit提交作业后会根据部署模式不同，选择在本地或者集群节点启动Driver进程。由Driver进程向集群管理器，这里是Yran，请求作业运行所需的资源，这里的资源即作业所需的executor。Yarn根据提交的参数，在各节点启动一定数量的executor。">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/006y8mN6ly1g7fcu3wiruj30pz0i9n0j.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/006y8mN6ly1g7fcudqzwmj30hh08ogmh.jpg">
+<meta property="og:updated_time" content="2019-09-28T09:34:18.324Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JamesBy博客">
-<meta name="twitter:description" content="个人博客，hexo+github">
+<meta name="twitter:title" content="Spark性能提升">
+<meta name="twitter:description" content="[TOC] 1. spark-submit参数调优1.1spark运行原理: 1.1.1资源申请spark-submit提交作业后会根据部署模式不同，选择在本地或者集群节点启动Driver进程。由Driver进程向集群管理器，这里是Yran，请求作业运行所需的资源，这里的资源即作业所需的executor。Yarn根据提交的参数，在各节点启动一定数量的executor。">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/006y8mN6ly1g7fcu3wiruj30pz0i9n0j.jpg">
   
     <link rel="alternative" href="/atom.xml" title="JamesBy博客" type="application/atom+xml">
   
@@ -152,35 +157,154 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-使用mysql存储爬取数据" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-Spark性能提升" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/10/24/使用mysql存储爬取数据/">使用mysql存储爬取数据</a>
+    <h1 class="article-title" itemprop="name">
+      Spark性能提升
     </h1>
   
 
         
-        <a href="/2017/10/24/使用mysql存储爬取数据/" class="archive-article-date">
-  	<time datetime="2017-10-24T11:42:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-24</time>
+        <a href="/2019/09/28/Spark性能提升/" class="archive-article-date">
+  	<time datetime="2019-09-28T09:30:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-28</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="I-实现目标"><a href="#I-实现目标" class="headerlink" title="I.实现目标"></a>I.实现目标</h4><p>当数据量大了以后，爬取出的数据存储就是个不能避而不谈的问题，这篇短文就学习一下如何把抓取数据入库。这里使用的是mysql数据库，将要爬取的是百度阅读计算机类的书籍信息。由于所需要的书籍信息比较多，这里所采用的技术路线是Scrapy+Mysql的方式。这篇主要学习数据入库，所以爬取信息不是重点。</p>
-<p><img src="http://img.hb.aicdn.com/c6c31a961d2ca573aecdd1eecc60a135bfb261861136b3-z5yXU8_fw658" alt></p>
         
-          <a class="article-more-a" href="/2017/10/24/使用mysql存储爬取数据/#more">展开全文 >></a>
-        
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">1. spark-submit参数调优</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">1.1spark运行原理:</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-text">1.1.1资源申请</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-text">1.1.2调度执行</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-text">1.1.3stage划分</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-text">1.1.4executor 内存划分</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-text">1.1.5executor CPU划分</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">1.2参数资源调优</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">2. 开发调优</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">2.1数据倾斜</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">3.参考链接</span></a></li></ol>
+    </div>
+    
+        <p>[TOC]</p>
+<h3><span id="1-spark-submit参数调优">1. spark-submit参数调优</span></h3><h4><span id="11spark运行原理">1.1spark运行原理:</span></h4><p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g7fcu3wiruj30pz0i9n0j.jpg" alt></p>
+<h5><span id="111资源申请">1.1.1资源申请</span></h5><p>spark-submit提交作业后会根据部署模式不同，选择在本地或者集群节点启动Driver进程。由Driver进程向集群管理器，这里是Yran，请求作业运行所需的资源，这里的资源即作业所需的executor。Yarn根据提交的参数，在各节点启动一定数量的executor。</p>
+<a id="more"></a>
+<h5><span id="112调度执行">1.1.2调度执行</span></h5><p>在通过Yarn申请到资源以后，Driver才会开始调度执行spark作业。Driver会根据spark作业代码，将作业拆分成多个stage，并为每个stage创建多个task。task是spark作业的最小计算单元，每个task执行相同的逻辑，处理不同数据。当一个stage的所有task执行完毕以后，会将结果写入到各节点磁盘中。作为中间结果，输入到下一个stage中。如此循环往复，将所有计算执行完毕，得到spark作业所需要计算的结果。</p>
+<h5><span id="113stage划分">1.1.3stage划分</span></h5><p>spark划分stage的依据是按照shuffle算子来做的，常用到的shuffle算子有：join,groupby,reduceByKey等。大致可以解释为，在执行shuffle算子之前的代码内容为一个stage，执行完shuffle算子之后的代码内容为下一个stage。故此，每个stage开始时，都会到上一个stage的task中去拉取处理所需要的key，再根据编写的算子函数，执行聚合操作，该过程即常见的shuffle。</p>
+<h5><span id="114executor-内存划分">1.1.4executor 内存划分</span></h5><p>当对同一个rdd进行多次操作时，通常会执行持久化，spark通过不同的持久化级别，选择将task的执行结果存到节点exector内存当中或者磁盘当中。executor的内存被划分为三份，20%用于执行spark作业代码，20%用于拉取上一个stage的task输出结果进行聚合操作，剩下的60%是用于RDD的持久化操作。</p>
+<h5><span id="115executor-cpu划分">1.1.5executor CPU划分</span></h5><p>task的执行速度和CPU的核的数量有直接关系，一个CPU的一个核同时只能执行一个task，一个executor分配到的多个task，可根据多个核并行执行，分配合适的核数，有助于快速高效的完成task。</p>
+<h4><span id="12参数资源调优">1.2参数资源调优</span></h4><p>参数调优没有固定的值，只能按照其中的规律或者资源的互相限制，针对不同情况下设置不同参数。结合上面的原理，可以更清晰的认识到各参数起到的不同作用。<br>参考示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">spark-submit \</span><br><span class="line">  --master yarn-cluster \ # 提交任务方式（调试开发阶段使用，有详细的日志打到终端）</span><br><span class="line">  --num-executors 100 \ </span><br><span class="line">  --executor-memory 6G \</span><br><span class="line">  --executor-cores 4 \</span><br><span class="line">  --driver-memory 2G \</span><br><span class="line">  --conf spark.default.parallelism=1000 \</span><br><span class="line">  --conf spark.storage.memoryFraction=0.5 \</span><br><span class="line">  --conf spark.shuffle.memoryFraction=0.3 \</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>num-executors</p>
+<blockquote>
+<p>含义:设置spark作业所需要的所有exector。YRAN会根据Driver提交的参数尽可能的按照参数，在节点启动相应的executor数量。如果不设置，默认会启动很少的exector，spark作业运行会很低效<br>调优参考：大集群来说一般50-100个左右。设置太多会导致大部分队列无法给予充分的资源。且该参数受限于集群中所能使用到的内存。多人共用集群资源时，num-executors*exector-memory的值，一般不大于队列内存的一半。</p>
+</blockquote>
+</li>
+<li><p>executor-memory</p>
+<blockquote>
+<p>含义:executor所能使用的内存量，spark作业本质是内存计算。即该参数直接影响到了性能，并且与OOM相关<br>调优参考: 当作业运行缓慢，频繁GC和OOM，应当适当调大内存。多人共用集群资源时，num-executors*exector-memory的值，一般不大于队列内存的一半。同时可以结合配置选项<code>spark.executor.memoryOverhead</code>来设定executor能使用到的堆外内存，能缓解一定到OOM问题。</p>
+</blockquote>
+</li>
+<li><p>executor-cores</p>
+<blockquote>
+<p>含义: 各exector进程能使用到的CPU核数，决定了每个exector执行task的线程能力，也就是同时可以处理多少task任务。<br>调优参考: 只需要遵循num-executors*executor不大于集群总的CPU资源即可，多人使用一般不超过总的vcore的1/3。在允许的范围内可尽可能调高</p>
+</blockquote>
+</li>
+<li><p>driver-memory</p>
+<blockquote>
+<p>含义: 设置Driver进程的内存<br>调优参考: 默认值为1G，如果有collect算子将RDD数据拉取到Driver上进行处理，或者对变量进行广播，需要将参数调大，否则会OOM。</p>
+</blockquote>
+</li>
+<li><p>spark.default.parallelism</p>
+<blockquote>
+<p>含义: 用于设置每个stage默认task数量。也可以理解为指定父RDD的分区数。<br>调优参考: Spark官方文档推荐为每个CPU核数执行2～3个task是比较合适的。所以该参数的值遵循:（num-executors* executor-cores）的2～3倍。<br>⚠️注意: 如果不设置，spark会根据底层HDFS的block数量来设置task数量，默认一个HDFS block对应一个task。通常来说是偏少的，就几十个。这就导致一个问题，无论executor进程有多少，内存和cpu有多大，task只有很少的一部分，那么大量的executor是没有task执行的，就会浪费在那里。</p>
+</blockquote>
+</li>
+<li><p>spark.storage.memoryFraction</p>
+<blockquote>
+<p>含义：用于设置RDD持久化数据，在executor内存中占的比例。默认是0.6即占executor内存的60%。<br>调优参考：<br>1.当作业有大量的RDD持久化操作的时候，需要适当调高该参数，避免内存不够数据写到磁盘，降低性能。<br>2.当作业有大量shuffle操作，可以将值调小。<br>3.通过spark web ui观察作业GC的耗时，如果频繁的GC导致运行缓慢，意味着task执行作业代码的内存不够，同样可以调低该参数</p>
+</blockquote>
+</li>
+<li><p>spark.shuffle.memoryFraction</p>
+<blockquote>
+<p>含义: shuffle操作能使用的堆内存，默认是20%<br>调优参考: 当作业有更多shuffle时候可以适当调高，可以设置到30%，相应的要减少<code>spark.storage.memoryFraction</code>的比例。但是当出现平凡GC的时候，也需要调低该参数，因为意味着executor内存不够用了。</p>
+</blockquote>
+</li>
+</ul>
+<h3><span id="2-开发调优">2. 开发调优</span></h3><p>遵循原则:</p>
+<ul>
+<li><p>避免创建重复的RDD</p>
+</li>
+<li><p>尽可能复用同一个RDD</p>
+</li>
+<li><p>多次使用的RDD持久化</p>
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g7fcudqzwmj30hh08ogmh.jpg" alt></p>
+<blockquote>
+<p>上图的DAG图可以看出，D和E都是由C计算得出，D和E执行动作算子的时候就需要从A开始重新计算，此时可对C做持久化。</p>
+</blockquote>
+</li>
+<li><p>避免不必要的持久化</p>
+<blockquote>
+<p>持久化数据会耗费executor的内存或者磁盘空间，无意义的持久化会减少处理数据的内存，增加磁盘IO，从而降低spark性能</p>
+</blockquote>
+</li>
+<li><p>尽量避免shuffle类算子</p>
+<blockquote>
+<p>尽可能避免使用reduceByKey、join、distinct、repartition等会进行shuffle的算子，尽量使用map类的非shuffle算子。<br>比如对小表进行广播，使用map对连接数据方式，替代原有的join操作，避免shuffle过程。<br>而一旦shuffle，就相当于会将相同key的数据拉取到一个shuffle read task中再进行join，此时就是reduce join。但是如果一个RDD是比较小的，则可以采用广播小RDD全量数据+map算子来实现与join同样的效果，也就是map join，此时就不会发生shuffle操作，也就不会发生数据倾斜。</p>
+</blockquote>
+</li>
+<li><p>使用map-side预聚合shuffle操作</p>
+<blockquote>
+<p>每个节点本地对相同的key进行一次聚合操作，每个节点只会有一个相同的key，可以大大减少拉取的数据量，从而减少磁盘IO和网络传输开销。<br>尽可能使用<code>reduceByKey</code>算子来替代<code>groupByKey</code>。因为前者会预聚合，后者不会。</p>
+</blockquote>
+</li>
+<li><p>使用更高性能的算子</p>
+</li>
+<li><p>广播大变量</p>
+<blockquote>
+<p>在算子函数中，使用到外部变量，spark会将变量复制多份传递到每个task中。此时可以将该变量进行广播<br>使用函数<code>broadcast</code>对目标变量进行广播。executor中只会保留一份变量，供task使用,从而减少网络开销，磁盘IO,降低GC</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">broadcast_value = sc.broadcast([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>])</span><br><span class="line">broadcast_value</span><br><span class="line"><span class="comment"># out [1,2,3,4,5,6]</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>使用中间表</p>
+<blockquote>
+<p>对计算耗时步骤长的数据，可以生成中间表，减少多次计算的开销。</p>
+</blockquote>
+</li>
+</ul>
+<h4><span id="21数据倾斜">2.1数据倾斜</span></h4><p>产生原因:<br>只在shuffle阶段，各节点相同的key拉取到某个节点的task处理数据，常见的有按照key聚合或者join操作。此时某个key对应数据量巨大的时候，就会产生数据倾斜。<br>此时会导致有数据倾斜的key，处理数据都在一个task上，就会造成这个task运行时间过程，甚至OOM。导致整个作用过长或者失败。<br>显著特征就是:某几个task耗时远大于其他task的时间，同时运行缓慢。<br>解决方案参考: <a href="https://zhuanlan.zhihu.com/p/22024169" target="_blank" rel="noopener">数据倾斜解决方案示例</a></p>
+<h3><span id="3参考链接">3.参考链接</span></h3><p><a href="https://zhuanlan.zhihu.com/p/21922826" target="_blank" rel="noopener">spark性能优化指南-基础篇</a></p>
+<p><a href="https://spark.apache.org/docs/latest/submitting-applications.html" target="_blank" rel="noopener">官方文档</a></p>
+<p><a href="https://medium.com/teads-engineering/spark-performance-tuning-from-the-trenches-7cbde521cf60" target="_blank" rel="noopener">spark性能优化</a></p>
+
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>^^谢谢你请我吃糖哦^^<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/blogimg/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -191,15 +315,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">spark</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">爬虫</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">大数据</a>
         		</li>
       		
 		</ul>
@@ -208,559 +328,74 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/10/24/使用mysql存储爬取数据/">查看本文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2019/09/28/Spark性能提升/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
 
-
-
-
-
-
   
-    <article id="post-抓取异步加载网页信息" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/10/11/抓取异步加载网页信息/">抓取异步加载网页信息</a>
-    </h1>
   
-
-        
-        <a href="/2017/10/11/抓取异步加载网页信息/" class="archive-article-date">
-  	<time datetime="2017-10-11T07:02:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>编写网络爬虫第一步先进行网页分析，确定自己所需获取的信息，分析网页源码结构以及渲染方式很重要。今天要抓取的页面是JD的图书销售榜单。这个网页是采用动态加载的渲染方式显示网页内容，之前的<a href="http://jamesby.top/2017/06/12/%E8%8E%B7%E5%8F%96instagram%E5%9B%BE%E7%89%87-%E7%94%A8%E7%88%AC%E8%99%AB%E7%9A%84%E6%96%B9%E5%BC%8F/" target="_blank" rel="noopener">这篇文章</a>，也是采用动态加载的方式渲染网页的，当时使用了Selenium的方式获取了网页信息。这篇文章采用了不一样的方式来处理类似的情况，那就是找接口，使用现有数据接口，分析ajax的方式获取信息。</p>
-<p><img src="https://static.pexels.com/photos/265087/pexels-photo-265087.jpeg" alt></p>
-        
-          <a class="article-more-a" href="/2017/10/11/抓取异步加载网页信息/#more">展开全文 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">爬虫</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">异步加载</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/10/11/抓取异步加载网页信息/">查看本文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
+    <a href="/2019/08/19/Numpy笔记/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Numpy笔记</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
-    <article id="post-使用python发送短信" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/30/使用python发送短信/">使用python发送短信</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/30/使用python发送短信/" class="archive-article-date">
-  	<time datetime="2017-08-30T02:27:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="https://static.pexels.com/photos/230554/pexels-photo-230554.jpeg" alt></p>
-<h3 id="简单介绍python发送短信的方式"><a href="#简单介绍python发送短信的方式" class="headerlink" title="简单介绍python发送短信的方式"></a>简单介绍python发送短信的方式</h3><p>与电子邮件相比较，短信更直接可靠，生活当中接收各种的验证码，密码找回，取快递的验证码信息，这些生活场景都会用到程序到短信的应用。这篇文章笔者简单介绍了一下使用python发送短信的方式以及在文末贴上了笔者的应用案例。如有不妥之处还望不吝赐言。</p>
-        
-          <a class="article-more-a" href="/2017/08/30/使用python发送短信/#more">展开全文 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">web开发</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SMS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/30/使用python发送短信/">查看本文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-  
-    <article id="post-Flask开发猜数字网页游戏" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/22/Flask开发猜数字网页游戏/">Flask开发猜数字网页游戏</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/22/Flask开发猜数字网页游戏/" class="archive-article-date">
-  	<time datetime="2017-08-22T06:24:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="http://ouyzqzdzy.bkt.clouddn.com/%E7%8C%9C%E6%95%B0%E5%AD%97%E6%B8%B8%E6%88%8F.jpg" alt></p>
-<h3 id="使用Flask开发一款猜数字网页游戏"><a href="#使用Flask开发一款猜数字网页游戏" class="headerlink" title="使用Flask开发一款猜数字网页游戏"></a>使用Flask开发一款猜数字网页游戏</h3><p>这个小项目是参考<a href="https://github.com/helloflask/guess" target="_blank" rel="noopener">这个项目</a>完成的，参考的对应文章<a href="https://zhuanlan.zhihu.com/p/23340992" target="_blank" rel="noopener">在这里</a>。项目很简单，能很快了解到Flask的路由，模板，以及相关的表单知识。整个项目我自己重写了一遍，原项目功能相同，只在前端做了些修改。</p>
-<h4 id="项目结构："><a href="#项目结构：" class="headerlink" title="项目结构："></a>项目结构：</h4>
-        
-          <a class="article-more-a" href="/2017/08/22/Flask开发猜数字网页游戏/#more">展开全文 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flask</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">web开发</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/22/Flask开发猜数字网页游戏/">查看本文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-  
-    <article id="post-SQL常用语法笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/20/SQL常用语法笔记/">SQL常用语法笔记</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/20/SQL常用语法笔记/" class="archive-article-date">
-  	<time datetime="2017-08-20T08:14:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="http://ouyzqzdzy.bkt.clouddn.com/database.png" alt></p>
-<h3 id="SQL基础笔记"><a href="#SQL基础笔记" class="headerlink" title="SQL基础笔记"></a>SQL基础笔记</h3><p>该笔记是参考<a href="http://www.runoob.com/sql/sql-tutorial.html" target="_blank" rel="noopener">菜鸟教程</a>上的SQL学习笔记，将SQL语句做了简单的整理，这篇是基础的SQL语句操作。主要涵盖基本的增删改查。</p>
-<h4 id="准备："><a href="#准备：" class="headerlink" title="准备："></a>准备：</h4><p>导入sql文件到mysql</p>
-        
-          <a class="article-more-a" href="/2017/08/20/SQL常用语法笔记/#more">展开全文 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SQL</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/20/SQL常用语法笔记/">查看本文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-  
-    <article id="post-使用Flask-Mail发邮件" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/14/使用Flask-Mail发邮件/">使用Flask-Mail发邮件</a>
-    </h1>
-  
-
-        
-        <a href="/2017/07/14/使用Flask-Mail发邮件/" class="archive-article-date">
-  	<time datetime="2017-07-14T13:17:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="\writeimg\blog\17071404.jpg" alt="设置授权密码"></p>
-<h3 id="I-python发邮件的方式"><a href="#I-python发邮件的方式" class="headerlink" title="I  python发邮件的方式"></a>I  python发邮件的方式</h3><p>Web应用中，常常会遇到需要提醒用户的事情，而比较常用的方式就是采用发送邮件的方式。虽然Python在标准库中有smtplib包，可用于发送电子邮件，但包装了smtplib的Flask-Mail扩展提供了一个简单的接口，可以很方便的在flask中集成，只需在应用中设置好SMTP，就可以方便的在视图以及脚本中发送邮件信息，能更好地和Flask集成。</p>
-<h3 id="III-认识Flask-Mail"><a href="#III-认识Flask-Mail" class="headerlink" title="III 认识Flask-Mail"></a>III 认识Flask-Mail</h3><p>使用Flask-Mail发邮件的原理是连接到简单邮件传输协议（SMTP）服务器，并把邮件交给这个服务器发送。所以，需要配置好SMTP。现在通过下面的表格简单认识一下所需要用到的SMTP配置。</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">配置</th>
-<th>默认值</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">MAIL_SERVER</td>
-<td>localhost</td>
-<td>电子邮件服务器的主机名或者IP地址</td>
-</tr>
-<tr>
-<td style="text-align:left">MAIL_PORT</td>
-<td>25</td>
-<td>电子邮件服务器端口号</td>
-</tr>
-<tr>
-<td style="text-align:left">MAIL_USE_TLS</td>
-<td>False</td>
-<td>启用传输层安全协议（TLS）</td>
-</tr>
-<tr>
-<td style="text-align:left">MAIL_USE_SSL</td>
-<td>False</td>
-<td>启用安全套接层协议（SSL）</td>
-</tr>
-<tr>
-<td style="text-align:left">MAIL_PASSWORD</td>
-<td>None</td>
-<td>邮件账户密码</td>
-</tr>
-<tr>
-<td style="text-align:left">MAIL_USERNAME</td>
-<td>None</td>
-<td>邮件账户名</td>
-</tr>
-<tr>
-<td style="text-align:left">MAIL_DEFAULT_SENDER</td>
-<td>None</td>
-<td>邮件默认发送人</td>
-</tr>
-</tbody>
-</table>
-<h3 id="III实例化"><a href="#III实例化" class="headerlink" title="III实例化"></a>III实例化</h3><p>这里要用到标准库的os模块，flask框架，flask_mail 和 flask_script框架。请注意manager实例和mail实例中间的省略号，这里放到后面再说。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask</span><br><span class="line"><span class="keyword">from</span> flask_mail <span class="keyword">import</span> Mail, Message</span><br><span class="line"><span class="keyword">from</span> flask_script <span class="keyword">import</span> Manager</span><br><span class="line"></span><br><span class="line">app = Flask(__name__)</span><br><span class="line">manager = Manager(app)</span><br><span class="line">....</span><br><span class="line">mail = Mail(app)</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2017/07/14/使用Flask-Mail发邮件/#more">展开全文 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flask</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">web开发</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/07/14/使用Flask-Mail发邮件/">查看本文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-  
-    <article id="post-笨办法修复git受损" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/12/笨办法修复git受损/">笨办法修复git受损</a>
-    </h1>
-  
-
-        
-        <a href="/2017/07/12/笨办法修复git受损/" class="archive-article-date">
-  	<time datetime="2017-07-12T14:13:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-问题描述："><a href="#1-问题描述：" class="headerlink" title="1.问题描述："></a>1.问题描述：</h3><p>使用git有一段时间了，第一次碰见仓库受损了。情况如下，不能提交，不能切换分支，但是当前文件下是最后一次修改的代码，现在就是不能将代码提交到git仓库。随即google了一下，貌似git仓库受损还是一个比较常见的问题了。其中<a href="https://stackoverflow.com/questions/11706215/how-to-fix-git-error-object-file-is-empty" target="_blank" rel="noopener">stackoverflow</a>已经有大神给出了完美的解决方案，但是有点繁琐，我只想简单解决问题，继续码代码而已，所以有了一下这个笨方法，不推广，只做个人记录和借鉴使用。</p>
-<h3 id="1-1问题表现1"><a href="#1-1问题表现1" class="headerlink" title="1.1问题表现1"></a>1.1问题表现1</h3><p>本来已经提交了4c,但是查看tag却没有。</p>
-<p><img src="\writeimg\blog\17071201.jpg" alt="缺少4c"></p>
-<h3 id="1-2问题表现2"><a href="#1-2问题表现2" class="headerlink" title="1.2问题表现2"></a>1.2问题表现2</h3><p>提交报错 object file …is empty</p>
-<p><img src="\writeimg\blog\17071202.jpg" alt="objectempty"></p>
-<h3 id="1-3问题表现3"><a href="#1-3问题表现3" class="headerlink" title="1.3问题表现3"></a>1.3问题表现3</h3><p>无法切换分支</p>
-<p><img src="\writeimg\blog\17071203.jpg" alt="无法切换分支"></p>
-<h3 id="2-笨办法解决问题："><a href="#2-笨办法解决问题：" class="headerlink" title="2.笨办法解决问题："></a>2.笨办法解决问题：</h3><h4 id="Step1"><a href="#Step1" class="headerlink" title="Step1"></a>Step1</h4><p>首先使用命令find .git/objects/ -type f -empty | xargs rm 找到空的object文件</p>
-        
-          <a class="article-more-a" href="/2017/07/12/笨办法修复git受损/#more">展开全文 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">折腾记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/07/12/笨办法修复git受损/">查看本文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-  
-    <article id="post-获取instagram图片-用爬虫的方式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/12/获取instagram图片-用爬虫的方式/">获取instagram图片--用爬虫的方式</a>
-    </h1>
-  
-
-        
-        <a href="/2017/06/12/获取instagram图片-用爬虫的方式/" class="archive-article-date">
-  	<time datetime="2017-06-12T12:09:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="I前言"><a href="#I前言" class="headerlink" title="I前言"></a>I前言</h3><p>​    在手机上玩instagram时，看见好看的图片总希望能够保存下来，但是instagram app并没有提供保存图片的功能。要怎样保存呢？网上有很多方法，其中还要专门的微信公众号。今天我就用爬虫来获取我想要的instagram的图片，虽然用爬虫来爬取，有一点麻烦，可既然学习了python爬虫，那就学以致用，就用爬虫来试试如何下载instagram图片。下图是我爬取到的图片。</p>
-<p><img src="\writeimg\blog\17061201.jpg" alt="配图"></p>
-        
-          <a class="article-more-a" href="/2017/06/12/获取instagram图片-用爬虫的方式/#more">展开全文 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">爬虫</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">javascript动态页面</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/12/获取instagram图片-用爬虫的方式/">查看本文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
+</nav>
 
 
 
@@ -768,9 +403,10 @@
 
   
   
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
-    </nav>
+  
+
+  
+
   
 
 
@@ -794,8 +430,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: true,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

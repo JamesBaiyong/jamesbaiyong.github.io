@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>使用mysql存储爬取数据 | JamesBy博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="I.实现目标当数据量大了以后，爬取出的数据存储就是个不能避而不谈的问题，这篇短文就学习一下如何把抓取数据入库。这里使用的是mysql数据库，将要爬取的是百度阅读计算机类的书籍信息。由于所需要的书籍信息比较多，这里所采用的技术路线是Scrapy+Mysql的方式。这篇主要学习数据入库，所以爬取信息不是重点。">
-<meta name="keywords" content="数据库,python,爬虫">
+<meta name="keywords" content="python,数据库,爬虫">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用mysql存储爬取数据">
 <meta property="og:url" content="http://yoursite.com/2017/10/24/使用mysql存储爬取数据/index.html">
 <meta property="og:site_name" content="JamesBy博客">
 <meta property="og:description" content="I.实现目标当数据量大了以后，爬取出的数据存储就是个不能避而不谈的问题，这篇短文就学习一下如何把抓取数据入库。这里使用的是mysql数据库，将要爬取的是百度阅读计算机类的书籍信息。由于所需要的书籍信息比较多，这里所采用的技术路线是Scrapy+Mysql的方式。这篇主要学习数据入库，所以爬取信息不是重点。">
+<meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://img.hb.aicdn.com/c6c31a961d2ca573aecdd1eecc60a135bfb261861136b3-z5yXU8_fw658">
 <meta property="og:image" content="http://ouyzqzdzy.bkt.clouddn.com/mysqpipelines.jpg">
 <meta property="og:image" content="http://ouyzqzdzy.bkt.clouddn.com/settings%E6%96%87%E4%BB%B6.jpg">
@@ -31,6 +32,7 @@
     <link rel="icon" href="/blogimg/favicon.ico">
   
   <link rel="stylesheet" type="text/css" href="/./main.b3331d.css">
+
   <style type="text/css">
   
     #container.show {
@@ -54,7 +56,7 @@
         
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -177,34 +179,39 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="I-实现目标"><a href="#I-实现目标" class="headerlink" title="I.实现目标"></a>I.实现目标</h4><p>当数据量大了以后，爬取出的数据存储就是个不能避而不谈的问题，这篇短文就学习一下如何把抓取数据入库。这里使用的是mysql数据库，将要爬取的是百度阅读计算机类的书籍信息。由于所需要的书籍信息比较多，这里所采用的技术路线是Scrapy+Mysql的方式。这篇主要学习数据入库，所以爬取信息不是重点。</p>
-<p><img src="http://img.hb.aicdn.com/c6c31a961d2ca573aecdd1eecc60a135bfb261861136b3-z5yXU8_fw658" alt=""></p>
+        
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">I.实现目标</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">II.数据获取</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">III.存储设置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">IV.入库代码编写</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-text">sql.py文件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-text">pipelines.py文件</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">V.总结</span></a></li></ol>
+    </div>
+    
+        <h4><span id="i实现目标">I.实现目标</span></h4><p>当数据量大了以后，爬取出的数据存储就是个不能避而不谈的问题，这篇短文就学习一下如何把抓取数据入库。这里使用的是mysql数据库，将要爬取的是百度阅读计算机类的书籍信息。由于所需要的书籍信息比较多，这里所采用的技术路线是Scrapy+Mysql的方式。这篇主要学习数据入库，所以爬取信息不是重点。</p>
+<p><img src="http://img.hb.aicdn.com/c6c31a961d2ca573aecdd1eecc60a135bfb261861136b3-z5yXU8_fw658" alt></p>
 <a id="more"></a>
-<h4 id="II-数据获取"><a href="#II-数据获取" class="headerlink" title="II.数据获取"></a>II.数据获取</h4><p>这里首先切入到如何获取数据的地方来，首先确定需要获取数据的<a href="https://yuedu.baidu.com/book/list/3?show=0" target="_blank" rel="external">入口</a>，就是文中链接的地方。我们提取出我们需要的书籍信息，书名，作者，价格，书籍URL。好了，确定好这些信息以后，就可以编写爬虫获取信息了。这里需要注意的是，有的书籍没有作者信息，有的是免费的书籍，所以为了使爬虫能顺利爬取信息和其健壮性，采用了两个try except语句处理。这样操作的好处不言而喻，首先是可以完美解决这样的问题，同时也简化了代码，降低复杂性。</p>
+<h4><span id="ii数据获取">II.数据获取</span></h4><p>这里首先切入到如何获取数据的地方来，首先确定需要获取数据的<a href="https://yuedu.baidu.com/book/list/3?show=0" target="_blank" rel="noopener">入口</a>，就是文中链接的地方。我们提取出我们需要的书籍信息，书名，作者，价格，书籍URL。好了，确定好这些信息以后，就可以编写爬虫获取信息了。这里需要注意的是，有的书籍没有作者信息，有的是免费的书籍，所以为了使爬虫能顺利爬取信息和其健壮性，采用了两个try except语句处理。这样操作的好处不言而喻，首先是可以完美解决这样的问题，同时也简化了代码，降低复杂性。</p>
 <p>下面给出爬虫核心代码：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> info <span class="keyword">in</span> book_list:</div><div class="line">	item[<span class="string">'name'</span>] = info.xpath(<span class="string">'.//a[2]/span/text()'</span>).extract()[<span class="number">0</span>]</div><div class="line">	<span class="keyword">try</span>:</div><div class="line">		item[<span class="string">'author'</span>] = info.xpath(<span class="string">'.//p/span[1]/text()'</span>).extract()[<span class="number">0</span>]</div><div class="line">	<span class="keyword">except</span> IndexError:</div><div class="line">		item[<span class="string">'author'</span>] = <span class="string">u'暂无'</span></div><div class="line">	<span class="keyword">try</span>:</div><div class="line">		item[<span class="string">'price'</span>] = info.xpath(<span class="string">'.//p/span[2]/text()'</span>).extract()[<span class="number">1</span>]</div><div class="line">	<span class="keyword">except</span> IndexError:</div><div class="line">		item[<span class="string">'price'</span>] = <span class="string">u'免费'</span></div><div class="line">	item[<span class="string">'url'</span>] = self.domain_name+info.xpath(<span class="string">'.//a[2]/@href'</span>).extract()[<span class="number">0</span>]</div><div class="line">	<span class="keyword">yield</span> item</div><div class="line"></div><div class="line"><span class="comment">#翻页</span></div><div class="line"><span class="keyword">while</span> num &lt; <span class="number">2920</span>:</div><div class="line">	next_link = self.start_url + <span class="string">'&amp;pn=%s'</span> % (num)</div><div class="line">	num += <span class="number">20</span></div><div class="line">	<span class="keyword">print</span> num</div><div class="line">	<span class="keyword">yield</span> Request(next_link,headers=self.headers)</div></pre></td></tr></table></figure>
-<h4 id="III-存储设置"><a href="#III-存储设置" class="headerlink" title="III.存储设置"></a>III.存储设置</h4><p>抓取信息的爬虫编写好以后，就可以配置和准备入库的一些设置了。先说一下这里需要一些什么设置，首先是数据库名，数据库端口号（mysql默认是3389），数据库用户名和密码。建议不要使用root，最好新建一个用户。创建用户的命令，以及建立数据库和建立表格的一些操作，直接在shell里面操作就可以了，这里列出相关命令和操作的简化版，以供参考。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash">创建用户和密码</span></div><div class="line"> insert into mysql.user(Host,User,Password) values("localhost","dbuser",password("password"));</div><div class="line"><span class="meta">#</span><span class="bash">创建数据库：</span></div><div class="line">create database dbname;</div><div class="line"><span class="meta">#</span><span class="bash">授权某用户某个数据库的权限：</span></div><div class="line">grant all privileges on flaskuser.* to dbuser@localhost identified by 'password';</div><div class="line"><span class="meta">#</span><span class="bash">刷新权限表</span></div><div class="line"> flush privileges;</div><div class="line"><span class="meta">#</span><span class="bash">创建表格（注意切换到刚才建立的表格，可以使用新建的用户登录创建）</span></div><div class="line"> create table 'table_name '(</div><div class="line">	'id' int(11) NOT NULL AUTO_INCREMENT,</div><div class="line">	'name' varchar(255) DEFAULT NULL,</div><div class="line">	PRIMARY KEY ('id')</div><div class="line">)ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;</div><div class="line"><span class="meta"></span></div><div class="line">#<span class="bash">注：</span></div><div class="line"><span class="meta">#</span><span class="bash"> ENGINE=InnoDB 表示将数据库的引擎设置为InnoDB,从MySQL 5.6开始默认使用该引擎。</span></div><div class="line"><span class="meta">#</span><span class="bash"> DEFAULT CHARSET=utf8 表示设置数据库的默认字符集为utf8</span></div><div class="line"><span class="meta">#</span><span class="bash"> AUTO_INCREMENT=1 表示自动增长的起始值为1</span></div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> info <span class="keyword">in</span> book_list:</span><br><span class="line">	item[<span class="string">'name'</span>] = info.xpath(<span class="string">'.//a[2]/span/text()'</span>).extract()[<span class="number">0</span>]</span><br><span class="line">	<span class="keyword">try</span>:</span><br><span class="line">		item[<span class="string">'author'</span>] = info.xpath(<span class="string">'.//p/span[1]/text()'</span>).extract()[<span class="number">0</span>]</span><br><span class="line">	<span class="keyword">except</span> IndexError:</span><br><span class="line">		item[<span class="string">'author'</span>] = <span class="string">u'暂无'</span></span><br><span class="line">	<span class="keyword">try</span>:</span><br><span class="line">		item[<span class="string">'price'</span>] = info.xpath(<span class="string">'.//p/span[2]/text()'</span>).extract()[<span class="number">1</span>]</span><br><span class="line">	<span class="keyword">except</span> IndexError:</span><br><span class="line">		item[<span class="string">'price'</span>] = <span class="string">u'免费'</span></span><br><span class="line">	item[<span class="string">'url'</span>] = self.domain_name+info.xpath(<span class="string">'.//a[2]/@href'</span>).extract()[<span class="number">0</span>]</span><br><span class="line">	<span class="keyword">yield</span> item</span><br><span class="line"></span><br><span class="line"><span class="comment">#翻页</span></span><br><span class="line"><span class="keyword">while</span> num &lt; <span class="number">2920</span>:</span><br><span class="line">	next_link = self.start_url + <span class="string">'&amp;pn=%s'</span> % (num)</span><br><span class="line">	num += <span class="number">20</span></span><br><span class="line">	<span class="keyword">print</span> num</span><br><span class="line">	<span class="keyword">yield</span> Request(next_link,headers=self.headers)</span><br></pre></td></tr></table></figure>
+<h4><span id="iii存储设置">III.存储设置</span></h4><p>抓取信息的爬虫编写好以后，就可以配置和准备入库的一些设置了。先说一下这里需要一些什么设置，首先是数据库名，数据库端口号（mysql默认是3389），数据库用户名和密码。建议不要使用root，最好新建一个用户。创建用户的命令，以及建立数据库和建立表格的一些操作，直接在shell里面操作就可以了，这里列出相关命令和操作的简化版，以供参考。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">创建用户和密码</span></span><br><span class="line"> insert into mysql.user(Host,User,Password) values("localhost","dbuser",password("password"));</span><br><span class="line"><span class="meta">#</span><span class="bash">创建数据库：</span></span><br><span class="line">create database dbname;</span><br><span class="line"><span class="meta">#</span><span class="bash">授权某用户某个数据库的权限：</span></span><br><span class="line">grant all privileges on flaskuser.* to dbuser@localhost identified by 'password';</span><br><span class="line"><span class="meta">#</span><span class="bash">刷新权限表</span></span><br><span class="line"> flush privileges;</span><br><span class="line"><span class="meta">#</span><span class="bash">创建表格（注意切换到刚才建立的表格，可以使用新建的用户登录创建）</span></span><br><span class="line"> create table 'table_name '(</span><br><span class="line">	'id' int(11) NOT NULL AUTO_INCREMENT,</span><br><span class="line">	'name' varchar(255) DEFAULT NULL,</span><br><span class="line">	PRIMARY KEY ('id')</span><br><span class="line">)ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">注：</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> ENGINE=InnoDB 表示将数据库的引擎设置为InnoDB,从MySQL 5.6开始默认使用该引擎。</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> DEFAULT CHARSET=utf8 表示设置数据库的默认字符集为utf8</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> AUTO_INCREMENT=1 表示自动增长的起始值为1</span></span><br></pre></td></tr></table></figure>
 <p>其实以上在数据库层面操作的算是准备工作了，下面在代码的层面来对存取做一些设置。</p>
 <p>首先在项目更目录创建一个MySqlPipelines文件夹，包含这些文件：</p>
-<p><img src="http://ouyzqzdzy.bkt.clouddn.com/mysqpipelines.jpg" alt=""></p>
+<p><img src="http://ouyzqzdzy.bkt.clouddn.com/mysqpipelines.jpg" alt></p>
 <p>其中sql.py用于编写sql语句，pipelines.py用于操作数据存储到数据库，在后面再讨论这两个文件的编写。</p>
 <p>然后就是到了数据库信息设置了，这里其实可以写到代码中，但是为了代码的规范性，把这些信息写道setting文件中去，如下图所示：</p>
-<p><img src="http://ouyzqzdzy.bkt.clouddn.com/settings%E6%96%87%E4%BB%B6.jpg" alt=""></p>
+<p><img src="http://ouyzqzdzy.bkt.clouddn.com/settings%E6%96%87%E4%BB%B6.jpg" alt></p>
 <p>这里只需简单接受一下ITEM_PIPELINES配置就行了，数据库信息就像填表格填上就行。其中‘YueDu’是项目名称，’MySqiPipelines’是自己设置的mysql入库文件夹，‘pipelines’是入库操作文件，‘YueDuPipeline’是相关代码的类名。</p>
 <p>到这里有了这些设置和准备，就可以着重看一下入库代码了。</p>
-<h4 id="IV-入库代码编写"><a href="#IV-入库代码编写" class="headerlink" title="IV.入库代码编写"></a>IV.入库代码编写</h4><h5 id="sql-py文件"><a href="#sql-py文件" class="headerlink" title="sql.py文件"></a>sql.py文件</h5><p>操作数据库，首先想要让python能连接到mysql，这里就需要下载mysql的驱动，这里是<a href="https://dev.mysql.com/downloads/connector/python/" target="_blank" rel="external">下载地址</a>。然后使用官方的使用方式去连接，这里连接mysql代码如下:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> mysql.connector</div><div class="line"><span class="keyword">from</span> .. <span class="keyword">import</span> settings</div><div class="line"></div><div class="line">MYSQL_HOSTS = settings.MYSQL_HOSTS</div><div class="line">MYSQL_USER = settings.MYSQL_USER</div><div class="line">MYSQL_PASSWORD = settings.MYSQL_PASSWORD</div><div class="line">MYSQL_PORT = settings.MYSQL_PORT</div><div class="line">MYSQL_DB = settings.MYSQL_DB</div><div class="line"></div><div class="line">cnx = mysql.connector.connect(user=MYSQL_USER,password=MYSQL_PASSWORD,host=MYSQL_HOSTS,database=MYSQL_DB)</div><div class="line">cur = cnx.cursor(buffered=<span class="keyword">True</span>)</div></pre></td></tr></table></figure>
+<h4><span id="iv入库代码编写">IV.入库代码编写</span></h4><h5><span id="sqlpy文件">sql.py文件</span></h5><p>操作数据库，首先想要让python能连接到mysql，这里就需要下载mysql的驱动，这里是<a href="https://dev.mysql.com/downloads/connector/python/" target="_blank" rel="noopener">下载地址</a>。然后使用官方的使用方式去连接，这里连接mysql代码如下:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> mysql.connector</span><br><span class="line"><span class="keyword">from</span> .. <span class="keyword">import</span> settings</span><br><span class="line"></span><br><span class="line">MYSQL_HOSTS = settings.MYSQL_HOSTS</span><br><span class="line">MYSQL_USER = settings.MYSQL_USER</span><br><span class="line">MYSQL_PASSWORD = settings.MYSQL_PASSWORD</span><br><span class="line">MYSQL_PORT = settings.MYSQL_PORT</span><br><span class="line">MYSQL_DB = settings.MYSQL_DB</span><br><span class="line"></span><br><span class="line">cnx = mysql.connector.connect(user=MYSQL_USER,password=MYSQL_PASSWORD,host=MYSQL_HOSTS,database=MYSQL_DB)</span><br><span class="line">cur = cnx.cursor(buffered=<span class="keyword">True</span>)</span><br></pre></td></tr></table></figure>
 <p>这是连接mysql的连接代码，在连接到数据库以后我们需要做两件事情，首先是把数据插入到事先建立好的表当中，然后是查重，这样可以避免数据重复。先来看数据插入代码：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">SQL</span><span class="params">(object)</span>:</span></div><div class="line"></div><div class="line">	<span class="comment">#执行插入数据库语句</span></div><div class="line"><span class="meta">	@classmethod</span></div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">insert_info</span><span class="params">(cls,name,author,price,url)</span>:</span></div><div class="line">		sql = <span class="string">'INSERT INTO baiduyuedu (name,author,price,url)  \</span></div><div class="line">		                    VALUES (%(name)s,%(author)s,%(price)s,%(url)s)'</div><div class="line">		value = &#123;</div><div class="line">			<span class="string">'name'</span>: name,</div><div class="line">			<span class="string">'author'</span>: author,</div><div class="line">			<span class="string">'price'</span>: price,</div><div class="line">			<span class="string">'url'</span>: url</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		cur.execute(sql,value)</div><div class="line">		cnx.commit()</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SQL</span><span class="params">(object)</span>:</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">#执行插入数据库语句</span></span><br><span class="line"><span class="meta">	@classmethod</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">insert_info</span><span class="params">(cls,name,author,price,url)</span>:</span></span><br><span class="line">		sql = <span class="string">'INSERT INTO baiduyuedu (name,author,price,url)  \</span></span><br><span class="line"><span class="string">		                    VALUES (%(name)s,%(author)s,%(price)s,%(url)s)'</span></span><br><span class="line">		value = &#123;</span><br><span class="line">			<span class="string">'name'</span>: name,</span><br><span class="line">			<span class="string">'author'</span>: author,</span><br><span class="line">			<span class="string">'price'</span>: price,</span><br><span class="line">			<span class="string">'url'</span>: url</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		cur.execute(sql,value)</span><br><span class="line">		cnx.commit()</span><br></pre></td></tr></table></figure>
 <p>这里定义了一个SQL类，我们把所有的SQL语句都放到这个类里面，然后在后面的pipelines文件中再调用只需即可。这里将方法定义为静态方法，方便后面调用，然后是方法里面就一句直白的插入数据的sql语句。安照这样的方式可以推理实现查重的代码了：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#查重</span></div><div class="line"><span class="meta">	@classmethod</span></div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">select_name</span><span class="params">(cls,name)</span>:</span></div><div class="line">		sql = <span class="string">'SELECT EXISTS(SELECT 1 FROM baiduyuedu WHERE name=%(name)s)'</span></div><div class="line">		value = &#123;</div><div class="line">			<span class="string">'name'</span>: name</div><div class="line">		&#125;</div><div class="line">		cur.execute(sql,value)</div><div class="line">		<span class="keyword">return</span> cur.fetchall()[<span class="number">0</span>]</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#查重</span></span><br><span class="line"><span class="meta">	@classmethod</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">select_name</span><span class="params">(cls,name)</span>:</span></span><br><span class="line">		sql = <span class="string">'SELECT EXISTS(SELECT 1 FROM baiduyuedu WHERE name=%(name)s)'</span></span><br><span class="line">		value = &#123;</span><br><span class="line">			<span class="string">'name'</span>: name</span><br><span class="line">		&#125;</span><br><span class="line">		cur.execute(sql,value)</span><br><span class="line">		<span class="keyword">return</span> cur.fetchall()[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
 <p>查重的代码和插入数据的代码类似，不同点是返回的值，如果name变量在数据库中存在了，就返回数值1。</p>
-<h5 id="pipelines-py文件"><a href="#pipelines-py文件" class="headerlink" title="pipelines.py文件"></a>pipelines.py文件</h5><p>这个文件是只行存储的逻辑文件，主要就是将返回的item赋值，然后调用sql语句将数据插入到数据库中。下面看一下代码:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">YueDuPipeline</span><span class="params">(object)</span>:</span></div><div class="line">	<span class="string">'''</span></div><div class="line">	将数据存入数据库</div><div class="line">	'''</div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">process_item</span><span class="params">(self,item,spider)</span>:</span></div><div class="line">		name = item[<span class="string">'name'</span>]</div><div class="line">		ret = SQL.select_name(name)</div><div class="line">		<span class="keyword">if</span> ret[<span class="number">0</span>] == <span class="number">1</span>:</div><div class="line">			<span class="keyword">print</span> (<span class="string">'数据已存在。'</span>)</div><div class="line">		<span class="keyword">else</span>:</div><div class="line">			name = item[<span class="string">'name'</span>]</div><div class="line">			author = item[<span class="string">'author'</span>]</div><div class="line">			price = item[<span class="string">'price'</span>]</div><div class="line">			url = item[<span class="string">'url'</span>]</div><div class="line">			SQL.insert_info(name,author,price,url)</div><div class="line">			<span class="keyword">print</span> (<span class="string">'入库中...'</span>)</div></pre></td></tr></table></figure>
+<h5><span id="pipelinespy文件">pipelines.py文件</span></h5><p>这个文件是只行存储的逻辑文件，主要就是将返回的item赋值，然后调用sql语句将数据插入到数据库中。下面看一下代码:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">YueDuPipeline</span><span class="params">(object)</span>:</span></span><br><span class="line">	<span class="string">'''</span></span><br><span class="line"><span class="string">	将数据存入数据库</span></span><br><span class="line"><span class="string">	'''</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">process_item</span><span class="params">(self,item,spider)</span>:</span></span><br><span class="line">		name = item[<span class="string">'name'</span>]</span><br><span class="line">		ret = SQL.select_name(name)</span><br><span class="line">		<span class="keyword">if</span> ret[<span class="number">0</span>] == <span class="number">1</span>:</span><br><span class="line">			<span class="keyword">print</span> (<span class="string">'数据已存在。'</span>)</span><br><span class="line">		<span class="keyword">else</span>:</span><br><span class="line">			name = item[<span class="string">'name'</span>]</span><br><span class="line">			author = item[<span class="string">'author'</span>]</span><br><span class="line">			price = item[<span class="string">'price'</span>]</span><br><span class="line">			url = item[<span class="string">'url'</span>]</span><br><span class="line">			SQL.insert_info(name,author,price,url)</span><br><span class="line">			<span class="keyword">print</span> (<span class="string">'入库中...'</span>)</span><br></pre></td></tr></table></figure>
 <p>代码核心部分是做了一个判断，即判断该数据是否是在数据库中，达到一个去重的作用。到这里所有关键核心的代码就完成了。接下来就是让爬虫跑起来然后调试吧。文章最后给出爬取的部分数据截图。数据大概有两千多条，所以选择存取到数据库是个比较好的选择。</p>
-<p><img src="http://ouyzqzdzy.bkt.clouddn.com/%E6%95%B0%E6%8D%AE%E6%88%AA%E5%9B%BE.jpg" alt=""></p>
-<h4 id="V-总结"><a href="#V-总结" class="headerlink" title="V.总结"></a>V.总结</h4><p>由于scrapy是多线程的，所以抓取的数据并不是按照网页上的数据来的。并且百度阅读是限制了爬虫爬取的，所以需要修改一下是否遵从robot协议。</p>
+<p><img src="http://ouyzqzdzy.bkt.clouddn.com/%E6%95%B0%E6%8D%AE%E6%88%AA%E5%9B%BE.jpg" alt></p>
+<h4><span id="v总结">V.总结</span></h4><p>由于scrapy是多线程的，所以抓取的数据并不是按照网页上的数据来的。并且百度阅读是限制了爬虫爬取的，所以需要修改一下是否遵从robot协议。</p>
 
       
 
@@ -244,11 +251,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -350,6 +357,7 @@
   
 
   
+
 
 
           </div>
@@ -454,18 +462,6 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">ES</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Elasticsearch</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
@@ -478,7 +474,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">web开发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">ES</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Elasticsearch</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -486,7 +498,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">web开发</a>
+                <a href="javascript:void(0)" class="js-tag color5">hero</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -494,19 +506,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hero</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">wsl</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">ubuntu</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color3">脚本</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -522,7 +522,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">脚本</a>
+                <a href="javascript:void(0)" class="js-tag color4">wsl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">ubuntu</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SMS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -538,15 +550,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SMS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">javascript动态页面</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">python - Numpy</a>
+                <a href="javascript:void(0)" class="js-tag color1">Numpy</a>
               </li>
             
             <div class="clearfix"></div>

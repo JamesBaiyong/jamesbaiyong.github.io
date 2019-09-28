@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Elasticsearch简单使用笔记 | JamesBy博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -15,6 +15,7 @@
 <meta property="og:url" content="http://yoursite.com/2019/03/18/Elasticsearch简单使用笔记/index.html">
 <meta property="og:site_name" content="JamesBy博客">
 <meta property="og:description" content="信息相关查询 1.localhost:9200  查看elasticsearch版本信息   2.localhost:9200/_cat/indices?v  查看es所有index信息   3.localhost:9200/_mapping?pretty=true  查看所有index的mapping(字段)">
+<meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/007tzpNZly1g126a4gm7aj32n21dhmyq.jpg">
 <meta property="og:updated_time" content="2019-03-18T10:11:32.000Z">
 <meta name="twitter:card" content="summary">
@@ -28,6 +29,7 @@
     <link rel="icon" href="/blogimg/favicon.ico">
   
   <link rel="stylesheet" type="text/css" href="/./main.b3331d.css">
+
   <style type="text/css">
   
     #container.show {
@@ -51,7 +53,7 @@
         
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -174,8 +176,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="http://ww1.sinaimg.cn/large/007tzpNZly1g126a4gm7aj32n21dhmyq.jpg" alt=""></p>
-<h3 id="信息相关查询"><a href="#信息相关查询" class="headerlink" title="信息相关查询"></a>信息相关查询</h3><ul>
+        
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">信息相关查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">查询语句</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">Filter DSL</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">term过滤</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">terms过滤</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">range过滤</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">exists和missing过滤</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">bool过滤</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">Query DSL</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">match_all查询</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">match查询</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">multi_match查询</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">bool查询</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">regexp查询</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">prefix查询</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">短语匹配</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">match_phrase</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">参考链接地址</span></a></li></ol>
+    </div>
+    
+        <p><img src="http://ww1.sinaimg.cn/large/007tzpNZly1g126a4gm7aj32n21dhmyq.jpg" alt></p>
+<h3><span id="信息相关查询">信息相关查询</span></h3><ul>
 <li><p>1.localhost:9200</p>
 <ul>
 <li>查看elasticsearch版本信息</li>
@@ -193,11 +200,11 @@
 <a id="more"></a>
 </li>
 </ul>
-<h3 id="查询语句"><a href="#查询语句" class="headerlink" title="查询语句"></a>查询语句</h3><h4 id="Filter-DSL"><a href="#Filter-DSL" class="headerlink" title="Filter DSL"></a>Filter DSL</h4><h4 id="term过滤"><a href="#term过滤" class="headerlink" title="term过滤"></a>term过滤</h4><p>用于精确匹配哪些值，数字，日期布尔值或not_analyzed 的字符串(未经分析的文本数据类型)</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># 精确查询id为IKDd91dsfF</div><div class="line">&#123;</div><div class="line">  "query":&#123;</div><div class="line">    "term":&#123;</div><div class="line">      "id":"IKDd91dsfF"</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="terms过滤"><a href="#terms过滤" class="headerlink" title="terms过滤"></a>terms过滤</h4><p>和term类似，不同的是terms支持多个值</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># 精确查询id为IKDd91dsfF和ddDSDsad2的值</div><div class="line">&#123;</div><div class="line">  "query":&#123;</div><div class="line">    "term":&#123;</div><div class="line">      "id":["IKDd91dsfF","ddDSDsad2"]</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="range过滤"><a href="#range过滤" class="headerlink" title="range过滤"></a>range过滤</h4><p>用于指定范围查询</p>
+<h3><span id="查询语句">查询语句</span></h3><h4><span id="filter-dsl">Filter DSL</span></h4><h4><span id="term过滤">term过滤</span></h4><p>用于精确匹配哪些值，数字，日期布尔值或not_analyzed 的字符串(未经分析的文本数据类型)</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 精确查询id为IKDd91dsfF</span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">"query"</span>:&#123;</span><br><span class="line">    <span class="attr">"term"</span>:&#123;</span><br><span class="line">      <span class="attr">"id"</span>:<span class="string">"IKDd91dsfF"</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4><span id="terms过滤">terms过滤</span></h4><p>和term类似，不同的是terms支持多个值</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 精确查询id为IKDd91dsfF和ddDSDsad2的值</span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">"query"</span>:&#123;</span><br><span class="line">    <span class="attr">"term"</span>:&#123;</span><br><span class="line">      <span class="attr">"id"</span>:[<span class="string">"IKDd91dsfF"</span>,<span class="string">"ddDSDsad2"</span>]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4><span id="range过滤">range过滤</span></h4><p>用于指定范围查询</p>
 <p>范围操作符：</p>
 <ul>
 <li>gt:大于</li>
@@ -205,42 +212,42 @@
 <li>lt:小于</li>
 <li>lte:小于等于</li>
 </ul>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"># 查询code大于等于1和小于等于1000的值</div><div class="line">&#123; </div><div class="line">  "query": &#123; </div><div class="line">    "range": &#123; </div><div class="line">      "code": &#123; </div><div class="line">        "gte": 1 </div><div class="line">        "lte":1000</div><div class="line">      &#125; </div><div class="line">    &#125; </div><div class="line">  &#125; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="exists和missing过滤"><a href="#exists和missing过滤" class="headerlink" title="exists和missing过滤"></a>exists和missing过滤</h4><p>用于查询文档中是否包含指定字段或没有某个字段,类似IS_NULL条件;</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># 查询code大于等于1和小于等于1000的值</span><br><span class="line">&#123; </span><br><span class="line">  <span class="attr">"query"</span>: &#123; </span><br><span class="line">    <span class="attr">"range"</span>: &#123; </span><br><span class="line">      <span class="attr">"code"</span>: &#123; </span><br><span class="line">        <span class="attr">"gte"</span>: <span class="number">1</span> </span><br><span class="line">        <span class="string">"lte"</span>:<span class="number">1000</span></span><br><span class="line">      &#125; </span><br><span class="line">    &#125; </span><br><span class="line">  &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4><span id="exists和missing过滤">exists和missing过滤</span></h4><p>用于查询文档中是否包含指定字段或没有某个字段,类似IS_NULL条件;</p>
 <p>这两个过滤，用于对已经查询出来的一批数据，区分某个字段是否存在的时候用</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&#123; </div><div class="line">  <span class="attr">"query"</span>: &#123; </div><div class="line">    <span class="attr">"exists"</span>: &#123; </div><div class="line">      <span class="attr">"field"</span>: <span class="string">"search"</span></div><div class="line">    &#125; </div><div class="line">  &#125; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="bool过滤"><a href="#bool过滤" class="headerlink" title="bool过滤"></a>bool过滤</h4><p>用来合并多个过滤条件查询结果的布尔逻辑，涵盖以下操作符：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123; </span><br><span class="line">  <span class="attr">"query"</span>: &#123; </span><br><span class="line">    <span class="attr">"exists"</span>: &#123; </span><br><span class="line">      <span class="attr">"field"</span>: <span class="string">"search"</span></span><br><span class="line">    &#125; </span><br><span class="line">  &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4><span id="bool过滤">bool过滤</span></h4><p>用来合并多个过滤条件查询结果的布尔逻辑，涵盖以下操作符：</p>
 <ul>
 <li>must:多个查询条件精确匹配，相当于and使用</li>
 <li>must_not:多个查询条件的相反匹配，相当于not</li>
 <li>should:至少有一个查询条件匹配，相对于or</li>
 </ul>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&#123; </div><div class="line">  <span class="attr">"query"</span>: &#123; </div><div class="line">     <span class="attr">"bool"</span>: &#123; </div><div class="line">        <span class="attr">"must"</span>:     &#123; <span class="attr">"term"</span>: &#123; <span class="attr">"folder"</span>: <span class="string">"inbox"</span>&#125;&#125;, </div><div class="line">        <span class="attr">"must_not"</span>: &#123; <span class="attr">"term"</span>: &#123; <span class="attr">"tag"</span>: <span class="string">"spam"</span>&#125;&#125;, </div><div class="line">        <span class="attr">"should"</span>: [ </div><div class="line">                    &#123; <span class="attr">"term"</span>: &#123; <span class="attr">"starred"</span>: <span class="literal">true</span>&#125;&#125;, </div><div class="line">                    &#123; <span class="attr">"term"</span>: &#123; <span class="attr">"unread"</span>:  <span class="literal">true</span>&#125;&#125; </div><div class="line">        ] </div><div class="line">    &#125; </div><div class="line">  &#125; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="Query-DSL"><a href="#Query-DSL" class="headerlink" title="Query DSL"></a>Query DSL</h4><h4 id="match-all查询"><a href="#match-all查询" class="headerlink" title="match_all查询"></a>match_all查询</h4><p>可以查询所有文档，没有其他查询条件的默认语句</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123; </span><br><span class="line">  <span class="attr">"query"</span>: &#123; </span><br><span class="line">     <span class="attr">"bool"</span>: &#123; </span><br><span class="line">        <span class="attr">"must"</span>:     &#123; <span class="attr">"term"</span>: &#123; <span class="attr">"folder"</span>: <span class="string">"inbox"</span>&#125;&#125;, </span><br><span class="line">        <span class="attr">"must_not"</span>: &#123; <span class="attr">"term"</span>: &#123; <span class="attr">"tag"</span>: <span class="string">"spam"</span>&#125;&#125;, </span><br><span class="line">        <span class="attr">"should"</span>: [ </span><br><span class="line">                    &#123; <span class="attr">"term"</span>: &#123; <span class="attr">"starred"</span>: <span class="literal">true</span>&#125;&#125;, </span><br><span class="line">                    &#123; <span class="attr">"term"</span>: &#123; <span class="attr">"unread"</span>:  <span class="literal">true</span>&#125;&#125; </span><br><span class="line">        ] </span><br><span class="line">    &#125; </span><br><span class="line">  &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4><span id="query-dsl">Query DSL</span></h4><h4><span id="match_all查询">match_all查询</span></h4><p>可以查询所有文档，没有其他查询条件的默认语句</p>
 <p>常用于合并过滤条件</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"match_all"</span>:&#123;&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="match查询"><a href="#match查询" class="headerlink" title="match查询"></a>match查询</h4><p>match查询是标准查询，只能指定某个确切字段，某个确切的值进行搜索。</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123; <span class="attr">"match"</span>: &#123; <span class="attr">"age"</span>: <span class="number">26</span>&#125;&#125; </div><div class="line">&#123; <span class="attr">"match"</span>: &#123; <span class="attr">"date"</span>: <span class="string">"2014-09-01"</span> &#125;&#125; </div><div class="line">&#123; <span class="attr">"match"</span>: &#123; <span class="attr">"public"</span>: <span class="literal">true</span>&#125;&#125; </div><div class="line">&#123; <span class="attr">"match"</span>: &#123; <span class="attr">"tag"</span>: <span class="string">"full_text"</span>&#125;&#125;</div></pre></td></tr></table></figure>
-<h4 id="multi-match查询"><a href="#multi-match查询" class="headerlink" title="multi_match查询"></a>multi_match查询</h4><p>允许做match查询的基础上同时搜索多个字段。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"># 在body和title字段查询</div><div class="line">&#123; </div><div class="line">  "multi_match": &#123; </div><div class="line">    "query": "full text search",</div><div class="line">    "fields": [ "title", "body" ]</div><div class="line">  &#125; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="bool查询"><a href="#bool查询" class="headerlink" title="bool查询"></a>bool查询</h4><p>同bool过滤类似，合并多个子查询，不同的是，bool过滤可以直接给出是否匹配成功，bool查询是给出每个子查询子句的是_score，也就是相关性分值。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"match_all"</span>:&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4><span id="match查询">match查询</span></h4><p>match查询是标准查询，只能指定某个确切字段，某个确切的值进行搜索。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="attr">"match"</span>: &#123; <span class="attr">"age"</span>: <span class="number">26</span>&#125;&#125; </span><br><span class="line">&#123; <span class="attr">"match"</span>: &#123; <span class="attr">"date"</span>: <span class="string">"2014-09-01"</span> &#125;&#125; </span><br><span class="line">&#123; <span class="attr">"match"</span>: &#123; <span class="attr">"public"</span>: <span class="literal">true</span>&#125;&#125; </span><br><span class="line">&#123; <span class="attr">"match"</span>: &#123; <span class="attr">"tag"</span>: <span class="string">"full_text"</span>&#125;&#125;</span><br></pre></td></tr></table></figure>
+<h4><span id="multi_match查询">multi_match查询</span></h4><p>允许做match查询的基础上同时搜索多个字段。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 在body和title字段查询</span><br><span class="line">&#123; </span><br><span class="line">  <span class="attr">"multi_match"</span>: &#123; </span><br><span class="line">    <span class="attr">"query"</span>: <span class="string">"full text search"</span>,</span><br><span class="line">    <span class="attr">"fields"</span>: [ <span class="string">"title"</span>, <span class="string">"body"</span> ]</span><br><span class="line">  &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4><span id="bool查询">bool查询</span></h4><p>同bool过滤类似，合并多个子查询，不同的是，bool过滤可以直接给出是否匹配成功，bool查询是给出每个子查询子句的是_score，也就是相关性分值。</p>
 <ul>
 <li>must:查询指定文档全匹配</li>
 <li>must_not:查询文档不匹配</li>
 <li>should:查询指定文档，有则可以为文档那个相关性加分</li>
 </ul>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&#123; </div><div class="line">    <span class="attr">"bool"</span>: &#123; </div><div class="line">        <span class="attr">"must"</span>:     &#123; <span class="attr">"match"</span>: &#123; <span class="attr">"title"</span>: <span class="string">"how to make millions"</span> &#125;&#125;, </div><div class="line">        <span class="attr">"must_not"</span>: &#123; <span class="attr">"match"</span>: &#123; <span class="attr">"tag"</span>: <span class="string">"spam"</span> &#125;&#125;, </div><div class="line">        <span class="attr">"should"</span>: [ </div><div class="line">            &#123; <span class="attr">"match"</span>: &#123; <span class="attr">"tag"</span>: <span class="string">"starred"</span> &#125;&#125;, </div><div class="line">            &#123; <span class="attr">"range"</span>: &#123; <span class="attr">"date"</span>: &#123; <span class="attr">"gte"</span>: <span class="string">"2014-01-01"</span> &#125;&#125;&#125; </div><div class="line">        ] </div><div class="line">    &#125; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="regexp查询"><a href="#regexp查询" class="headerlink" title="regexp查询"></a>regexp查询</h3><p>支持使用正则对文本进行查询</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># postcode以W开头，紧跟着0到9的数字</div><div class="line">&#123; </div><div class="line">    "query": &#123; </div><div class="line">        "regexp": &#123; </div><div class="line">            "postcode": "W[0-9].+" </div><div class="line">        &#125; </div><div class="line">    &#125; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="prefix查询"><a href="#prefix查询" class="headerlink" title="prefix查询"></a>prefix查询</h4><p>以什么字符开头的查询</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"query"</span>:&#123;</div><div class="line">    <span class="attr">"prefix"</span>:&#123;</div><div class="line">      <span class="attr">"address"</span>:<span class="string">"北京"</span></div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="短语匹配"><a href="#短语匹配" class="headerlink" title="短语匹配"></a>短语匹配</h3><h4 id="match-phrase"><a href="#match-phrase" class="headerlink" title="match_phrase"></a>match_phrase</h4><p>需要寻找邻近几个单词时用到</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">"match": &#123;</div><div class="line">    "title": &#123;</div><div class="line">        "query": "quick brown fox",</div><div class="line">        "type":  "phrase"</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="参考链接地址"><a href="#参考链接地址" class="headerlink" title="参考链接地址"></a>参考链接地址</h3><ul>
-<li><a href="http://www.ruanyifeng.com/blog/2017/08/elasticsearch.html" target="_blank" rel="external">链接1</a></li>
-<li><a href="https://blog.csdn.net/qingmoruoxi/article/details/77221602" target="_blank" rel="external">链接2</a></li>
-<li><a href="https://es.xiaoleilu.com/054_Query_DSL/00_Intro.html" target="_blank" rel="external">链接3</a></li>
-<li><a href="https://github.com/JamesBaiyong/python_pracatice/blob/master/script/es_search_simple_demo.py" target="_blank" rel="external">使用demo</a></li>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123; </span><br><span class="line">    <span class="attr">"bool"</span>: &#123; </span><br><span class="line">        <span class="attr">"must"</span>:     &#123; <span class="attr">"match"</span>: &#123; <span class="attr">"title"</span>: <span class="string">"how to make millions"</span> &#125;&#125;, </span><br><span class="line">        <span class="attr">"must_not"</span>: &#123; <span class="attr">"match"</span>: &#123; <span class="attr">"tag"</span>: <span class="string">"spam"</span> &#125;&#125;, </span><br><span class="line">        <span class="attr">"should"</span>: [ </span><br><span class="line">            &#123; <span class="attr">"match"</span>: &#123; <span class="attr">"tag"</span>: <span class="string">"starred"</span> &#125;&#125;, </span><br><span class="line">            &#123; <span class="attr">"range"</span>: &#123; <span class="attr">"date"</span>: &#123; <span class="attr">"gte"</span>: <span class="string">"2014-01-01"</span> &#125;&#125;&#125; </span><br><span class="line">        ] </span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3><span id="regexp查询">regexp查询</span></h3><p>支持使用正则对文本进行查询</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># postcode以W开头，紧跟着0到9的数字</span><br><span class="line">&#123; </span><br><span class="line">    <span class="attr">"query"</span>: &#123; </span><br><span class="line">        <span class="attr">"regexp"</span>: &#123; </span><br><span class="line">            <span class="attr">"postcode"</span>: <span class="string">"W[0-9].+"</span> </span><br><span class="line">        &#125; </span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4><span id="prefix查询">prefix查询</span></h4><p>以什么字符开头的查询</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"query"</span>:&#123;</span><br><span class="line">    <span class="attr">"prefix"</span>:&#123;</span><br><span class="line">      <span class="attr">"address"</span>:<span class="string">"北京"</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3><span id="短语匹配">短语匹配</span></h3><h4><span id="match_phrase">match_phrase</span></h4><p>需要寻找邻近几个单词时用到</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">"match": &#123;</span><br><span class="line">    "title": &#123;</span><br><span class="line">        "query": "quick brown fox",</span><br><span class="line">        "type":  "phrase"</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3><span id="参考链接地址">参考链接地址</span></h3><ul>
+<li><a href="http://www.ruanyifeng.com/blog/2017/08/elasticsearch.html" target="_blank" rel="noopener">链接1</a></li>
+<li><a href="https://blog.csdn.net/qingmoruoxi/article/details/77221602" target="_blank" rel="noopener">链接2</a></li>
+<li><a href="https://es.xiaoleilu.com/054_Query_DSL/00_Intro.html" target="_blank" rel="noopener">链接3</a></li>
+<li><a href="https://github.com/JamesBaiyong/python_pracatice/blob/master/script/es_search_simple_demo.py" target="_blank" rel="noopener">使用demo</a></li>
 </ul>
 
       
@@ -389,6 +396,7 @@
   
 
 
+
           </div>
         </div>
       </div>
@@ -491,18 +499,6 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">ES</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Elasticsearch</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
@@ -515,7 +511,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">web开发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">ES</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Elasticsearch</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -523,7 +535,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">web开发</a>
+                <a href="javascript:void(0)" class="js-tag color5">hero</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -531,19 +543,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hero</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">wsl</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">ubuntu</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color3">脚本</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -559,7 +559,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">脚本</a>
+                <a href="javascript:void(0)" class="js-tag color4">wsl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">ubuntu</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SMS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -575,15 +587,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SMS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">javascript动态页面</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">python - Numpy</a>
+                <a href="javascript:void(0)" class="js-tag color1">Numpy</a>
               </li>
             
             <div class="clearfix"></div>

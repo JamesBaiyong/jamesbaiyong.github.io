@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>抓取异步加载网页信息 | JamesBy博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -15,6 +15,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/10/11/抓取异步加载网页信息/index.html">
 <meta property="og:site_name" content="JamesBy博客">
 <meta property="og:description" content="前言编写网络爬虫第一步先进行网页分析，确定自己所需获取的信息，分析网页源码结构以及渲染方式很重要。今天要抓取的页面是JD的图书销售榜单。这个网页是采用动态加载的渲染方式显示网页内容，之前的这篇文章，也是采用动态加载的方式渲染网页的，当时使用了Selenium的方式获取了网页信息。这篇文章采用了不一样的方式来处理类似的情况，那就是找接口，使用现有数据接口，分析ajax的方式获取信息。">
+<meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://static.pexels.com/photos/265087/pexels-photo-265087.jpeg">
 <meta property="og:image" content="http://ouyzqzdzy.bkt.clouddn.com/%E6%BA%90%E7%A0%81.jpg">
 <meta property="og:image" content="http://ouyzqzdzy.bkt.clouddn.com/%E6%95%B0%E6%8D%AE%E5%93%8D%E5%BA%94.jpg">
@@ -33,6 +34,7 @@
     <link rel="icon" href="/blogimg/favicon.ico">
   
   <link rel="stylesheet" type="text/css" href="/./main.b3331d.css">
+
   <style type="text/css">
   
     #container.show {
@@ -56,7 +58,7 @@
         
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -179,39 +181,44 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>编写网络爬虫第一步先进行网页分析，确定自己所需获取的信息，分析网页源码结构以及渲染方式很重要。今天要抓取的页面是JD的图书销售榜单。这个网页是采用动态加载的渲染方式显示网页内容，之前的<a href="http://jamesby.top/2017/06/12/%E8%8E%B7%E5%8F%96instagram%E5%9B%BE%E7%89%87-%E7%94%A8%E7%88%AC%E8%99%AB%E7%9A%84%E6%96%B9%E5%BC%8F/" target="_blank" rel="external">这篇文章</a>，也是采用动态加载的方式渲染网页的，当时使用了Selenium的方式获取了网页信息。这篇文章采用了不一样的方式来处理类似的情况，那就是找接口，使用现有数据接口，分析ajax的方式获取信息。</p>
-<p><img src="https://static.pexels.com/photos/265087/pexels-photo-265087.jpeg" alt=""></p>
+        
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">I.网页分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">II.接口分析</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-text">II.1获取数据接口地址</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-text">II.2数据获取</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">III.爬虫编写</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">IV.存储</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">V.总结</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">相关链接：</span></a></li></ol>
+    </div>
+    
+        <h4><span id="前言">前言</span></h4><p>编写网络爬虫第一步先进行网页分析，确定自己所需获取的信息，分析网页源码结构以及渲染方式很重要。今天要抓取的页面是JD的图书销售榜单。这个网页是采用动态加载的渲染方式显示网页内容，之前的<a href="http://jamesby.top/2017/06/12/%E8%8E%B7%E5%8F%96instagram%E5%9B%BE%E7%89%87-%E7%94%A8%E7%88%AC%E8%99%AB%E7%9A%84%E6%96%B9%E5%BC%8F/" target="_blank" rel="noopener">这篇文章</a>，也是采用动态加载的方式渲染网页的，当时使用了Selenium的方式获取了网页信息。这篇文章采用了不一样的方式来处理类似的情况，那就是找接口，使用现有数据接口，分析ajax的方式获取信息。</p>
+<p><img src="https://static.pexels.com/photos/265087/pexels-photo-265087.jpeg" alt></p>
 <a id="more"></a>
-<h4 id="I-网页分析"><a href="#I-网页分析" class="headerlink" title="I.网页分析"></a>I.网页分析</h4><p>首先打开网页查看需要的信息就无需赘诉了，这里我们需要获得书籍的销售排名、书名、作者、现价、原价、出版社这几条信息。先获取网页源码看看信息在什么地方。获取到下图所示的源码，注意看标志处，这里本该是有商品价格的地方，但是通过程序得到的网页是没有价格信息的，可以得知这个网页的价格信息是异步加载的。这就是今天要解决的重点问题，也是这篇文章出现的关键因素。</p>
-<p><img src="http://ouyzqzdzy.bkt.clouddn.com/%E6%BA%90%E7%A0%81.jpg" alt=""></p>
-<p>如果判断网页是否是动态加载都使用这种方法的话，看起来蠢蠢的，所以这里安利这个<a href="https://chrome.google.com/webstore/detail/toggle-javascript/cidlcjdalomndpeagkjpnefhljffbnlo" target="_blank" rel="external">插件</a>，可以方便的判断页面哪些是使用JS的方式加载的，也就是动态加载的部分。</p>
-<h4 id="II-接口分析"><a href="#II-接口分析" class="headerlink" title="II.接口分析"></a>II.接口分析</h4><p>现在问题已经抛出来了，那就是如何获取到完整的网页源码。接下来就是用分析数据接口的方式来抓取内容吧，这里插一句，在董伟明前辈的live中也有提到如何处理这类网页，首推方法也是这种找数据接口的方法，使Selenium过于消耗资源了。在爬取大量数据的时候就比较痛苦了。</p>
+<h4><span id="i网页分析">I.网页分析</span></h4><p>首先打开网页查看需要的信息就无需赘诉了，这里我们需要获得书籍的销售排名、书名、作者、现价、原价、出版社这几条信息。先获取网页源码看看信息在什么地方。获取到下图所示的源码，注意看标志处，这里本该是有商品价格的地方，但是通过程序得到的网页是没有价格信息的，可以得知这个网页的价格信息是异步加载的。这就是今天要解决的重点问题，也是这篇文章出现的关键因素。</p>
+<p><img src="http://ouyzqzdzy.bkt.clouddn.com/%E6%BA%90%E7%A0%81.jpg" alt></p>
+<p>如果判断网页是否是动态加载都使用这种方法的话，看起来蠢蠢的，所以这里安利这个<a href="https://chrome.google.com/webstore/detail/toggle-javascript/cidlcjdalomndpeagkjpnefhljffbnlo" target="_blank" rel="noopener">插件</a>，可以方便的判断页面哪些是使用JS的方式加载的，也就是动态加载的部分。</p>
+<h4><span id="ii接口分析">II.接口分析</span></h4><p>现在问题已经抛出来了，那就是如何获取到完整的网页源码。接下来就是用分析数据接口的方式来抓取内容吧，这里插一句，在董伟明前辈的live中也有提到如何处理这类网页，首推方法也是这种找数据接口的方法，使Selenium过于消耗资源了。在爬取大量数据的时候就比较痛苦了。</p>
 <p>接下来切入正题，如何分析和找数据接口是一个细致的活儿，看下截图就知道了。这还是响应数据比较少的，多的就得更细心了。</p>
-<p><img src="http://ouyzqzdzy.bkt.clouddn.com/%E6%95%B0%E6%8D%AE%E5%93%8D%E5%BA%94.jpg" alt=""></p>
-<h5 id="II-1获取数据接口地址"><a href="#II-1获取数据接口地址" class="headerlink" title="II.1获取数据接口地址"></a>II.1获取数据接口地址</h5><p>通过一个一个的查找，终于在下图的地方发现了价格信息的数据接口。查找方式也比较简单粗暴，打开开发者调试工具，选中network那一项，重新加载页面，在响应的文件当中挨个点击查找。当然也可以抓数据包。找到响应数据后右键复制出接口链接地址就可以了。</p>
-<p><img src="http://ouyzqzdzy.bkt.clouddn.com/%E6%95%B0%E6%8D%AE%E6%8E%A5%E5%8F%A3.jpg" alt=""></p>
-<h5 id="II-2数据获取"><a href="#II-2数据获取" class="headerlink" title="II.2数据获取"></a>II.2数据获取</h5><p>在浏览器中打开复制的链接地址，可以发现返回的是一串字符串。图截的不是很好，将就看一下，主要还是思路。<img src="http://ouyzqzdzy.bkt.clouddn.com/%E6%95%B0%E6%8D%AE1.jpg" alt=""></p>
+<p><img src="http://ouyzqzdzy.bkt.clouddn.com/%E6%95%B0%E6%8D%AE%E5%93%8D%E5%BA%94.jpg" alt></p>
+<h5><span id="ii1获取数据接口地址">II.1获取数据接口地址</span></h5><p>通过一个一个的查找，终于在下图的地方发现了价格信息的数据接口。查找方式也比较简单粗暴，打开开发者调试工具，选中network那一项，重新加载页面，在响应的文件当中挨个点击查找。当然也可以抓数据包。找到响应数据后右键复制出接口链接地址就可以了。</p>
+<p><img src="http://ouyzqzdzy.bkt.clouddn.com/%E6%95%B0%E6%8D%AE%E6%8E%A5%E5%8F%A3.jpg" alt></p>
+<h5><span id="ii2数据获取">II.2数据获取</span></h5><p>在浏览器中打开复制的链接地址，可以发现返回的是一串字符串。图截的不是很好，将就看一下，主要还是思路。<img src="http://ouyzqzdzy.bkt.clouddn.com/%E6%95%B0%E6%8D%AE1.jpg" alt></p>
 <p>这里我有一个疑惑点，这个数据接口是我在写这篇文章的时候再次获取的，在编写爬虫的时候我获取到的数据并不是这个样子，而是直接返回的JSON格式的值。于是我怀着好奇的心，在几次不严谨的实验下，我发现了一个可以直接获取JSON的方式，这样程序实现起来也比较简单。通过事后数据核实，也发现这个方式获取到的也并不是脏数据。好，现在来看如何获取JSON格式的值。</p>
 <p>观察链接地址可以发现有许多的ID值。大胆猜测，这些ID值就是与书籍信息相关的。链接保持不变，将链接后面有书籍ID的字符串全部删除，再按照链接格式重构一个新的链接。重新查查看，浏览器返回了这样的信息。这是一段JSON格式的值，对应的书籍通过对网页展示出来的信息也可以知道是些什么信息。到这里，本篇文章重点以完，接下来就是处理获取到的数据，编写爬虫了。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[&#123;"op":"33.40","m":"46.80","id":"J_12122095","p":"33.40"&#125;,&#123;"op":"27.30","m":"39.50","id":"J_11452840","p":"27.30"&#125;]</div></pre></td></tr></table></figure>
-<h4 id="III-爬虫编写"><a href="#III-爬虫编写" class="headerlink" title="III.爬虫编写"></a>III.爬虫编写</h4><p>为了方便快捷，这里笔者使用scrapy编写了爬虫，这里方便读者（如果有的话），放两条链接地址，方便快捷的搭车。<a href="http://book.jd.com/booktop/0-0-0.html?category=1713-0-0-0-10001-1#comfor" target="_blank" rel="external">链接1</a>，<a href="http://p.3.cn/prices/mgets?type=1&amp;skuIds=J_" target="_blank" rel="external">链接2</a>。思路是获取网站信息，定位获取信息的xpath地址，整合数据，存储起来，完事。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&#123;"op":"33.40","m":"46.80","id":"J_12122095","p":"33.40"&#125;,&#123;"op":"27.30","m":"39.50","id":"J_11452840","p":"27.30"&#125;]</span><br></pre></td></tr></table></figure>
+<h4><span id="iii爬虫编写">III.爬虫编写</span></h4><p>为了方便快捷，这里笔者使用scrapy编写了爬虫，这里方便读者（如果有的话），放两条链接地址，方便快捷的搭车。<a href="http://book.jd.com/booktop/0-0-0.html?category=1713-0-0-0-10001-1#comfor" target="_blank" rel="noopener">链接1</a>，<a href="http://p.3.cn/prices/mgets?type=1&amp;skuIds=J_" target="_blank" rel="noopener">链接2</a>。思路是获取网站信息，定位获取信息的xpath地址，整合数据，存储起来，完事。</p>
 <p>定位信息代码：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">item = JdBookItem()</div><div class="line">book_info = response.xpath(<span class="string">'//ul[@class="clearfix"]/li'</span>)</div><div class="line">	<span class="keyword">for</span> book <span class="keyword">in</span> book_info:</div><div class="line">		<span class="comment">#获取在页面的书籍信息</span></div><div class="line">		item[<span class="string">'book_name'</span>] = book.xpath(<span class="string">'.//div[@class="p-img"]/a/@title'</span>).extract()[<span class="number">0</span>]</div><div class="line">		item[<span class="string">'author'</span>] = book.xpath(<span class="string">'.//div[@class="pdetail"]/dl[1]/dd/a[1]/text()'</span>).extract()[<span class="number">0</span>]</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">item = JdBookItem()</span><br><span class="line">book_info = response.xpath(<span class="string">'//ul[@class="clearfix"]/li'</span>)</span><br><span class="line">	<span class="keyword">for</span> book <span class="keyword">in</span> book_info:</span><br><span class="line">		<span class="comment">#获取在页面的书籍信息</span></span><br><span class="line">		item[<span class="string">'book_name'</span>] = book.xpath(<span class="string">'.//div[@class="p-img"]/a/@title'</span>).extract()[<span class="number">0</span>]</span><br><span class="line">		item[<span class="string">'author'</span>] = book.xpath(<span class="string">'.//div[@class="pdetail"]/dl[1]/dd/a[1]/text()'</span>).extract()[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
 <p>价格信息获取：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#获取ajax接口地址，将返回的JSON处理为字典</span></div><div class="line">json_url = self.price_url+item[<span class="string">'book_id'</span>]</div><div class="line">json_price = requests.get(json_url).text</div><div class="line">data = json.loads(json_price)[<span class="number">0</span>]</div><div class="line"><span class="comment">#分析字典数据，获取价格</span></div><div class="line">			</div><div class="line">item[<span class="string">'price'</span>] = data[<span class="string">'m'</span>] + <span class="string">'￥'</span>.decode(<span class="string">'utf-8'</span>)</div><div class="line">item[<span class="string">'preferential_price'</span>] = data[<span class="string">'op'</span>] + <span class="string">'￥'</span>.decode(<span class="string">'utf-8'</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#获取ajax接口地址，将返回的JSON处理为字典</span></span><br><span class="line">json_url = self.price_url+item[<span class="string">'book_id'</span>]</span><br><span class="line">json_price = requests.get(json_url).text</span><br><span class="line">data = json.loads(json_price)[<span class="number">0</span>]</span><br><span class="line"><span class="comment">#分析字典数据，获取价格</span></span><br><span class="line">			</span><br><span class="line">item[<span class="string">'price'</span>] = data[<span class="string">'m'</span>] + <span class="string">'￥'</span>.decode(<span class="string">'utf-8'</span>)</span><br><span class="line">item[<span class="string">'preferential_price'</span>] = data[<span class="string">'op'</span>] + <span class="string">'￥'</span>.decode(<span class="string">'utf-8'</span>)</span><br></pre></td></tr></table></figure>
 <p>下一页获取：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#获取下一页</span></div><div class="line">nextLink = response.xpath(<span class="string">'//div[@class="m m-page"]/div/div/span/a[@class="pn-next"]/@href'</span>).extract()[<span class="number">0</span>]</div><div class="line"><span class="keyword">if</span> nextLink:</div><div class="line">	nextLink = <span class="string">'http:'</span> + nextLink</div><div class="line">	<span class="keyword">yield</span> Request(nextLink, headers=self.headers)</div></pre></td></tr></table></figure>
-<h4 id="IV-存储"><a href="#IV-存储" class="headerlink" title="IV.存储"></a>IV.存储</h4><p>Scrapy可以很方面的保存数据，笔者这里使用了excel的方式保存数据，除了需要在<strong>pipelines.py</strong>文件编写类似以下信息外，还需要在<strong>settings.py</strong>中添加以下字典格式的数据。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#获取下一页</span></span><br><span class="line">nextLink = response.xpath(<span class="string">'//div[@class="m m-page"]/div/div/span/a[@class="pn-next"]/@href'</span>).extract()[<span class="number">0</span>]</span><br><span class="line"><span class="keyword">if</span> nextLink:</span><br><span class="line">	nextLink = <span class="string">'http:'</span> + nextLink</span><br><span class="line">	<span class="keyword">yield</span> Request(nextLink, headers=self.headers)</span><br></pre></td></tr></table></figure>
+<h4><span id="iv存储">IV.存储</span></h4><p>Scrapy可以很方面的保存数据，笔者这里使用了excel的方式保存数据，除了需要在<strong>pipelines.py</strong>文件编写类似以下信息外，还需要在<strong>settings.py</strong>中添加以下字典格式的数据。</p>
 <p><code>JD_book</code>表示项目名，<code>pipelines</code>存储数据文件，<code>JdBookPipeline</code>存储数据类。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ITEM_PIPELINES = &#123;</div><div class="line">    <span class="string">'JD_book.pipelines.JdBookPipeline'</span>: <span class="number">200</span>,  <span class="comment"># 200是为了设置工序顺序</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ITEM_PIPELINES = &#123;</span><br><span class="line">    <span class="string">'JD_book.pipelines.JdBookPipeline'</span>: <span class="number">200</span>,  <span class="comment"># 200是为了设置工序顺序</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>存储数据代码:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> openpyxl <span class="keyword">import</span>  Workbook</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">JdBookPipeline</span><span class="params">(object)</span>:</span></div><div class="line"></div><div class="line">    wb = Workbook()</div><div class="line">    ws = wb.active</div><div class="line">    ws.append([<span class="string">'销售排名'</span>,<span class="string">'书名'</span>,<span class="string">'作者'</span>,<span class="string">'现价'</span>,<span class="string">'原价'</span>,<span class="string">'出版社'</span>])  <span class="comment">#设置表格表头</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">process_item</span><span class="params">(self, item, spider)</span>:</span></div><div class="line">        line = [item[<span class="string">'number'</span>], item[<span class="string">'book_name'</span>],</div><div class="line">                item[<span class="string">'author'</span>],item[<span class="string">'preferential_price'</span>],</div><div class="line">                item[<span class="string">'price'</span>],item[<span class="string">'press'</span>]]  <span class="comment"># 把数据中每一项整理出来</span></div><div class="line"></div><div class="line">        self.ws.append(line)  <span class="comment"># 将数据以行的形式添加到xlsx中</span></div><div class="line">        self.wb.save(<span class="string">'./JD_book1.xlsx'</span>)  <span class="comment"># 保存xlsx文件</span></div><div class="line">        <span class="keyword">return</span> item</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> openpyxl <span class="keyword">import</span>  Workbook</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">JdBookPipeline</span><span class="params">(object)</span>:</span></span><br><span class="line"></span><br><span class="line">    wb = Workbook()</span><br><span class="line">    ws = wb.active</span><br><span class="line">    ws.append([<span class="string">'销售排名'</span>,<span class="string">'书名'</span>,<span class="string">'作者'</span>,<span class="string">'现价'</span>,<span class="string">'原价'</span>,<span class="string">'出版社'</span>])  <span class="comment">#设置表格表头</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">process_item</span><span class="params">(self, item, spider)</span>:</span></span><br><span class="line">        line = [item[<span class="string">'number'</span>], item[<span class="string">'book_name'</span>],</span><br><span class="line">                item[<span class="string">'author'</span>],item[<span class="string">'preferential_price'</span>],</span><br><span class="line">                item[<span class="string">'price'</span>],item[<span class="string">'press'</span>]]  <span class="comment"># 把数据中每一项整理出来</span></span><br><span class="line"></span><br><span class="line">        self.ws.append(line)  <span class="comment"># 将数据以行的形式添加到xlsx中</span></span><br><span class="line">        self.wb.save(<span class="string">'./JD_book1.xlsx'</span>)  <span class="comment"># 保存xlsx文件</span></span><br><span class="line">        <span class="keyword">return</span> item</span><br></pre></td></tr></table></figure>
 <p>最后获得这样的信息:</p>
-<p><img src="http://ouyzqzdzy.bkt.clouddn.com/%E5%95%86%E5%93%81%E4%BB%B7%E6%A0%BC.jpg" alt=""></p>
-<h4 id="V-总结"><a href="#V-总结" class="headerlink" title="V.总结"></a>V.总结</h4><p>这个爬虫主要用到两个知识点，如何获取数据接口和scrapy爬虫的编写。其中难点和瓶颈还是在如何获取数据接口和处理异步加载网页上。还有就是反爬虫策略，这一点这个网页不是特别狠。但需要注意的是请求数据还是不要太频繁，笔者在编写的时候没有一次性获取多条信息，多次查询后就被封了IP，所以这个爬虫还需要优化一下。可以将价格信息一次性获取出来存到字典，然后使用书籍ID再获取价格信息。</p>
+<p><img src="http://ouyzqzdzy.bkt.clouddn.com/%E5%95%86%E5%93%81%E4%BB%B7%E6%A0%BC.jpg" alt></p>
+<h4><span id="v总结">V.总结</span></h4><p>这个爬虫主要用到两个知识点，如何获取数据接口和scrapy爬虫的编写。其中难点和瓶颈还是在如何获取数据接口和处理异步加载网页上。还有就是反爬虫策略，这一点这个网页不是特别狠。但需要注意的是请求数据还是不要太频繁，笔者在编写的时候没有一次性获取多条信息，多次查询后就被封了IP，所以这个爬虫还需要优化一下。可以将价格信息一次性获取出来存到字典，然后使用书籍ID再获取价格信息。</p>
 <p>写这个爬虫纯粹是学习之用，无它意。如有不妥，烦劳通知笔者，笔者立刻删除。</p>
-<h4 id="相关链接："><a href="#相关链接：" class="headerlink" title="相关链接："></a>相关链接：</h4><p><a href="http://www.cnblogs.com/Erma-king/p/5281967.html" target="_blank" rel="external">学习链接</a></p>
-<p><a href="https://github.com/JamesBaiyong/python_pracatice/tree/master/JD_book" target="_blank" rel="external">笔者代码链接</a></p>
+<h4><span id="相关链接">相关链接：</span></h4><p><a href="http://www.cnblogs.com/Erma-king/p/5281967.html" target="_blank" rel="noopener">学习链接</a></p>
+<p><a href="https://github.com/JamesBaiyong/python_pracatice/tree/master/JD_book" target="_blank" rel="noopener">笔者代码链接</a></p>
 
       
 
@@ -359,6 +366,7 @@
   
 
 
+
           </div>
         </div>
       </div>
@@ -461,18 +469,6 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">ES</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Elasticsearch</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
@@ -485,7 +481,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">web开发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">ES</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Elasticsearch</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -493,7 +505,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">web开发</a>
+                <a href="javascript:void(0)" class="js-tag color5">hero</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -501,19 +513,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hero</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">wsl</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">ubuntu</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color3">脚本</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -529,7 +529,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">脚本</a>
+                <a href="javascript:void(0)" class="js-tag color4">wsl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">ubuntu</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SMS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -545,15 +557,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SMS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">javascript动态页面</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">python - Numpy</a>
+                <a href="javascript:void(0)" class="js-tag color1">Numpy</a>
               </li>
             
             <div class="clearfix"></div>

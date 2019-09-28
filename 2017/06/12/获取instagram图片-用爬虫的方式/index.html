@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>获取instagram图片--用爬虫的方式 | JamesBy博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -15,6 +15,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/06/12/获取instagram图片-用爬虫的方式/index.html">
 <meta property="og:site_name" content="JamesBy博客">
 <meta property="og:description" content="I前言​    在手机上玩instagram时，看见好看的图片总希望能够保存下来，但是instagram app并没有提供保存图片的功能。要怎样保存呢？网上有很多方法，其中还要专门的微信公众号。今天我就用爬虫来获取我想要的instagram的图片，虽然用爬虫来爬取，有一点麻烦，可既然学习了python爬虫，那就学以致用，就用爬虫来试试如何下载instagram图片。下图是我爬取到的图片。">
+<meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/writeimg/blog/17061201.jpg">
 <meta property="og:image" content="http://yoursite.com/writeimg/blog/17061202.jpg">
 <meta property="og:image" content="http://yoursite.com/writeimg/blog/17061203.jpg">
@@ -31,6 +32,7 @@
     <link rel="icon" href="/blogimg/favicon.ico">
   
   <link rel="stylesheet" type="text/css" href="/./main.b3331d.css">
+
   <style type="text/css">
   
     #container.show {
@@ -54,7 +56,7 @@
         
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -177,22 +179,27 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="I前言"><a href="#I前言" class="headerlink" title="I前言"></a>I前言</h3><p>​    在手机上玩instagram时，看见好看的图片总希望能够保存下来，但是instagram app并没有提供保存图片的功能。要怎样保存呢？网上有很多方法，其中还要专门的微信公众号。今天我就用爬虫来获取我想要的instagram的图片，虽然用爬虫来爬取，有一点麻烦，可既然学习了python爬虫，那就学以致用，就用爬虫来试试如何下载instagram图片。下图是我爬取到的图片。</p>
+        
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">I前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">II所需工具和整个爬虫结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">III爬虫第一部分编写</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">1.获取到图片的链接</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">2.代码编写与踩坑</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">IV爬虫第二部分编写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">V总结</span></a></li></ol>
+    </div>
+    
+        <h3><span id="i前言">I前言</span></h3><p>​    在手机上玩instagram时，看见好看的图片总希望能够保存下来，但是instagram app并没有提供保存图片的功能。要怎样保存呢？网上有很多方法，其中还要专门的微信公众号。今天我就用爬虫来获取我想要的instagram的图片，虽然用爬虫来爬取，有一点麻烦，可既然学习了python爬虫，那就学以致用，就用爬虫来试试如何下载instagram图片。下图是我爬取到的图片。</p>
 <p><img src="\writeimg\blog\17061201.jpg" alt="配图"></p>
 <a id="more"></a>
-<h3 id="II所需工具和整个爬虫结构"><a href="#II所需工具和整个爬虫结构" class="headerlink" title="II所需工具和整个爬虫结构"></a>II所需工具和整个爬虫结构</h3><p>​    在写这个爬虫会用到的工具有requests,xpath,selenium，这里为什么会用到selenium留到后面再说。    爬虫分为两个部分，第一个部分获取到图片链接，第二个部分将图片保存到本地。相对很简单的爬虫，但这里会接触到javascript动态页面的技术。</p>
-<h3 id="III爬虫第一部分编写"><a href="#III爬虫第一部分编写" class="headerlink" title="III爬虫第一部分编写"></a>III爬虫第一部分编写</h3><h4 id="1-获取到图片的链接"><a href="#1-获取到图片的链接" class="headerlink" title="1.获取到图片的链接"></a>1.获取到图片的链接</h4><p>​    在这个部分，我们的目的很明确，那就是得到图片的绝对地址。首先我们如何得到app上图片的相对地址呢？很简单，打开手机app点击图片右上方的三个小点，把网址复制下来，如下图所示，用pc端打开。</p>
+<h3><span id="ii所需工具和整个爬虫结构">II所需工具和整个爬虫结构</span></h3><p>​    在写这个爬虫会用到的工具有requests,xpath,selenium，这里为什么会用到selenium留到后面再说。    爬虫分为两个部分，第一个部分获取到图片链接，第二个部分将图片保存到本地。相对很简单的爬虫，但这里会接触到javascript动态页面的技术。</p>
+<h3><span id="iii爬虫第一部分编写">III爬虫第一部分编写</span></h3><h4><span id="1获取到图片的链接">1.获取到图片的链接</span></h4><p>​    在这个部分，我们的目的很明确，那就是得到图片的绝对地址。首先我们如何得到app上图片的相对地址呢？很简单，打开手机app点击图片右上方的三个小点，把网址复制下来，如下图所示，用pc端打开。</p>
 <p>​                        <img src="\writeimg\blog\17061202.jpg" alt="图片网址"></p>
 <p>​    这样，我们就可以在浏览器中就可以找到我们要的图片在哪里了，使用审查元素的方式，找到图片的绝对地址。</p>
 <p><img src="\writeimg\blog\17061203.jpg" alt="图片绝对地址"></p>
-<h4 id="2-代码编写与踩坑"><a href="#2-代码编写与踩坑" class="headerlink" title="2.代码编写与踩坑"></a>2.代码编写与踩坑</h4><p>​    到这里我们很容易想到用获取网址源码的方式得到这个URL，然后在请求URL的二进制形式，最后写入到本地文件即可。这样的思路没有问题，但instagram这个网址采用了javascript动态加载页面的方式来渲染网页。采用这种技术的网址本身会具备一定的反爬技术，所以如果一上来就reques.get网站源码。我们会得到一个这样子的网页源码。</p>
+<h4><span id="2代码编写与踩坑">2.代码编写与踩坑</span></h4><p>​    到这里我们很容易想到用获取网址源码的方式得到这个URL，然后在请求URL的二进制形式，最后写入到本地文件即可。这样的思路没有问题，但instagram这个网址采用了javascript动态加载页面的方式来渲染网页。采用这种技术的网址本身会具备一定的反爬技术，所以如果一上来就reques.get网站源码。我们会得到一个这样子的网页源码。</p>
 <p><img src="\writeimg\blog\17061204.jpg" alt="源码"></p>
 <p>​    在得到这样的源码后是不能用xpath找到图片绝对地址的，所以我们需要用到selenium这个工具。使用它来模拟浏览器打开网页，等待JS代码的执行，然后获取网页源码，这样就可以得到一个可以用xpath能处理的网页源码了。分析到这里，已经有了编写这一部分爬虫的思路了。使用selenium模拟浏览器打开网页，返回图片的绝对地址。下面直接上代码。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">getImgUrl</span><span class="params">(starturl)</span>:</span></div><div class="line">	<span class="string">'''</span></div><div class="line">	获取图片连接</div><div class="line">	'''</div><div class="line">	browser = webdriver.Chrome()</div><div class="line">	browser.get(starturl)</div><div class="line">	htmlSoure=browser.page_source</div><div class="line">	htmlXml=html.fromstring(htmlSoure)</div><div class="line">	imgurl = htmlXml.xpath(<span class="string">'//div[@class="_jjzlb"]/img/@src'</span>)</div><div class="line">	<span class="keyword">global</span> imgname</div><div class="line">	imgname= time.strftime(<span class="string">'%Y-%m-%d-%H-%M-%S'</span>,time.localtime(time.time()))</div><div class="line">	<span class="keyword">return</span> imgurl</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getImgUrl</span><span class="params">(starturl)</span>:</span></span><br><span class="line">	<span class="string">'''</span></span><br><span class="line"><span class="string">	获取图片连接</span></span><br><span class="line"><span class="string">	'''</span></span><br><span class="line">	browser = webdriver.Chrome()</span><br><span class="line">	browser.get(starturl)</span><br><span class="line">	htmlSoure=browser.page_source</span><br><span class="line">	htmlXml=html.fromstring(htmlSoure)</span><br><span class="line">	imgurl = htmlXml.xpath(<span class="string">'//div[@class="_jjzlb"]/img/@src'</span>)</span><br><span class="line">	<span class="keyword">global</span> imgname</span><br><span class="line">	imgname= time.strftime(<span class="string">'%Y-%m-%d-%H-%M-%S'</span>,time.localtime(time.time()))</span><br><span class="line">	<span class="keyword">return</span> imgurl</span><br></pre></td></tr></table></figure>
 <p>​    在代码里，我加了一个全局变量，用来当作图片名字，是用当前的时间来命名的。</p>
-<h3 id="IV爬虫第二部分编写"><a href="#IV爬虫第二部分编写" class="headerlink" title="IV爬虫第二部分编写"></a>IV爬虫第二部分编写</h3><p>​    到这里就很简单了，需要注意的是函数getImgUrl返回的地址是list，也就是说需要用下标的方式获取我们所要的URL，然后使用requests以字节的方式访问图片URL就写入到本地了。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">getImg</span><span class="params">(starturl)</span>:</span></div><div class="line">	<span class="string">'''</span></div><div class="line">	保存图片</div><div class="line">	'''</div><div class="line">	url=getImgUrl(starturl)</div><div class="line">	ins_pic=requests.get(url[<span class="number">0</span>],headers=headers).content</div><div class="line">	dirname=<span class="string">"insimg"</span></div><div class="line"></div><div class="line">	filename = <span class="string">'%s/%s.jpg'</span> % (dirname, imgname) </div><div class="line">	<span class="keyword">with</span> open(filename,<span class="string">'wb'</span>) <span class="keyword">as</span> f:</div><div class="line">		f.write(ins_pic)</div></pre></td></tr></table></figure>
-<h3 id="V总结"><a href="#V总结" class="headerlink" title="V总结"></a>V总结</h3><p>​    到这里核心代码已经编写完毕，只有两部分，比较简单。但这个爬虫存在很多问题，首先是慢，这个主要是需要使用到selenium来模拟浏览器等待网页完全渲染完毕。还有一个问题就是运行爬虫程序时，会打开一个浏览器窗口。这个爬虫写的不是很好，仅仅简单实现了我保存图片的需求而已。等日后有了更精的技术再来完善吧，如果有有缘人能看到，还请多多提意见。最后附上<a href="https://github.com/JamesBaiyong/python_pracatice/blob/master/getInstagramImages.py" target="_blank" rel="external">爬虫程序github地址</a>。</p>
+<h3><span id="iv爬虫第二部分编写">IV爬虫第二部分编写</span></h3><p>​    到这里就很简单了，需要注意的是函数getImgUrl返回的地址是list，也就是说需要用下标的方式获取我们所要的URL，然后使用requests以字节的方式访问图片URL就写入到本地了。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getImg</span><span class="params">(starturl)</span>:</span></span><br><span class="line">	<span class="string">'''</span></span><br><span class="line"><span class="string">	保存图片</span></span><br><span class="line"><span class="string">	'''</span></span><br><span class="line">	url=getImgUrl(starturl)</span><br><span class="line">	ins_pic=requests.get(url[<span class="number">0</span>],headers=headers).content</span><br><span class="line">	dirname=<span class="string">"insimg"</span></span><br><span class="line"></span><br><span class="line">	filename = <span class="string">'%s/%s.jpg'</span> % (dirname, imgname) </span><br><span class="line">	<span class="keyword">with</span> open(filename,<span class="string">'wb'</span>) <span class="keyword">as</span> f:</span><br><span class="line">		f.write(ins_pic)</span><br></pre></td></tr></table></figure>
+<h3><span id="v总结">V总结</span></h3><p>​    到这里核心代码已经编写完毕，只有两部分，比较简单。但这个爬虫存在很多问题，首先是慢，这个主要是需要使用到selenium来模拟浏览器等待网页完全渲染完毕。还有一个问题就是运行爬虫程序时，会打开一个浏览器窗口。这个爬虫写的不是很好，仅仅简单实现了我保存图片的需求而已。等日后有了更精的技术再来完善吧，如果有有缘人能看到，还请多多提意见。最后附上<a href="https://github.com/JamesBaiyong/python_pracatice/blob/master/getInstagramImages.py" target="_blank" rel="noopener">爬虫程序github地址</a>。</p>
 
       
 
@@ -340,6 +347,7 @@
   
 
 
+
           </div>
         </div>
       </div>
@@ -442,18 +450,6 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">ES</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Elasticsearch</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
@@ -466,7 +462,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">web开发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">ES</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Elasticsearch</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -474,7 +486,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">web开发</a>
+                <a href="javascript:void(0)" class="js-tag color5">hero</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -482,19 +494,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hero</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">wsl</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">ubuntu</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color3">脚本</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -510,7 +510,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">脚本</a>
+                <a href="javascript:void(0)" class="js-tag color4">wsl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">ubuntu</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SMS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -526,15 +538,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SMS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">javascript动态页面</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">python - Numpy</a>
+                <a href="javascript:void(0)" class="js-tag color1">Numpy</a>
               </li>
             
             <div class="clearfix"></div>
