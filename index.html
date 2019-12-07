@@ -154,6 +154,93 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-MySQL使用SSL-Python" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/07/MySQL使用SSL-Python/">MySQL使用SSL-Python</a>
+    </h1>
+  
+
+        
+        <a href="/2019/12/07/MySQL使用SSL-Python/" class="archive-article-date">
+  	<time datetime="2019-12-07T09:16:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+        <p>[toc]</p>
+<h4><span id="mysql安装">mysql安装</span></h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">wget http://dev.mysql.com/get/mysql57-community-release-el7-8.noarch.rpm</span><br><span class="line">yum localinstall mysql57-community-release-el7-8.noarch.rpm </span><br><span class="line"><span class="meta">#</span> 安装源</span><br><span class="line">yum localinstall mysql57-community-release-el7-8.noarch.rpm </span><br><span class="line"><span class="meta">#</span> 检查源是否安装成功</span><br><span class="line">yum repolist enabled | grep "mysql.*-community.*"</span><br><span class="line"><span class="meta">#</span> 安装</span><br><span class="line">yum install mysql-community-server</span><br><span class="line"><span class="meta">#</span> 启动MySQL服务并设置开机启动</span><br><span class="line">systemctl start mysqld</span><br><span class="line">systemctl enable mysqld</span><br><span class="line">systemctl daemon-reload</span><br><span class="line"><span class="meta">#</span> 端口开放</span><br><span class="line">firewall-cmd --zone=public --add-port=3306/tcp --permanent</span><br><span class="line">firewall-cmd --reload</span><br><span class="line"><span class="meta">#</span> 查看安装好的默认临时密码</span><br><span class="line">grep 'temporary password' /var/log/mysqld.log</span><br><span class="line"><span class="meta">#</span> 登陆</span><br><span class="line">mysql -uroot -p</span><br><span class="line"><span class="meta">#</span> 修改密码</span><br><span class="line">set password for 'root'@'localhost'=password('MyNewPass1!');</span><br></pre></td></tr></table></figure>
+<h4><span id="生成证书">生成证书</span></h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 服务端</span><br><span class="line">openssl genrsa 2048 &gt; ca-key.pem</span><br><span class="line"></span><br><span class="line">openssl req -sha1 -new -x509 -nodes -days 3650 -key ca-key.pem &gt; ca-cert.pem</span><br><span class="line"></span><br><span class="line">openssl req -sha1 -newkey rsa:2048 -days 3650 -nodes -keyout server-key.pem &gt; server-req.pem</span><br><span class="line"></span><br><span class="line">openssl rsa -in server-key.pem -out server-key.pem</span><br><span class="line"></span><br><span class="line">openssl x509 -sha1 -req -in server-req.pem -days 3650 -CA ca-cert.pem -CAkey ca-key.pem -set_serial 01 &gt; server-cert.pem</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 客户端</span><br><span class="line">openssl req -sha1 -newkey rsa:2048 -days 3650 -nodes -keyout client-key.pem &gt; client-req.pem</span><br><span class="line"></span><br><span class="line">openssl rsa -in client-key.pem -out client-key.pem</span><br><span class="line"></span><br><span class="line">openssl x509 -sha1 -req -in client-req.pem -days 3650 -CA ca-cert.pem -CAkey ca-key.pem -set_serial 01 &gt; client-cert.pem</span><br></pre></td></tr></table></figure>
+<p><img src="https://tva1.sinaimg.cn/large/006tNbRwgy1g9o9ohbuq7j30s807i75s.jpg" alt></p>
+<h4><span id="ssl-配置">SSL 配置</span></h4><p>在前面的步骤中, 生成了8个文件, 分别是:<br>ca-cert.pem: CA 证书, 用于生成服务器端/客户端的数字证书.<br>ca-key.pem: CA 私钥, 用于生成服务器端/客户端的数字证书.<br>server-key.pem: 服务器端的 RSA 私钥<br>server-req.pem: 服务器端的证书请求文件, 用于生成服务器端的数字证书.<br>server-cert.pem: 服务器端的数字证书.<br>client-key.pem: 客户端的 RSA 私钥<br>client-req.pem: 客户端的证书请求文件, 用于生成客户端的数字证书.<br>client-cert.pem: 客户端的数字证书.</p>
+<h4><span id="创建ssl连接测试账户">创建ssl连接测试账户</span></h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GRANT</span> ALL <span class="keyword">PRIVILEGES</span> <span class="keyword">ON</span> *.* <span class="keyword">TO</span> <span class="string">'ssl_test'</span>@<span class="string">'%'</span> <span class="keyword">IDENTIFIED</span> <span class="keyword">BY</span> <span class="string">'MyNewPass!'</span> REQUIRE SSL;</span><br><span class="line"># 命令行登录</span><br><span class="line">mysql -h 127.0.0.1 -ussl_test -p <span class="comment">--ssl-cipher=AES128-SHA</span></span><br></pre></td></tr></table></figure>
+<p>使用<code>\s</code>查看是否加密登录<br><img src="https://tva1.sinaimg.cn/large/006tNbRwgy1g9o9na8oj8j30qs0bw0u5.jpg" alt></p>
+<h5><span id="pymysql连接demo">PyMySQL连接Demo</span></h5><ul>
+<li>不用连接池的方式</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">db_conn = pymysql.connect(</span><br><span class="line">            host=kwargs[<span class="string">'host'</span>],</span><br><span class="line">            user=kwargs[<span class="string">'user'</span>],</span><br><span class="line">            passwd=kwargs[<span class="string">'password'</span>],</span><br><span class="line">            db=kwargs[<span class="string">'db'</span>],</span><br><span class="line">            port=kwargs[<span class="string">'port'</span>],</span><br><span class="line">            ssl=&#123;<span class="string">'ssl'</span>: &#123;<span class="string">'ca'</span>: <span class="string">'~/work_code/syn_data_from/mysql/pem_files/ca-cert.pem'</span>,</span><br><span class="line">                         <span class="string">'key'</span>: <span class="string">'~/work_code/syn_data_from/mysql/pem_files/client-key.pem'</span>,</span><br><span class="line">                         <span class="string">'cert'</span>: <span class="string">'~/work_code/syn_data_from/mysql/pem_files/client-cert.pem'</span></span><br><span class="line">                         &#125;</span><br><span class="line">                 &#125;</span><br><span class="line">        )</span><br></pre></td></tr></table></figure>
+<ul>
+<li>连接池的方式</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">db_conn = PooledDB(</span><br><span class="line">            pymysql,</span><br><span class="line">            mincached=<span class="number">2</span>,</span><br><span class="line">            maxcached=<span class="number">5</span>,</span><br><span class="line">            host=MYSQL_HOST,</span><br><span class="line">            user=USER,</span><br><span class="line">            passwd=PASSWORD,</span><br><span class="line">            db=DB,</span><br><span class="line">            port=PORT,</span><br><span class="line">            ssl=&#123;<span class="string">'ssl'</span>: &#123;<span class="string">'ca'</span>: <span class="string">'~/work_code/syn_data_from/mysql/pem_files/ca-cert.pem'</span>,</span><br><span class="line">                         <span class="string">'key'</span>: <span class="string">'~/work_code/syn_data_from/mysql/pem_files/client-key.pem'</span>,</span><br><span class="line">                         <span class="string">'cert'</span>: <span class="string">'~/work_code/syn_data_from/mysql/pem_files/client-cert.pem'</span></span><br><span class="line">                         &#125;</span><br><span class="line">                 &#125;</span><br><span class="line">        )</span><br></pre></td></tr></table></figure>
+<p><strong>⚠️5.7.28 MySQL Community Server (GPL)本身自带了证书，可以不用生成</strong></p>
+<ul>
+<li><a href="https://cizixs.com/2015/03/12/tcpdump-introduction/" target="_blank" rel="noopener">https://cizixs.com/2015/03/12/tcpdump-introduction/</a>)</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">MySQL</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/12/07/MySQL使用SSL-Python/">查看本文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+  
     <article id="post-Spark性能提升" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -666,69 +753,6 @@
 
 
   
-    <article id="post-使用SQL语句查询JSON字段的指定key" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/29/使用SQL语句查询JSON字段的指定key/">使用SQL语句查询JSON字段的指定key</a>
-    </h1>
-  
-
-        
-        <a href="/2017/12/29/使用SQL语句查询JSON字段的指定key/" class="archive-article-date">
-  	<time datetime="2017-12-29T13:31:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="http://ouyzqzdzy.bkt.clouddn.com/architecture.png" alt></p>
-<h6 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h6><p>最近因为某些需求，需要查询数据库中JSON数据格式字段中指定key的数据信息，如何获取字段中的特定”字段”,这就有意思了，当然第一时间可能会想到使用SQL的模糊查询，但是字段为JSON数据格式，这样就行不通了。所以需要换一种思维，经过查询和尝试得出了以下的解决方案，写于此备忘。</p>
-        
-          <a class="article-more-a" href="/2017/12/29/使用SQL语句查询JSON字段的指定key/#more">展开全文 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SQL</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/29/使用SQL语句查询JSON字段的指定key/">查看本文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -839,26 +863,6 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Flask</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">部署</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">web开发</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">ES</a>
               </li>
              
@@ -871,11 +875,27 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hero</a>
+                <a href="javascript:void(0)" class="js-tag color1">Flask</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">web开发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">部署</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -884,6 +904,14 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">脚本</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hero</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -911,6 +939,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">异步加载</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SMS</a>
               </li>
              
@@ -920,10 +952,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">折腾记</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">异步加载</a>
               </li>
              
               <li class="article-tag-list-item">

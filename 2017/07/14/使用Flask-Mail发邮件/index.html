@@ -180,10 +180,6 @@
     <div class="article-entry" itemprop="articleBody">
       
         
-    <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">I  python发邮件的方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">III 认识Flask-Mail</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">III实例化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">IV邮箱设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">V 编写代码</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">step1配置邮箱和邮箱密码:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">step2配置SMTP服务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">step3编写函数发送邮件</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">VI总结</span></a></li></ol>
-    </div>
-    
         <p><img src="\writeimg\blog\17071404.jpg" alt="设置授权密码"></p>
 <h3><span id="i-python发邮件的方式">I  python发邮件的方式</span></h3><p>Web应用中，常常会遇到需要提醒用户的事情，而比较常用的方式就是采用发送邮件的方式。虽然Python在标准库中有smtplib包，可用于发送电子邮件，但包装了smtplib的Flask-Mail扩展提供了一个简单的接口，可以很方便的在flask中集成，只需在应用中设置好SMTP，就可以方便的在视图以及脚本中发送邮件信息，能更好地和Flask集成。</p>
 <h3><span id="iii-认识flask-mail">III 认识Flask-Mail</span></h3><p>使用Flask-Mail发邮件的原理是连接到简单邮件传输协议（SMTP）服务器，并把邮件交给这个服务器发送。所以，需要配置好SMTP。现在通过下面的表格简单认识一下所需要用到的SMTP配置。</p>
@@ -508,26 +504,6 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Flask</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">部署</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">web开发</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">ES</a>
               </li>
              
@@ -540,11 +516,27 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hero</a>
+                <a href="javascript:void(0)" class="js-tag color1">Flask</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">web开发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">部署</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -553,6 +545,14 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">脚本</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hero</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -580,6 +580,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">异步加载</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SMS</a>
               </li>
              
@@ -589,10 +593,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">折腾记</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">异步加载</a>
               </li>
              
               <li class="article-tag-list-item">

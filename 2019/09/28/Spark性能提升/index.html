@@ -178,10 +178,6 @@
     <div class="article-entry" itemprop="articleBody">
       
         
-    <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">1. spark-submit参数调优</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">1.1spark运行原理:</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-text">1.1.1资源申请</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-text">1.1.2调度执行</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-text">1.1.3stage划分</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-text">1.1.4executor 内存划分</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-text">1.1.5executor CPU划分</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">1.2参数资源调优</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">2. 开发调优</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">2.1数据倾斜</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">3.参考链接</span></a></li></ol>
-    </div>
-    
         <p>[TOC]</p>
 <h3><span id="1-spark-submit参数调优">1. spark-submit参数调优</span></h3><h4><span id="11spark运行原理">1.1spark运行原理:</span></h4><p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g7fcu3wiruj30pz0i9n0j.jpg" alt></p>
 <h5><span id="111资源申请">1.1.1资源申请</span></h5><p>spark-submit提交作业后会根据部署模式不同，选择在本地或者集群节点启动Driver进程。由Driver进程向集群管理器，这里是Yran，请求作业运行所需的资源，这里的资源即作业所需的executor。Yarn根据提交的参数，在各节点启动一定数量的executor。</p>
@@ -389,6 +385,15 @@
   
 <nav id="article-nav">
   
+    <a href="/2019/12/07/MySQL使用SSL-Python/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          MySQL使用SSL-Python
+        
+      </div>
+    </a>
+  
   
     <a href="/2019/08/19/Numpy笔记/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">Numpy笔记</div>
@@ -513,26 +518,6 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Flask</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">部署</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">web开发</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">ES</a>
               </li>
              
@@ -545,11 +530,27 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hero</a>
+                <a href="javascript:void(0)" class="js-tag color1">Flask</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">web开发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">部署</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -558,6 +559,14 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">脚本</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hero</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -585,6 +594,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">异步加载</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SMS</a>
               </li>
              
@@ -594,10 +607,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">折腾记</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">异步加载</a>
               </li>
              
               <li class="article-tag-list-item">

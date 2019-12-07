@@ -9,7 +9,7 @@
   <title>使用mysql存储爬取数据 | JamesBy博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="I.实现目标当数据量大了以后，爬取出的数据存储就是个不能避而不谈的问题，这篇短文就学习一下如何把抓取数据入库。这里使用的是mysql数据库，将要爬取的是百度阅读计算机类的书籍信息。由于所需要的书籍信息比较多，这里所采用的技术路线是Scrapy+Mysql的方式。这篇主要学习数据入库，所以爬取信息不是重点。">
-<meta name="keywords" content="python,数据库,爬虫">
+<meta name="keywords" content="数据库,python,爬虫">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用mysql存储爬取数据">
 <meta property="og:url" content="http://yoursite.com/2017/10/24/使用mysql存储爬取数据/index.html">
@@ -180,10 +180,6 @@
     <div class="article-entry" itemprop="articleBody">
       
         
-    <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">I.实现目标</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">II.数据获取</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">III.存储设置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">IV.入库代码编写</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-text">sql.py文件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-text">pipelines.py文件</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">V.总结</span></a></li></ol>
-    </div>
-    
         <h4><span id="i实现目标">I.实现目标</span></h4><p>当数据量大了以后，爬取出的数据存储就是个不能避而不谈的问题，这篇短文就学习一下如何把抓取数据入库。这里使用的是mysql数据库，将要爬取的是百度阅读计算机类的书籍信息。由于所需要的书籍信息比较多，这里所采用的技术路线是Scrapy+Mysql的方式。这篇主要学习数据入库，所以爬取信息不是重点。</p>
 <p><img src="http://img.hb.aicdn.com/c6c31a961d2ca573aecdd1eecc60a135bfb261861136b3-z5yXU8_fw658" alt></p>
 <a id="more"></a>
@@ -251,11 +247,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -462,26 +458,6 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Flask</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">部署</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">web开发</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">ES</a>
               </li>
              
@@ -494,11 +470,27 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hero</a>
+                <a href="javascript:void(0)" class="js-tag color1">Flask</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">web开发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">部署</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -507,6 +499,14 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">脚本</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hero</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -534,6 +534,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">异步加载</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SMS</a>
               </li>
              
@@ -543,10 +547,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">折腾记</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">异步加载</a>
               </li>
              
               <li class="article-tag-list-item">

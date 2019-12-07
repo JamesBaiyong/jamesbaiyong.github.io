@@ -6,18 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | JamesBy博客</title>
+  <title>MySQL使用SSL-Python | JamesBy博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="个人博客，hexo+github">
-<meta property="og:type" content="website">
-<meta property="og:title" content="JamesBy博客">
-<meta property="og:url" content="http://yoursite.com/archives/page/3/index.html">
+  <meta name="description" content="[toc] mysql安装123456789101112131415161718192021wget http://dev.mysql.com/get/mysql57-community-release-el7-8.noarch.rpmyum localinstall mysql57-community-release-el7-8.noarch.rpm # 安装源yum localinstall">
+<meta name="keywords" content="数据库,python,MySQL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL使用SSL-Python">
+<meta property="og:url" content="http://yoursite.com/2019/12/07/MySQL使用SSL-Python/index.html">
 <meta property="og:site_name" content="JamesBy博客">
-<meta property="og:description" content="个人博客，hexo+github">
+<meta property="og:description" content="[toc] mysql安装123456789101112131415161718192021wget http://dev.mysql.com/get/mysql57-community-release-el7-8.noarch.rpmyum localinstall mysql57-community-release-el7-8.noarch.rpm # 安装源yum localinstall">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/006tNbRwgy1g9o9ohbuq7j30s807i75s.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/006tNbRwgy1g9o9na8oj8j30qs0bw0u5.jpg">
+<meta property="og:updated_time" content="2019-12-07T09:18:18.897Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JamesBy博客">
-<meta name="twitter:description" content="个人博客，hexo+github">
+<meta name="twitter:title" content="MySQL使用SSL-Python">
+<meta name="twitter:description" content="[toc] mysql安装123456789101112131415161718192021wget http://dev.mysql.com/get/mysql57-community-release-el7-8.noarch.rpmyum localinstall mysql57-community-release-el7-8.noarch.rpm # 安装源yum localinstall">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/006tNbRwgy1g9o9ohbuq7j30s807i75s.jpg">
   
     <link rel="alternative" href="/atom.xml" title="JamesBy博客" type="application/atom+xml">
   
@@ -152,318 +157,181 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-MySQL使用SSL-Python" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      MySQL使用SSL-Python
+    </h1>
+  
+
+        
+        <a href="/2019/12/07/MySQL使用SSL-Python/" class="archive-article-date">
+  	<time datetime="2019-12-07T09:16:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-07</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+        <p>[toc]</p>
+<h4><span id="mysql安装">mysql安装</span></h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">wget http://dev.mysql.com/get/mysql57-community-release-el7-8.noarch.rpm</span><br><span class="line">yum localinstall mysql57-community-release-el7-8.noarch.rpm </span><br><span class="line"><span class="meta">#</span> 安装源</span><br><span class="line">yum localinstall mysql57-community-release-el7-8.noarch.rpm </span><br><span class="line"><span class="meta">#</span> 检查源是否安装成功</span><br><span class="line">yum repolist enabled | grep "mysql.*-community.*"</span><br><span class="line"><span class="meta">#</span> 安装</span><br><span class="line">yum install mysql-community-server</span><br><span class="line"><span class="meta">#</span> 启动MySQL服务并设置开机启动</span><br><span class="line">systemctl start mysqld</span><br><span class="line">systemctl enable mysqld</span><br><span class="line">systemctl daemon-reload</span><br><span class="line"><span class="meta">#</span> 端口开放</span><br><span class="line">firewall-cmd --zone=public --add-port=3306/tcp --permanent</span><br><span class="line">firewall-cmd --reload</span><br><span class="line"><span class="meta">#</span> 查看安装好的默认临时密码</span><br><span class="line">grep 'temporary password' /var/log/mysqld.log</span><br><span class="line"><span class="meta">#</span> 登陆</span><br><span class="line">mysql -uroot -p</span><br><span class="line"><span class="meta">#</span> 修改密码</span><br><span class="line">set password for 'root'@'localhost'=password('MyNewPass1!');</span><br></pre></td></tr></table></figure>
+<h4><span id="生成证书">生成证书</span></h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 服务端</span><br><span class="line">openssl genrsa 2048 &gt; ca-key.pem</span><br><span class="line"></span><br><span class="line">openssl req -sha1 -new -x509 -nodes -days 3650 -key ca-key.pem &gt; ca-cert.pem</span><br><span class="line"></span><br><span class="line">openssl req -sha1 -newkey rsa:2048 -days 3650 -nodes -keyout server-key.pem &gt; server-req.pem</span><br><span class="line"></span><br><span class="line">openssl rsa -in server-key.pem -out server-key.pem</span><br><span class="line"></span><br><span class="line">openssl x509 -sha1 -req -in server-req.pem -days 3650 -CA ca-cert.pem -CAkey ca-key.pem -set_serial 01 &gt; server-cert.pem</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 客户端</span><br><span class="line">openssl req -sha1 -newkey rsa:2048 -days 3650 -nodes -keyout client-key.pem &gt; client-req.pem</span><br><span class="line"></span><br><span class="line">openssl rsa -in client-key.pem -out client-key.pem</span><br><span class="line"></span><br><span class="line">openssl x509 -sha1 -req -in client-req.pem -days 3650 -CA ca-cert.pem -CAkey ca-key.pem -set_serial 01 &gt; client-cert.pem</span><br></pre></td></tr></table></figure>
+<p><img src="https://tva1.sinaimg.cn/large/006tNbRwgy1g9o9ohbuq7j30s807i75s.jpg" alt></p>
+<h4><span id="ssl-配置">SSL 配置</span></h4><p>在前面的步骤中, 生成了8个文件, 分别是:<br>ca-cert.pem: CA 证书, 用于生成服务器端/客户端的数字证书.<br>ca-key.pem: CA 私钥, 用于生成服务器端/客户端的数字证书.<br>server-key.pem: 服务器端的 RSA 私钥<br>server-req.pem: 服务器端的证书请求文件, 用于生成服务器端的数字证书.<br>server-cert.pem: 服务器端的数字证书.<br>client-key.pem: 客户端的 RSA 私钥<br>client-req.pem: 客户端的证书请求文件, 用于生成客户端的数字证书.<br>client-cert.pem: 客户端的数字证书.</p>
+<h4><span id="创建ssl连接测试账户">创建ssl连接测试账户</span></h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GRANT</span> ALL <span class="keyword">PRIVILEGES</span> <span class="keyword">ON</span> *.* <span class="keyword">TO</span> <span class="string">'ssl_test'</span>@<span class="string">'%'</span> <span class="keyword">IDENTIFIED</span> <span class="keyword">BY</span> <span class="string">'MyNewPass!'</span> REQUIRE SSL;</span><br><span class="line"># 命令行登录</span><br><span class="line">mysql -h 127.0.0.1 -ussl_test -p <span class="comment">--ssl-cipher=AES128-SHA</span></span><br></pre></td></tr></table></figure>
+<p>使用<code>\s</code>查看是否加密登录<br><img src="https://tva1.sinaimg.cn/large/006tNbRwgy1g9o9na8oj8j30qs0bw0u5.jpg" alt></p>
+<h5><span id="pymysql连接demo">PyMySQL连接Demo</span></h5><ul>
+<li>不用连接池的方式</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">db_conn = pymysql.connect(</span><br><span class="line">            host=kwargs[<span class="string">'host'</span>],</span><br><span class="line">            user=kwargs[<span class="string">'user'</span>],</span><br><span class="line">            passwd=kwargs[<span class="string">'password'</span>],</span><br><span class="line">            db=kwargs[<span class="string">'db'</span>],</span><br><span class="line">            port=kwargs[<span class="string">'port'</span>],</span><br><span class="line">            ssl=&#123;<span class="string">'ssl'</span>: &#123;<span class="string">'ca'</span>: <span class="string">'~/work_code/syn_data_from/mysql/pem_files/ca-cert.pem'</span>,</span><br><span class="line">                         <span class="string">'key'</span>: <span class="string">'~/work_code/syn_data_from/mysql/pem_files/client-key.pem'</span>,</span><br><span class="line">                         <span class="string">'cert'</span>: <span class="string">'~/work_code/syn_data_from/mysql/pem_files/client-cert.pem'</span></span><br><span class="line">                         &#125;</span><br><span class="line">                 &#125;</span><br><span class="line">        )</span><br></pre></td></tr></table></figure>
+<ul>
+<li>连接池的方式</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">db_conn = PooledDB(</span><br><span class="line">            pymysql,</span><br><span class="line">            mincached=<span class="number">2</span>,</span><br><span class="line">            maxcached=<span class="number">5</span>,</span><br><span class="line">            host=MYSQL_HOST,</span><br><span class="line">            user=USER,</span><br><span class="line">            passwd=PASSWORD,</span><br><span class="line">            db=DB,</span><br><span class="line">            port=PORT,</span><br><span class="line">            ssl=&#123;<span class="string">'ssl'</span>: &#123;<span class="string">'ca'</span>: <span class="string">'~/work_code/syn_data_from/mysql/pem_files/ca-cert.pem'</span>,</span><br><span class="line">                         <span class="string">'key'</span>: <span class="string">'~/work_code/syn_data_from/mysql/pem_files/client-key.pem'</span>,</span><br><span class="line">                         <span class="string">'cert'</span>: <span class="string">'~/work_code/syn_data_from/mysql/pem_files/client-cert.pem'</span></span><br><span class="line">                         &#125;</span><br><span class="line">                 &#125;</span><br><span class="line">        )</span><br></pre></td></tr></table></figure>
+<p><strong>⚠️5.7.28 MySQL Community Server (GPL)本身自带了证书，可以不用生成</strong></p>
+<ul>
+<li><a href="https://cizixs.com/2015/03/12/tcpdump-introduction/" target="_blank" rel="noopener">https://cizixs.com/2015/03/12/tcpdump-introduction/</a>)</li>
+</ul>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>^^谢谢你请我吃糖哦^^<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/blogimg/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/06/12/获取instagram图片-用爬虫的方式/" class="archive-article-date">
-  	<time datetime="2017-06-12T12:09:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/12/获取instagram图片-用爬虫的方式/">获取instagram图片--用爬虫的方式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
+        		</li>
+      		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">爬虫</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">javascript动态页面</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">MySQL</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2019/12/07/MySQL使用SSL-Python/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
 
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/06/11/python系统监控-psutil/" class="archive-article-date">
-  	<time datetime="2017-06-11T09:53:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-11</time>
-</a>
-        </div>
-    	 
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/11/python系统监控-psutil/">python系统监控--psutil</a>
-    </h1>
   
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">脚本</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-
+    <a href="/2019/09/28/Spark性能提升/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Spark性能提升</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/06/02/网易云跟帖部署二三事/" class="archive-article-date">
-  	<time datetime="2017-06-02T01:57:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-02</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/02/网易云跟帖部署二三事/">网易云跟帖部署二三事</a>
-    </h1>
-  
+</nav>
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">折腾记</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
 
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/24/写一个脚本来更新博客/" class="archive-article-date">
-  	<time datetime="2017-05-24T10:08:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-24</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/24/写一个脚本来更新博客/">写一个脚本来更新博客</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">杂谈</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/24/python爬虫学习笔记I/" class="archive-article-date">
-  	<time datetime="2017-05-24T04:25:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-24</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/24/python爬虫学习笔记I/">python爬虫学习笔记I</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">爬虫</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/23/hello-world/" class="archive-article-date">
-  	<time datetime="2017-05-23T10:20:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/23/hello-world/">Hexo基本使用</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/23/python高级特性/" class="archive-article-date">
-  	<time datetime="2017-05-23T10:19:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/23/python高级特性/">python高级特性</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
 
   
   
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/page/2/">&laquo; Prev</a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><span class="page-number current">3</span>
-    </nav>
+  
+
   
 
 
@@ -488,8 +356,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

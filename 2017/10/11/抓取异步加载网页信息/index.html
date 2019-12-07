@@ -182,10 +182,6 @@
     <div class="article-entry" itemprop="articleBody">
       
         
-    <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">I.网页分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">II.接口分析</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-text">II.1获取数据接口地址</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-text">II.2数据获取</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">III.爬虫编写</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">IV.存储</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">V.总结</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">相关链接：</span></a></li></ol>
-    </div>
-    
         <h4><span id="前言">前言</span></h4><p>编写网络爬虫第一步先进行网页分析，确定自己所需获取的信息，分析网页源码结构以及渲染方式很重要。今天要抓取的页面是JD的图书销售榜单。这个网页是采用动态加载的渲染方式显示网页内容，之前的<a href="http://jamesby.top/2017/06/12/%E8%8E%B7%E5%8F%96instagram%E5%9B%BE%E7%89%87-%E7%94%A8%E7%88%AC%E8%99%AB%E7%9A%84%E6%96%B9%E5%BC%8F/" target="_blank" rel="noopener">这篇文章</a>，也是采用动态加载的方式渲染网页的，当时使用了Selenium的方式获取了网页信息。这篇文章采用了不一样的方式来处理类似的情况，那就是找接口，使用现有数据接口，分析ajax的方式获取信息。</p>
 <p><img src="https://static.pexels.com/photos/265087/pexels-photo-265087.jpeg" alt></p>
 <a id="more"></a>
@@ -469,26 +465,6 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Flask</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">部署</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">web开发</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">ES</a>
               </li>
              
@@ -501,11 +477,27 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hero</a>
+                <a href="javascript:void(0)" class="js-tag color1">Flask</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">web开发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">部署</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -514,6 +506,14 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">脚本</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hero</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -541,6 +541,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">异步加载</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SMS</a>
               </li>
              
@@ -550,10 +554,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">折腾记</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">异步加载</a>
               </li>
              
               <li class="article-tag-list-item">
