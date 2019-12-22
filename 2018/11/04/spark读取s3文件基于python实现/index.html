@@ -177,6 +177,10 @@
     <div class="article-entry" itemprop="articleBody">
       
         
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">1.背景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">2.设置s3读取环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">3.设置读取模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">4.使用spark-submit提交jar包</span></a></li></ol>
+    </div>
+    
         <p><img src="http://ouyzqzdzy.bkt.clouddn.com/spark.jpg" alt="spark"></p>
 <h4><span id="1背景">1.背景</span></h4><p>​    AWS的S3文件系统，是个优秀的分布式文件系统，在EC2上读取速度优异，且存取方便，本文介绍如何使用spark去读取S3上的文件，为做大数据清洗和分析做基本处理工作</p>
 <h4><span id="2设置s3读取环境">2.设置s3读取环境</span></h4><p>​    需要给sparkContent设置s3读取的环境，设置相应的id和key，注意写到代码中，设置awscli可能不行</p>
