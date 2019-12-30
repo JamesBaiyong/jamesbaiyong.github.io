@@ -6,12 +6,12 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>JamesBy博客</title>
+  <title>Tag: Oracle | JamesBy博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="个人博客，hexo+github">
 <meta property="og:type" content="website">
 <meta property="og:title" content="JamesBy博客">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:url" content="http://yoursite.com/tags/Oracle/index.html">
 <meta property="og:site_name" content="JamesBy博客">
 <meta property="og:description" content="个人博客，hexo+github">
 <meta property="og:locale" content="zh-CN">
@@ -154,76 +154,34 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="oracle-使用SSL" class="article article-type-oracle  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
+  
     
-      <header class="article-header">
-        
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2019" class="archive-year">2019</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-oracle">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2019/12/30/使用SSL/" class="archive-article-date">
+  	<time datetime="2019-12-30T03:17:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-30</time>
+</a>
+        </div>
+    	 
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/30/使用SSL/">Oracle 使用SSL</a>
+      <a class="archive-article-title" href="/2019/12/30/使用SSL/">Oracle 使用SSL</a>
     </h1>
   
 
-        
-        <a href="/2019/12/30/使用SSL/" class="archive-article-date">
-  	<time datetime="2019-12-30T03:17:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-    <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">服务器配置</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-text">证书生成</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-text">服务端配置文件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-text">客户端配置文件</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">使用cx_Orcale操作数据库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">验证</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-text">tcpdumps抓包</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-text">使用Wireshark分析包</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">参考链接：</span></a></li></ol>
-    </div>
-    
-        <h4><span id="服务器配置">服务器配置</span></h4><h5><span id="证书生成">证书生成</span></h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 保存目录</span></span><br><span class="line">mkdir -p /home/oracle/oracle/wallet</span><br><span class="line"><span class="meta">#</span><span class="bash"> 创建一个新的自动登录wallet</span></span><br><span class="line">cd /home/oracle/oracle/wallet</span><br><span class="line">orapki wallet create -wallet "./" -pwd MyNewPass1! -auto_login_local</span><br><span class="line"><span class="meta">#</span><span class="bash"> 创建一个自签名证书并将其加载到</span></span><br><span class="line">orapki wallet add -wallet "./" -pwd MyNewPass1! -dn "CN=`hostname`" -keysize 1024 -self_signed -validity 3650</span><br><span class="line"><span class="meta">#</span><span class="bash"> 检查证书</span></span><br><span class="line">orapki wallet display -wallet "./" -pwd MyNewPass1!</span><br><span class="line"><span class="meta">#</span><span class="bash"> 证书导出</span></span><br><span class="line">orapki wallet export -wallet "./" -pwd MyNewPass1! -dn "CN=`hostname`" -cert ~/server-cert/`hostname`-certificate.crt</span><br></pre></td></tr></table></figure>
-<p><img src="https://tva1.sinaimg.cn/large/006tNbRwly1gael6drhmoj30i2065t9o.jpg" alt></p>
-<h5><span id="服务端配置文件">服务端配置文件</span></h5><p>配置前执行<code>lsnrctl stop</code>关闭监听</p>
-<ol>
-<li>编辑<code>$ORACLE_HOME/network/admin</code>文件<code>listener.ora</code><br>配置样例:</li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">SSL_CLIENT_AUTHENTICATION = FALSE</span><br><span class="line">WALLET_LOCATION =</span><br><span class="line">  (SOURCE =</span><br><span class="line">    (METHOD = FILE)</span><br><span class="line">    (METHOD_DATA =</span><br><span class="line">      (DIRECTORY = /home/oracle/ssl_cert)</span><br><span class="line">    )</span><br><span class="line">  )</span><br><span class="line">LISTENER =</span><br><span class="line">  (DESCRIPTION_LIST =</span><br><span class="line">    (DESCRIPTION =</span><br><span class="line">      (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521))</span><br><span class="line">    )</span><br><span class="line">    (DESCRIPTION =</span><br><span class="line">      (ADDRESS = (PROTOCOL = TCPS)(HOST = localhost)(PORT = 1531))</span><br><span class="line">    )</span><br><span class="line">    (DESCRIPTION =</span><br><span class="line">      (ADDRESS = (PROTOCOL = IPC)(KEY = EXTPROC1521))</span><br><span class="line">    )</span><br><span class="line">  )</span><br><span class="line">ADR_BASE_LISTENER = /home/oracle/oracl_lister_log/</span><br></pre></td></tr></table></figure>
-<ol>
-<li>编辑<code>$ORACLE_HOME/network/admin</code>文件<code>sqlnet.ora</code><br>配置样例:</li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">SQLNET.AUTHENTICATION_SERVICES= (BEQ, TCPS)</span><br><span class="line">SSL_VERSION = 0</span><br><span class="line">NAMES.DIRECTORY_PATH= (TNSNAMES, EZCONNECT)</span><br><span class="line">SSL_CLIENT_AUTHENTICATION = FALSE</span><br><span class="line">WALLET_LOCATION =</span><br><span class="line">  (SOURCE =</span><br><span class="line">    (METHOD = FILE)</span><br><span class="line">    (METHOD_DATA =</span><br><span class="line">      (DIRECTORY = /home/oracle/ssl_cert)</span><br><span class="line">    )</span><br><span class="line">  )</span><br><span class="line">ADR_BASE = /home/oracle/oracl_lister_log</span><br></pre></td></tr></table></figure>
-<p>到此服务器端配置完毕<br>执行<code>lsnrctl start</code>开启监听</p>
-<h5><span id="客户端配置文件">客户端配置文件</span></h5><p>1.scp服务端生成的证书文件到客户端<br>2.编辑<code>$ORACLE_HOME/network/admin</code>文件sqlnet.ora<br>配置样例:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">ENCRYPTION_WALLET_LOCATION =</span><br><span class="line">  (SOURCE =</span><br><span class="line">    (METHOD = FILE)</span><br><span class="line">    (METHOD_DATA =</span><br><span class="line">      (DIRECTORY = /path/of/client/wallet)</span><br><span class="line">    )</span><br><span class="line">  )</span><br><span class="line"></span><br><span class="line">SQLNET.AUTHENTICATION_SERVICES= (BEQ, TCPS)</span><br><span class="line"></span><br><span class="line">SSL_VERSION = 0</span><br><span class="line"></span><br><span class="line">NAMES.DIRECTORY_PATH= (TNSNAMES, EZCONNECT)</span><br><span class="line"></span><br><span class="line">SSL_CLIENT_AUTHENTICATION = FALSE</span><br><span class="line"></span><br><span class="line">WALLET_LOCATION =</span><br><span class="line">  (SOURCE =</span><br><span class="line">    (METHOD = FILE)</span><br><span class="line">    (METHOD_DATA =</span><br><span class="line">      (DIRECTORY = /path/of/client/wallet)</span><br><span class="line">    )</span><br><span class="line">  )</span><br><span class="line"></span><br><span class="line">ADR_BASE = /path/of/client/log</span><br></pre></td></tr></table></figure>
-<ol>
-<li>编辑<code>$ORACLE_HOME/network/admin</code>文件<code>tnsnames.ora</code><br>配置样例:</li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ORCLCDB =</span><br><span class="line">  (DESCRIPTION =</span><br><span class="line">    (ADDRESS = (PROTOCOL = TCPS)(HOST = ip)(PORT = 1531))</span><br><span class="line">    (CONNECT_DATA =</span><br><span class="line">      (SERVER = DEDICATED)</span><br><span class="line">      (SERVICE_NAME = orclcdb)</span><br><span class="line">    )</span><br><span class="line">  )</span><br></pre></td></tr></table></figure>
-<h4><span id="使用cx_orcale操作数据库">使用cx_Orcale操作数据库</span></h4><p>⚠️注意事项:</p>
-<ul>
-<li>安装oracle客户端，如果没有安装第一没有上面客户端的<code>$ORACLE_HOME</code>目录,第二无法运行cx_Orcale模块操作数据库;<br>安装方式见<a href="https://oracle.github.io/odpi/doc/installation.html#oracle-instant-client-zip" target="_blank" rel="noopener">官方文档</a></li>
-<li>设置字符集,不设置遇到中文会乱码</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export NLS_LANG="SIMPLIFIED CHINESE_CHINA.UTF8"</span><br></pre></td></tr></table></figure>
-<p>使用关键demo</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">def</span> <span class="title">get_conn_pool_by_cx_oracle</span><span class="params">(self, **kwargs)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    使用cx_oracle创造连接池</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    user = kwargs[<span class="string">'user'</span>]</span><br><span class="line">    password = kwargs[<span class="string">'password'</span>]</span><br><span class="line">    service_name = kwargs[<span class="string">'service_name'</span>]</span><br><span class="line">    self.conn_pool = cx_Oracle.SessionPool(</span><br><span class="line">        user,</span><br><span class="line">        password,</span><br><span class="line">        dsn=service_name, <span class="comment"># 同tnsnames.ora文件保持一致</span></span><br><span class="line">        min=<span class="number">2</span>,</span><br><span class="line">        max=<span class="number">3</span>,</span><br><span class="line">        increment=<span class="number">1</span>,</span><br><span class="line">        encoding=<span class="string">"UTF-8"</span>)</span><br><span class="line">    <span class="keyword">return</span> self.conn_pool</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_conn_session_pool</span><span class="params">(self)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    连接池获取连接</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    conn = self.conn_pool.acquire()</span><br><span class="line">    <span class="keyword">return</span> conn</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__close_conn</span><span class="params">(self, conn)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    在执行一次查询完毕后推回连接到连接池</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    self.conn_pool.release(conn)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__del__</span><span class="params">(self)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    最后销毁连接，防止占有资源</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    self.conn_pool.close()</span><br></pre></td></tr></table></figure>
-<h4><span id="验证">验证</span></h4><ol>
-<li>使用以上方式可以正常登录</li>
-<li>抓包,查看包文,看是否成功启用tcps协议,以及包中的文件是密文</li>
-</ol>
-<h5><span id="tcpdumps抓包">tcpdumps抓包</span></h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 指定目标地址</span></span><br><span class="line">sudo tcpdump -nS  dst 192.168.31.199 -w ssl_test.pcap</span><br><span class="line"><span class="meta">#</span><span class="bash"> 所有</span></span><br><span class="line">sudo tcpdump -nS -w all_packet.pcap</span><br></pre></td></tr></table></figure>
-<h5><span id="使用wireshark分析包">使用Wireshark分析包</span></h5><p>🔐使用了ssl链接<br><img src="https://tva1.sinaimg.cn/large/006tNbRwly1gael7ii8tej30pq08940z.jpg" alt><br>包文密文<br><img src="https://tva1.sinaimg.cn/large/006tNbRwly1gael801p3bj30xm0os138.jpg" alt></p>
-<h4><span id="参考链接">参考链接：</span></h4><ul>
-<li><a href="https://cx-oracle.readthedocs.io/en/latest/user_guide/connection_handling.html#optnetfiles" target="_blank" rel="noopener">cx-oracle官方文档</a></li>
-<li><a href="http://www.dbaglobe.com/2014/12/how-to-enable-ssl-encryption-for-oracle.html" target="_blank" rel="noopener">oracle启用tcps</a></li>
-<li><a href="https://cizixs.com/2015/03/12/tcpdump-introduction/" target="_blank" rel="noopener">tcpdump简单使用</a></li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -243,544 +201,20 @@
 		</ul>
 	</div>
 
-      
+          
 
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/30/使用SSL/">查看本文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
+        </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
 
-
-
-
-
-
   
-    <article id="post-MySQL使用SSL-Python" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
+  
+    </div></section>
+  
+
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/07/MySQL使用SSL-Python/">MySQL使用SSL-Python</a>
-    </h1>
-  
-
-        
-        <a href="/2019/12/07/MySQL使用SSL-Python/" class="archive-article-date">
-  	<time datetime="2019-12-07T09:16:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>[toc]</p>
-<h4 id="mysql安装"><a href="#mysql安装" class="headerlink" title="mysql安装"></a>mysql安装</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">wget http://dev.mysql.com/get/mysql57-community-release-el7-8.noarch.rpm</span><br><span class="line">yum localinstall mysql57-community-release-el7-8.noarch.rpm </span><br><span class="line"><span class="meta">#</span> 安装源</span><br><span class="line">yum localinstall mysql57-community-release-el7-8.noarch.rpm </span><br><span class="line"><span class="meta">#</span> 检查源是否安装成功</span><br><span class="line">yum repolist enabled | grep "mysql.*-community.*"</span><br><span class="line"><span class="meta">#</span> 安装</span><br><span class="line">yum install mysql-community-server</span><br><span class="line"><span class="meta">#</span> 启动MySQL服务并设置开机启动</span><br><span class="line">systemctl start mysqld</span><br><span class="line">systemctl enable mysqld</span><br><span class="line">systemctl daemon-reload</span><br><span class="line"><span class="meta">#</span> 端口开放</span><br><span class="line">firewall-cmd --zone=public --add-port=3306/tcp --permanent</span><br><span class="line">firewall-cmd --reload</span><br><span class="line"><span class="meta">#</span> 查看安装好的默认临时密码</span><br><span class="line">grep 'temporary password' /var/log/mysqld.log</span><br><span class="line"><span class="meta">#</span> 登陆</span><br><span class="line">mysql -uroot -p</span><br><span class="line"><span class="meta">#</span> 修改密码</span><br><span class="line">set password for 'root'@'localhost'=password('MyNewPass1!');</span><br></pre></td></tr></table></figure>
-<h4 id="生成证书"><a href="#生成证书" class="headerlink" title="生成证书"></a>生成证书</h4>
-        
-          <a class="article-more-a" href="/2019/12/07/MySQL使用SSL-Python/#more">展开全文 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">MySQL</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/07/MySQL使用SSL-Python/">查看本文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-  
-    <article id="post-Spark性能提升" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/28/Spark性能提升/">Spark性能提升</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/28/Spark性能提升/" class="archive-article-date">
-  	<time datetime="2019-09-28T09:30:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>[TOC]</p>
-<h3 id="1-spark-submit参数调优"><a href="#1-spark-submit参数调优" class="headerlink" title="1. spark-submit参数调优"></a>1. spark-submit参数调优</h3><h4 id="1-1spark运行原理"><a href="#1-1spark运行原理" class="headerlink" title="1.1spark运行原理:"></a>1.1spark运行原理:</h4><p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g7fcu3wiruj30pz0i9n0j.jpg" alt></p>
-<h5 id="1-1-1资源申请"><a href="#1-1-1资源申请" class="headerlink" title="1.1.1资源申请"></a>1.1.1资源申请</h5><p>spark-submit提交作业后会根据部署模式不同，选择在本地或者集群节点启动Driver进程。由Driver进程向集群管理器，这里是Yran，请求作业运行所需的资源，这里的资源即作业所需的executor。Yarn根据提交的参数，在各节点启动一定数量的executor。</p>
-        
-          <a class="article-more-a" href="/2019/09/28/Spark性能提升/#more">展开全文 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">spark</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/28/Spark性能提升/">查看本文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-  
-    <article id="post-Numpy笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/19/Numpy笔记/">Numpy笔记</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/19/Numpy笔记/" class="archive-article-date">
-  	<time datetime="2019-08-19T14:04:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g5qczc33jcj30go06mglr.jpg" alt></p>
-<h3 id="Ndarray对象"><a href="#Ndarray对象" class="headerlink" title="Ndarray对象"></a>Ndarray对象</h3><p>numpy 最重要的特点:N维数组对象,ndarry。</p>
-<h4 id="Ndarray特性"><a href="#Ndarray特性" class="headerlink" title="Ndarray特性"></a>Ndarray特性</h4><ul>
-<li>用于存放同类型元素的多维数组</li>
-<li>每个元素在内存中拥有相同存储大小区域</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">创建</span><br><span class="line">numpy.array(object, dtype=None)</span><br></pre></td></tr></table></figure>
-<!--toc-->
-        
-          <a class="article-more-a" href="/2019/08/19/Numpy笔记/#more">展开全文 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Numpy</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/19/Numpy笔记/">查看本文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-  
-    <article id="post-hexo搬迁mac" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/13/hexo搬迁mac/">hexo搬迁mac</a>
-    </h1>
-  
-
-        
-        <a href="/2019/05/13/hexo搬迁mac/" class="archive-article-date">
-  	<time datetime="2019-05-13T08:54:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="http://ww1.sinaimg.cn/large/007tzpNZly1g2zggrujphj32yo1o0q6q.jpg" alt></p>
-<h3 id="安装nodejs"><a href="#安装nodejs" class="headerlink" title="安装nodejs"></a>安装nodejs</h3><p>略:eyes:</p>
-<p>###安装hexo</p>
-<ul>
-<li><p>hexo安装失败：</p>
-</li>
-<li><p>解决方案</p>
-        
-          <a class="article-more-a" href="/2019/05/13/hexo搬迁mac/#more">展开全文 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hero</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/05/13/hexo搬迁mac/">查看本文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-  
-    <article id="post-Elasticsearch简单使用笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/18/Elasticsearch简单使用笔记/">Elasticsearch简单使用笔记</a>
-    </h1>
-  
-
-        
-        <a href="/2019/03/18/Elasticsearch简单使用笔记/" class="archive-article-date">
-  	<time datetime="2019-03-18T10:05:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="http://ww1.sinaimg.cn/large/007tzpNZly1g126a4gm7aj32n21dhmyq.jpg" alt></p>
-<h3 id="信息相关查询"><a href="#信息相关查询" class="headerlink" title="信息相关查询"></a>信息相关查询</h3><ul>
-<li><p>1.localhost:9200</p>
-<ul>
-<li>查看elasticsearch版本信息</li>
-</ul>
-</li>
-<li><p>2.localhost:9200/_cat/indices?v</p>
-<ul>
-<li>查看es所有index信息</li>
-</ul>
-</li>
-<li><p>3.localhost:9200/_mapping?pretty=true</p>
-<ul>
-<li>查看所有index的mapping(字段)</li>
-</ul>
-        
-          <a class="article-more-a" href="/2019/03/18/Elasticsearch简单使用笔记/#more">展开全文 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ES</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Elasticsearch</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/03/18/Elasticsearch简单使用笔记/">查看本文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-  
-    <article id="post-spark读取s3文件基于python实现" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/04/spark读取s3文件基于python实现/">spark读取s3文件基于python实现</a>
-    </h1>
-  
-
-        
-        <a href="/2018/11/04/spark读取s3文件基于python实现/" class="archive-article-date">
-  	<time datetime="2018-11-04T14:16:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="http://ouyzqzdzy.bkt.clouddn.com/spark.jpg" alt="spark"></p>
-<h4 id="1-背景"><a href="#1-背景" class="headerlink" title="1.背景"></a>1.背景</h4><p>​    AWS的S3文件系统，是个优秀的分布式文件系统，在EC2上读取速度优异，且存取方便，本文介绍如何使用spark去读取S3上的文件，为做大数据清洗和分析做基本处理工作</p>
-<h4 id="2-设置s3读取环境"><a href="#2-设置s3读取环境" class="headerlink" title="2.设置s3读取环境"></a>2.设置s3读取环境</h4><p>​    需要给sparkContent设置s3读取的环境，设置相应的id和key，注意写到代码中，设置awscli可能不行</p>
-<p>由于中国区的region相对于其他地区是隔离开的，所以使用中国亚马逊S3需要单另设置endpoint来指定地区，否则会去访问美国区。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sc._jsc.hadoopConfiguration().set(<span class="string">"fs.s3a.access.key"</span>, AWS_ACCESS_KEY_ID)</span><br><span class="line">sc._jsc.hadoopConfiguration().set(<span class="string">"fs.s3a.secret.key"</span>, AWS_SECRET_ACCESS_KEY)</span><br><span class="line">sc._jsc.hadoopConfiguration().set(<span class="string">"fs.s3a.endpoint"</span>, <span class="string">"s3.cn-north-1.amazonaws.com.cn"</span>)</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2018/11/04/spark读取s3文件基于python实现/#more">展开全文 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">s3</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">spark</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/11/04/spark读取s3文件基于python实现/">查看本文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-  
-    <article id="post-Nginx-Gunicorn-Supervisor部署flask应用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/05/Nginx-Gunicorn-Supervisor部署flask应用/">Nginx+Gunicorn+Supervisor部署flask应用</a>
-    </h1>
-  
-
-        
-        <a href="/2018/06/05/Nginx-Gunicorn-Supervisor部署flask应用/" class="archive-article-date">
-  	<time datetime="2018-06-05T13:08:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="http://ouyzqzdzy.bkt.clouddn.com/nginx+supervisor+gunicorn+flask.png" alt></p>
-<h4 id="综述："><a href="#综述：" class="headerlink" title="综述："></a>综述：</h4><p>​    在ubuntu服务器上部署flaskweb应用，使用可用于企业级生产线上的部署模式Nginx+gunicorn+supervisor。使应用能支持高可用，服务更加健壮，将从以下几个内容记录。</p>
-<h4 id="概念："><a href="#概念：" class="headerlink" title="概念："></a>概念：</h4><h6 id="nginx"><a href="#nginx" class="headerlink" title="nginx:"></a>nginx:</h6><p>​    高效的web服务器和反向代理服务器，常被用于负载均衡，分担服务器的访问压力，支持高并发。本项目使用nginx做反向代理服务，也就是说，从互联网过来的请求，经过nginx转发给web服务器上的目标服务，再由目标服务作出响应，由nginx返回请求结果。    并且nginx可以缓冲http请求，减小服务器压力。</p>
-<h6 id="WSGI协议："><a href="#WSGI协议：" class="headerlink" title="WSGI协议："></a>WSGI协议：</h6><p>​    python web server gateway interface简称，它规定了一种在web服务器与web应用框架/程序之间推荐的标准接口。用于确保web应用程序在不同的web服务器之间具有可移值性。</p>
-        
-          <a class="article-more-a" href="/2018/06/05/Nginx-Gunicorn-Supervisor部署flask应用/#more">展开全文 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flask</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">部署</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/05/Nginx-Gunicorn-Supervisor部署flask应用/">查看本文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-  
-  
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
-    </nav>
-  
 
 
 
@@ -803,10 +237,10 @@
     <script>
 	var yiliaConfig = {
 		mathjax: true,
-		isHome: true,
+		isHome: false,
 		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: false,
 		root: "/",
